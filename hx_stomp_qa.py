@@ -19,27 +19,103 @@ class HXStompQA:
         self.semantic_model = SentenceTransformer('all-MiniLM-L6-v2', cache_folder=self.cache_dir)
         self.load_knowledge_base()
 
+    def load_pedals_json(self):
+        """Load and process the HX Stomp pedals/effects data from JSON"""
+        # First load the JSON structure documentation
+        structure_df = pd.read_csv('data/json_structure.csv', sep=';')
+        json_structure = {}
+        for _, row in structure_df.iterrows():
+            concept = row['Concept']
+            if concept not in json_structure:
+                json_structure[concept] = []
+            json_structure[concept].append({
+                'property': row['JSON Property'],
+                'description': row['Description']
+            })
+        
+        # Now load and process the pedals data
+        with open('data/hx_pedals.json', 'r') as f:
+            pedals_data = json.load(f)
+            
+        knowledge = []
+        # Add JSON structure documentation
+        for concept, properties in json_structure.items():
+            desc = f"JSON Structure - {concept}:\n"
+            for prop in properties:
+                desc += f"- {prop['property']}: {prop['description']}\n"
+            knowledge.append(desc)
+            
+        # Process pedals data
+        for category in pedals_data:
+            if 'subcategories' in category:
+                for subcat in category['subcategories']:
+                    if 'models' in subcat:
+                        for model in subcat['models']:
+                            if not isinstance(model, dict) or 'use_subcategory' in model:
+                                continue
+                            # Create a description for each effect model
+                            desc = f"Effect: {model.get('name', 'Unknown')} (ID: {model.get('id', 'Unknown')})\n"
+                            desc += f"Category: {category['name']} > {subcat['name']}\n"
+                            
+                            # Add parameters if available
+                            if 'params' in model:
+                                params = []
+                                for param in model['params']:
+                                    param_name = list(param.keys())[0]
+                                    display_name = param[param_name] if param[param_name] else param_name
+                                    params.append(display_name)
+                                if params:
+                                    desc += f"Parameters: {' | '.join(params)}"
+                            
+                            knowledge.append(desc)
+        return knowledge
+
+    def load_manual_qa(self):
+        """Load Q&A pairs from the manual QA data"""
+        qa_df = pd.read_csv('data/hx_manual_qa_data.csv', sep=';')
+        # Convert Q&A pairs into contextual knowledge
+        knowledge = [f"Q: {row['Question']}\nA: {row['Answer']}" for _, row in qa_df.iterrows()]
+        return knowledge
+
+    def load_pedal_order_qa(self):
+        """Load Q&A pairs about pedal ordering from the dedicated dataset"""
+        order_df = pd.read_csv('data/hx_pedal_order_qa_data.csv', sep=';')
+        # Convert pedal order Q&A pairs into contextual knowledge
+        knowledge = [f"Q: {row['Question']}\nA: {row['Answer']}" for _, row in order_df.iterrows()]
+        return knowledge
+        
+    def load_receipts_qa(self):
+        """Load tone recipes Q&A pairs"""
+        recipes_df = pd.read_csv('data/hx_receipts.csv', sep=';')
+        # Convert recipes Q&A pairs into contextual knowledge
+        knowledge = [f"Q: {row['Question']}\nA: {row['Answer']}" for _, row in recipes_df.iterrows()]
+        return knowledge
+
+    def load_manual_text(self):
+        """Load the full manual text"""
+        with open('data/hx_stomp_manual.txt', 'r') as f:
+            manual_text = f.read()
+            
+        # Split manual into manageable chunks
+        # Remove page headers and clean up formatting
+        cleaned_text = re.sub(r'\n\d+\n', '\n', manual_text)
+        chunks = re.split(r'\n\s*\n', cleaned_text)
+        # Filter out very short chunks and clean them
+        knowledge = [chunk.strip() for chunk in chunks if len(chunk.strip()) > 50]
+        return knowledge
+
     def load_knowledge_base(self):
-        # Load pedals data
-        self.pedals_df = pd.read_csv('data/pedals.csv')
-        
-        # Load preset recipes
-        with open('data/preset_recipes.txt', 'r') as f:
-            self.recipes = f.read()
-        
-        # Create embeddings for quick similarity search
+        """Load all knowledge sources and create embeddings"""
         self.knowledge_chunks = []
         
-        # Add pedal information
-        for _, row in self.pedals_df.iterrows():
-            chunk = f"{row['pedal_name']}: {row['description']} Parameters: {row['parameters']}"
-            self.knowledge_chunks.append(chunk)
-        
-        # Add recipe sections
-        for recipe in self.recipes.split('\n\n'):
-            self.knowledge_chunks.append(recipe)
+        # Load all knowledge sources
+        self.knowledge_chunks.extend(self.load_pedals_json())
+        self.knowledge_chunks.extend(self.load_manual_qa())
+        self.knowledge_chunks.extend(self.load_pedal_order_qa())  # Added pedal order knowledge
+        self.knowledge_chunks.extend(self.load_receipts_qa())
+        self.knowledge_chunks.extend(self.load_manual_text())
             
-        # Create embeddings
+        # Create embeddings for similarity search
         self.embeddings = self.semantic_model.encode(self.knowledge_chunks, convert_to_tensor=True)
 
     def clean_answer(self, text):
