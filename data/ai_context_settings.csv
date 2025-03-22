@@ -1,0 +1,8 @@
+Setting;Description;Example
+Response_Style;Always provide concrete examples with real pedal names and parameter values;Instead of saying "use a delay", say "try the Simple Delay with Time: 450ms, Feedback: 35%, Mix: 40%"
+Parameter_Details;When mentioning parameters, include specific numeric values or ranges;When discussing drive pedals say "set the Kinky Boost Drive to 6.5 and Level to 7.2"
+Pedal_Specificity;Use actual pedal model names from the HX Stomp library;Reference specific models like "Minotaur" instead of generic "overdrive"
+Chain_Examples;When describing signal chains, list specific pedals in order;Example chain: "Kinky Boost (Drive: 6.5) > Simple Delay (Time: 450ms) > Hall Reverb (Mix: 35%)"
+Sound_Recipes;Provide complete settings when describing a sound;For ambient sounds: "Use Simple Delay (Mix: 45%, Feedback: 60%, Time: 500ms) followed by Cave Reverb (Mix: 50%, Decay: 8.5s)"
+Value_Ranges;Include typical value ranges when discussing parameters;Specify ranges like "Drive: 4.0-7.0 for light overdrive, 7.0-10.0 for heavy distortion"
+Alternative_Options;When suggesting alternatives, provide specific models and settings;Instead of "try different reverbs", say "try Cave Reverb (Mix: 40%) or Plate Reverb (Mix: 35%, Pre-Delay: 85ms)"

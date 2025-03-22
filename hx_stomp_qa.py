@@ -128,10 +128,21 @@ class HXStompQA:
         """Load all knowledge sources and create embeddings"""
         self.knowledge_chunks = []
         
+        # Load AI context settings
+        try:
+            context_df = pd.read_csv('data/ai_context_settings.csv', sep=';')
+            self.ai_context = {row['Setting']: {
+                'description': row['Description'],
+                'example': row['Example']
+            } for _, row in context_df.iterrows()}
+        except Exception as e:
+            print(f"Warning: Could not load AI context settings: {str(e)}")
+            self.ai_context = {}
+        
         # Load all knowledge sources
         self.knowledge_chunks.extend(self.load_pedals_json())
         self.knowledge_chunks.extend(self.load_manual_qa())
-        self.knowledge_chunks.extend(self.load_pedal_order_qa())  # Added pedal order knowledge
+        self.knowledge_chunks.extend(self.load_pedal_order_qa())
         self.knowledge_chunks.extend(self.load_receipts_qa())
             
         # Create embeddings for similarity search
@@ -205,9 +216,17 @@ class HXStompQA:
 
     def enhance_with_tinyllama(self, base_answer: str, question: str, context: str) -> str:
         """Use TinyLlama through Ollama to enhance the answer while keeping the base knowledge."""
-        prompt = f"""Based on the following context and initial answer about the Line 6 HX Stomp, 
-        please provide a clear and natural response. Stick strictly to the information provided 
-        and don't add speculative information.
+        # Include AI context guidelines in the prompt
+        context_guidelines = "\n".join([
+            f"- {setting}: {details['description']}" 
+            for setting, details in self.ai_context.items()
+        ])
+        
+        prompt = f"""Based on the following context and guidelines about the Line 6 HX Stomp, 
+        please provide a clear and natural response with specific examples and parameter values.
+
+        Guidelines:
+        {context_guidelines}
 
         Context: {context}
         
@@ -215,8 +234,8 @@ class HXStompQA:
         
         Initial Answer: {base_answer}
         
-        Enhanced Response:"""
-        
+        Enhanced Response (remember to include specific pedal names and parameter values):"""
+
         try:
             response = requests.post(
                 self.ollama_endpoint,
@@ -230,7 +249,6 @@ class HXStompQA:
             
             if response.status_code == 200:
                 enhanced_answer = response.json().get("response", "").strip()
-                # Ensure we're not straying from the original information
                 if enhanced_answer and len(enhanced_answer) > 20:
                     return enhanced_answer
             
