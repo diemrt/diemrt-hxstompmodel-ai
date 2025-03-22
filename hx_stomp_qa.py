@@ -124,19 +124,6 @@ class HXStompQA:
             print(f"Error loading recipes QA data: {str(e)}")
             return []
 
-    def load_manual_text(self):
-        """Load the full manual text"""
-        with open('data/hx_stomp_manual.txt', 'r') as f:
-            manual_text = f.read()
-            
-        # Split manual into manageable chunks
-        # Remove page headers and clean up formatting
-        cleaned_text = re.sub(r'\n\d+\n', '\n', manual_text)
-        chunks = re.split(r'\n\s*\n', cleaned_text)
-        # Filter out very short chunks and clean them
-        knowledge = [chunk.strip() for chunk in chunks if len(chunk.strip()) > 50]
-        return knowledge
-
     def load_knowledge_base(self):
         """Load all knowledge sources and create embeddings"""
         self.knowledge_chunks = []
@@ -146,7 +133,6 @@ class HXStompQA:
         self.knowledge_chunks.extend(self.load_manual_qa())
         self.knowledge_chunks.extend(self.load_pedal_order_qa())  # Added pedal order knowledge
         self.knowledge_chunks.extend(self.load_receipts_qa())
-        self.knowledge_chunks.extend(self.load_manual_text())
             
         # Create embeddings for similarity search
         self.embeddings = self.semantic_model.encode(self.knowledge_chunks, convert_to_tensor=True)
@@ -323,15 +309,20 @@ if __name__ == "__main__":
     
     # Test questions
     test_questions = [
+        "Give me a full list of the pedals to use, with the names and the parameters of the HX Stomp, in the correct order",
+        "What's the recommended signal chain order for my effects?",
         "How can I create a preset for an ambience sound?",
         "How can I tweak my Simple Delay pedal to get a warm tone?",
-        "What are the parameters for the Hall Reverb?",
+        "What are all the parameters for the Hall Reverb?",
+        "Show me all available distortion pedals and their parameters",
         "How do I create an ethereal soundscape?",
-        "What's a good setting for rhythmic delays?"
+        "What's a good setting for rhythmic delays?",
+        "List all modulation effects available in the HX Stomp"
     ]
     
     print("Running test questions:")
     for question in test_questions:
         print(f"\nQ: {question}")
         result = qa_system.answer_question(question)
-        print(f"A: {result['answer']}")
+        print(f"A: {result['answer']}\n")
+        print("-" * 80)  # Add separator between questions for better readability
