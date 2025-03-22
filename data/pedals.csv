@@ -1,9 +1,0 @@
-pedal_name,category,parameters,description
-Simple Delay,Delay,Time:0-2000ms|Feedback:0-100|Mix:0-100|Tone:0-100,Digital delay with basic controls for creating echo effects
-Dual Delay,Delay,Time A:0-2000ms|Time B:0-2000ms|Feedback A:0-100|Feedback B:0-100|Mix:0-100,Two independent delays for complex rhythmic patterns
-Hall Reverb,Reverb,Decay:0-100|Pre-Delay:0-100|Mix:0-100|Lo Cut:20-500Hz|Hi Cut:1k-20kHz,Simulates the sound of a concert hall
-Plate Reverb,Reverb,Decay:0-100|Pre-Delay:0-100|Mix:0-100|Tone:0-100,Classic plate reverb emulation
-Multitap Delay,Delay,Heads:1-4|Time:0-2500ms|Feedback:0-100|Spread:0-100|Mix:0-100,Multiple delay taps for complex echo patterns
-Room Reverb,Reverb,Size:0-100|Decay:0-100|Mix:0-100|Damping:0-100,Natural room ambience simulation
-Analog Delay,Delay,Time:0-2000ms|Feedback:0-100|Mix:0-100|Wow/Flutter:0-100,Warm analog-style delay with modulation
-Pitch Shift,Pitch,Interval:-24to+24|Mix:0-100|Tracking:0-100,Shifts the pitch of your signal up or down

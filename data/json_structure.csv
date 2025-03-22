@@ -1,0 +1,19 @@
+Concept;JSON Property;Description
+Category;id;Unique numeric identifier for the effect category (e.g. 1 for Distortion, 2 for Dynamics)
+Category;name;Display name of the category (e.g. "Distortion", "Dynamics", "EQ")
+Category;image;Image file name used to represent the category in the UI
+Category;shortName;Abbreviated name of the category used in constrained UI spaces
+Category;color;Hex color code used for the category in the UI
+Category;subcategories;List of subcategories containing the effects (e.g. Mono, Stereo, Legacy)
+Subcategory;name;Name of the subcategory (e.g. "Mono", "Stereo", "Legacy")
+Subcategory;id;Numeric identifier for the subcategory (e.g. 4 for Mono, 5 for Stereo)
+Subcategory;models;List of effect models in this subcategory
+Effect Model;id;Unique identifier for the specific effect (e.g. "HD2_DistKinkyBoost")
+Effect Model;name;Display name of the effect shown in the UI (e.g. "Kinky Boost")
+Effect Model;image;Image file name used to represent the effect in the UI
+Effect Model;params;List of parameters that can be adjusted for this effect
+Effect Model;use_subcategory;Reference to another subcategory's effect definition (used for shared effects)
+Effect Model;hidden;Boolean flag to indicate if the effect should be hidden in the UI
+Effect Model;meterInterval;Time interval for meter updates (used in certain effect types)
+Parameter;name;Name of the parameter as shown in the UI
+Parameter;value;Current value or default value of the parameter
