@@ -8,6 +8,8 @@ import os
 from sentence_transformers import SentenceTransformer
 import tempfile
 import re
+import requests
+from typing import Dict, Optional
 
 class HXStompQA:
     def __init__(self):
@@ -18,6 +20,7 @@ class HXStompQA:
         self.qa_model = AutoModelForQuestionAnswering.from_pretrained(self.model_name, cache_dir=self.cache_dir)
         self.semantic_model = SentenceTransformer('all-MiniLM-L6-v2', cache_folder=self.cache_dir)
         self.load_knowledge_base()
+        self.ollama_endpoint = "http://localhost:11434/api/generate"
 
     def load_pedals_json(self):
         """Load and process the HX Stomp pedals/effects data from JSON"""
@@ -214,12 +217,49 @@ class HXStompQA:
         context = " ".join([self.knowledge_chunks[i] for i in top_indices])
         return context
 
-    def answer_question(self, question):
+    def enhance_with_tinyllama(self, base_answer: str, question: str, context: str) -> str:
+        """Use TinyLlama through Ollama to enhance the answer while keeping the base knowledge."""
+        prompt = f"""Based on the following context and initial answer about the Line 6 HX Stomp, 
+        please provide a clear and natural response. Stick strictly to the information provided 
+        and don't add speculative information.
+
+        Context: {context}
+        
+        Question: {question}
+        
+        Initial Answer: {base_answer}
+        
+        Enhanced Response:"""
+        
+        try:
+            response = requests.post(
+                self.ollama_endpoint,
+                json={
+                    "model": "tinyllama",
+                    "prompt": prompt,
+                    "stream": False
+                },
+                timeout=30
+            )
+            
+            if response.status_code == 200:
+                enhanced_answer = response.json().get("response", "").strip()
+                # Ensure we're not straying from the original information
+                if enhanced_answer and len(enhanced_answer) > 20:
+                    return enhanced_answer
+            
+            return base_answer
+            
+        except Exception as e:
+            print(f"Error with TinyLlama enhancement: {str(e)}")
+            return base_answer
+            
+    def answer_question(self, question: str) -> Dict[str, Optional[str]]:
         try:
             # Find relevant context
             context = self.find_relevant_context(question)
             
-            # Prepare input for the model
+            # Get base answer using the QA model
             inputs = self.tokenizer(
                 question,
                 context,
@@ -229,46 +269,48 @@ class HXStompQA:
                 padding=True
             )
 
-            # Get model outputs
             with torch.no_grad():
                 outputs = self.qa_model(**inputs)
                 start_logits = outputs.start_logits
                 end_logits = outputs.end_logits
                 
-            # Get the most likely answer span
             start_idx = torch.argmax(start_logits)
             end_idx = torch.argmax(end_logits)
             
-            # Convert token positions to text
             tokens = self.tokenizer.convert_ids_to_tokens(inputs["input_ids"][0])
-            answer = self.tokenizer.convert_tokens_to_string(tokens[start_idx:end_idx+1])
+            base_answer = self.tokenizer.convert_tokens_to_string(tokens[start_idx:end_idx+1])
             
-            # Clean up the answer
-            answer = self.clean_answer(answer)
+            # Clean up the base answer
+            base_answer = self.clean_answer(base_answer)
             
-            # If no good answer is found, extract key information from context
-            if not answer or answer.isspace() or len(answer) < 10:
+            # Handle case when no good answer is found
+            if not base_answer or base_answer.isspace() or len(base_answer) < 10:
                 context_lines = [line.strip() for line in context.split('.') if line.strip()]
                 relevant_info = next((line for line in context_lines 
                                    if any(keyword in line.lower() 
                                         for keyword in question.lower().split())), None)
                 if relevant_info:
-                    answer = self.clean_answer(relevant_info)
+                    base_answer = self.clean_answer(relevant_info)
                 else:
                     best_line = max(context_lines, key=len) if context_lines else context[:200]
-                    answer = self.clean_answer(best_line)
+                    base_answer = self.clean_answer(best_line)
             
             # Format parameters if present
-            answer = self.format_parameters(answer)
+            base_answer = self.format_parameters(base_answer)
+            
+            # Enhance the answer using TinyLlama
+            enhanced_answer = self.enhance_with_tinyllama(base_answer, question, context)
                 
             return {
-                "answer": answer,
-                "context": context
+                "answer": enhanced_answer,
+                "context": context,
+                "base_answer": base_answer  # Include original answer for reference
             }
         except Exception as e:
             return {
                 "answer": f"I apologize, but I encountered an error: {str(e)}",
-                "context": None
+                "context": None,
+                "base_answer": None
             }
 
 if __name__ == "__main__":
