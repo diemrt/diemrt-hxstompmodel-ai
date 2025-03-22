@@ -149,55 +149,65 @@ class HXStompQA:
         self.embeddings = self.semantic_model.encode(self.knowledge_chunks, convert_to_tensor=True)
 
     def clean_answer(self, text):
-        # Remove special tokens and question repetition
+        # Improved cleaning with better parameter formatting
         text = re.sub(r'\[CLS\]|\[SEP\]', '', text)
-        text = re.sub(r'^.*\?', '', text)  # Remove question repetition
+        text = re.sub(r'^.*\?', '', text)
         
-        # Clean up formatting artifacts
-        text = re.sub(r'\s*\(\s*', ' (', text)
-        text = re.sub(r'\s*\)\s*', ') ', text)
-        text = re.sub(r'\s*:\s*', ': ', text)
-        text = re.sub(r'\s*\|\s*', ' | ', text)
-        text = re.sub(r'\s+', ' ', text)
+        # Standardize parameter formatting
+        text = re.sub(r'(\w+):\s*(\d+(?:\.\d+)?%?)', r'\1: \2', text)  # Standardize parameter value format
+        text = re.sub(r'(\w+):\s*(\d+(?:\.\d+)?)\s*-\s*(\d+(?:\.\d+)?)', r'\1: \2-\3', text)  # Standardize ranges
         
-        # Format lists with bullet points
+        # Improve parameter list formatting
+        if 'parameters:' in text.lower():
+            parts = text.split('Parameters:', 1)
+            if len(parts) > 1:
+                params = parts[1].split('|')
+                formatted_params = '\nParameters:\n' + '\n'.join(f'  • {p.strip()}' for p in params)
+                text = f"{parts[0].strip()}{formatted_params}"
+        
+        # Improve list formatting
         text = re.sub(r'(?m)^(\d+\.\s+)', '• ', text)
+        text = re.sub(r'(?m)^[-•]\s*', '• ', text)
         
-        # Split into sentences and capitalize each one
+        # Capitalize sentences and ensure proper spacing
         sentences = []
         for s in text.split('.'):
             s = s.strip()
             if s:
-                # Format percentages consistently
                 s = re.sub(r'(\d+)\s*%', r'\1%', s)
-                # Format ranges consistently
                 s = re.sub(r'(\d+)\s*-\s*(\d+)', r'\1-\2', s)
-                # Remove excessive spacing around dashes
                 s = re.sub(r'\s+\-\s+', '-', s)
                 sentences.append(s.capitalize())
         
         text = '. '.join(sentences)
-        
-        # Ensure proper sentence ending
         if not text.endswith('.'):
-            text = text + '.'
+            text += '.'
             
         return text
 
     def format_parameters(self, text):
+        """Enhanced parameter formatting with better structure"""
         if 'parameters:' in text.lower():
-            # Split parameters into a cleaner format
-            parts = text.split('Parameters:')
+            parts = text.split('Parameters:', 1)
             if len(parts) > 1:
-                # Extract main content
                 main_content = parts[0].strip()
                 
-                # Format parameters with better spacing and bullet points
+                # Format parameters with better structure and examples
                 params = [p.strip() for p in parts[1].split('|')]
-                formatted_params = '\n\nParameters:\n' + '\n'.join('  • ' + p.strip().replace(':', ': ').replace(' - ', '-') for p in params)
+                formatted_params = []
                 
-                # Add separator lines for better visual distinction
-                return f"{main_content}.\n\n{'─' * 40}{formatted_params}\n"
+                for param in params:
+                    # Add typical range information if available
+                    if ':' in param:
+                        param_name, param_value = param.split(':', 1)
+                        formatted_params.append(f'  • {param_name.strip()}: {param_value.strip()}')
+                    else:
+                        formatted_params.append(f'  • {param}: (0-100%)')
+                
+                param_section = '\n\nParameters:\n' + '\n'.join(formatted_params)
+                
+                # Add separator lines for visual distinction
+                return f"{main_content}.\n\n{'─' * 40}{param_section}\n"
         return text
 
     def find_relevant_context(self, question, top_k=2):
@@ -215,18 +225,25 @@ class HXStompQA:
         return context
 
     def enhance_with_tinyllama(self, base_answer: str, question: str, context: str) -> str:
-        """Use TinyLlama through Ollama to enhance the answer while keeping the base knowledge."""
-        # Include AI context guidelines in the prompt
+        """Enhanced TinyLlama prompt with better structure and parameter guidance"""
         context_guidelines = "\n".join([
             f"- {setting}: {details['description']}" 
             for setting, details in self.ai_context.items()
         ])
         
         prompt = f"""Based on the following context and guidelines about the Line 6 HX Stomp, 
-        please provide a clear and natural response with specific examples and parameter values.
+        please provide a clear and natural response. Include specific parameter values and ranges 
+        where applicable, and organize the response with clear sections.
 
         Guidelines:
         {context_guidelines}
+
+        Format Requirements:
+        - List all parameters with their typical ranges (e.g., Mix: 0-100%)
+        - Group related parameters together
+        - Use bullet points for lists
+        - Include specific example settings for common use cases
+        - Maintain consistent formatting for parameter values
 
         Context: {context}
         
@@ -234,7 +251,7 @@ class HXStompQA:
         
         Initial Answer: {base_answer}
         
-        Enhanced Response (remember to include specific pedal names and parameter values):"""
+        Enhanced Response (remember to include specific parameter values and ranges):"""
 
         try:
             response = requests.post(
@@ -250,6 +267,9 @@ class HXStompQA:
             if response.status_code == 200:
                 enhanced_answer = response.json().get("response", "").strip()
                 if enhanced_answer and len(enhanced_answer) > 20:
+                    # Apply additional formatting to the enhanced answer
+                    enhanced_answer = self.clean_answer(enhanced_answer)
+                    enhanced_answer = self.format_parameters(enhanced_answer)
                     return enhanced_answer
             
             return base_answer
