@@ -1,0 +1,6377 @@
+®
+
+2.65 OWNER’S MANUAL
+40-00-0408 Rev A (For use with HX Stomp Firmware 2.65)
+
+0•1
+
+© 2018 Yamaha Guitar Group, Inc. All rights reserved.
+
+Contents
+
+The Blocks
+3
+
+Common Terminology
+
+3
+
+The Hardware
+
+4
+
+3
+
+Quick Start
+
+7
+
+Hooking It All Up
+
+7
+
+Play View
+
+Selecting a Preset
+Preset List
+Edit View
+
+Selecting Blocks/Adjusting Parameters
+Bypassing a Block
+
+Bypassing HX Stomp Completely
+Choosing a Block's Model
+Moving Blocks
+
+Copying/Pasting a Block
+Clearing a Block
+
+Clearing All Blocks
+
+Saving/Naming a Preset
+
+Serial vs. Parallel Routing
+Setting Path B's Output
+TAP Tempo
+The Tuner
+
+Dynamic DSP
+
+Block Order and Stereo Imaging
+
+Controller Assign
+
+37
+
+Input18
+
+Assigning a Controller
+
+37
+
+Effects
+
+Clearing All Controller Assignments
+
+38
+
+Outputs18
+
+Welcome to HX Stomp
+Updating HX Stomp to the Latest Firmware
+
+18
+
+10
+10
+11
+11
+11
+12
+12
+12
+13
+13
+13
+13
+14
+14
+15
+15
+15
+16
+
+19
+
+Amp+Cab24
+Amp25
+
+Preamp25
+Cab26
+Impulse Response (IR)
+
+27
+
+Send/Return28
+Looper
+
+29
+
+Split
+
+29
+
+Mixer30
+U.S. Registered Trademarks
+
+31
+
+Snapshots32
+Using Snapshots
+
+32
+
+Swapping Snapshots
+
+33
+
+Copying/Pasting a Snapshot
+Saving Snapshots
+
+Determining Snapshot Edit Behavior
+
+33
+33
+33
+
+Bypass Assign
+
+35
+
+Quick Footswitch Assign
+
+35
+
+Clearing Bypass Assignments
+
+36
+
+Manual Bypass Assign
+
+Clearing All Bypass Assignments
+Swapping Stomp Footswitches
+
+35
+36
+36
+
+Clearing a Block's Controller Assignment(s)
+
+Global EQ
+
+39
+
+Resetting Global EQ
+
+39
+
+Global Settings
+
+40
+
+Setting Proper Levels
+
+40
+
+Global Settings > Ins/Outs
+
+41
+
+Resetting All Global Settings
+Global Settings > Preferences
+
+Global Settings > Footswitches
+Global Settings > EXP Pedals
+
+Global Settings > MIDI/Tempo
+Global Settings > Displays
+
+USB Audio
+
+40
+41
+42
+43
+43
+43
+
+44
+
+Hardware Monitoring vs. DAW Software Monitoring 44
+DI Recording and Re-amping
+
+45
+
+ASIO Driver Settings (Windows only)
+
+46
+
+Core Audio Driver Settings (macOS only)
+
+46
+
+MIDI48
+Preset and Snapshot Recall via MIDI
+
+48
+
+Parameter Control via MIDI
+
+48
+
+Block Bypass via MIDI
+
+Synchronizing Tempo via MIDI
+MIDI CC
+
+17
+
+38
+
+Additional Resources
+
+48
+49
+49
+
+51
+
+© 2018 Yamaha Guitar Group, Inc. All rights reserved.
+Yamaha Guitar Group, Line 6, the Line 6 logo, Ampeg, SVT, Portaflex, HX Stomp and Helix are trademarks or registered trademarks of Yamaha Guitar Group, Inc. in the U.S. and/
+or other jurisdictions. Apple, Mac, macOS, iPad, iPhone, and iTunes are trademarks of Apple, Inc., registered in the U.S. and other countries. Apple is not responsible for the operation of this product or its compliance with safety and regulatory standards. Windows is a registered trademark of Microsoft Corporation in the United States and/or other countries.
+YouTube is a trademark of Google, Inc.
+
+2
+
+Welcome to HX Stomp
+
+Common Terminology
+While reading this manual, you may encounter several unfamiliar terms. It’s important
+to know what they mean. Be careful—we might toss a pop quiz your way.
+
+"50 pages for a pedal? Man, I hate reading manuals!"
+
+Block Blocks are objects that represent various elements of your tone, such
+as amps, cabs, effects, splits, loopers, inputs, outputs, and impulse
+responses. The HX Stomp pedal can accommodate up to six simultaneous amp, cab, IR, effects, and/or looper blocks, DSP permitting.
+
+I know, right?! We're not overly fond of writing them either, especially when so few
+people read them. What if we make a handful of super-short videos that get you up
+and running with HX Stomp in minutes, and you promise to not jump online and complain about having to read a 50-page manual for a pedal. Agreed?
+Go here line6.com/meet-hx-stomp:
+
+Model Each processing block can accommodate one model (or in some
+
+cases, two models). HX Stomp includes over 77 guitar and bass amp
+models, 37 cab models, 16 mic models, and 200 effects models.
+
+Preset A preset is your tone. It consists of all blocks, snapshots, footswitch
+assignments, and controller assignments.
+
+Controller Controllers are used to adjust various parameters in real time. For ex-
+
+ample, an external expression pedal can be used to control wah, or
+the mod wheel on your MIDI keyboard can be used to control delay
+feedback and reverb depth.
+
+Send/ The HX Stomp stereo TRS Send and separate left and right Returns are
+Return used to insert your favorite stompboxes anywhere in the signal flow or
+for connecting to your guitar amp via 4-Cable Method - see page 7.
+
+IR IRs (Impulse Responses) are mathematical functions representing the
+
+sonic measurements of audio systems. HX Stomp can store up to 128
+custom or third-party IRs at a time.* See "Impulse Response (IR)"
+
+*NOTE: To import IRs into your HX Stomp hardware, you'll need to download
+and install the latest Line 6 HX Edit application. The free HX Edit app is not only
+an indispensable librarian for managing and backing up all your presets and IRs,
+but also provides a full-size display for easy editing, right on your Mac or Windows® computer! Visit line6.com/software to get it now.
+
+"Wheee! I love reading manuals!"
+That sounds a bit sarcastic, but regardless, thank you for buying the Line 6® HX
+Stomp™ pedal, one of the most powerful and flexible stompboxes ever created. We
+hope it helps drive your search for tonal bliss and spawns years of creativity, both on
+stage and in the studio.
+
+Updating HX Stomp to the Latest Firmware
+
+Although you’re likely anxious to rip open the plastic and plug in, wait! At the very
+least, check out the HX Stomp Cheat Sheet that came in the box, and keep it handy.
+Then read the "Quick Start" chapter of this manual and we’ll have you up and shredding in no time.
+
+Line 6 is continually improving HX family products. Updating the HX Stomp pedal will
+ensure you always have the latest models, features, and factory presets.
+
+1. Download and install the latest version of Line 6 Updater from
+line6.com/software. (If using a Windows computer, you'll also need to
+download and install the HX Stomp USB Driver for Windows.)
+
+IMPORTANT! Because the HX Stomp pedal can be used in so many ways, its
+factory presets are sort of all over the map. For example, any presets starting
+with "FX" denote tones designed with effects only, for going straight into your
+guitar amp. Any presets starting with "DIR" denote tones with amp, cab/IR, and
+effects blocks for going direct into a full-range amplification system like FRFR
+(Full Range Flat Response) or PA speakers. Also note that presets starting with
+"4CM" won't sound at all unless your HX Stomp pedal is connected to your
+amp via 4-Cable Method - see page 7.
+
+2. Connect HX Stomp to your computer via the supplied USB
+cable and turn it on.
+3. Launch Line 6 Updater, log into your Line 6 account, and follow the prompts.
+
+3
+
+The Hardware
+
+Pastor of Muppets
+
+VIEW
+
+4
+
+3
+
+ACTION
+
+VOLUME
+
+7
+
+SAVE
+
+Particle Dynamix
+Verb
+Flanger
+
+TAP/
+TUNER
+PAGE
+
+5
+
+PAGE
+
+6
+
+IN
+
+L/MONO
+
+OUT/THRU
+
+MIDI
+
+16
+
+RIGHT
+
+2
+
+1
+
+RETURN / AUX IN
+
+1 06B
+
+8
+
+SEND
+
+STEREO
+
+17
+9
+
+EXP 1/2
+FS 4/5
+
+L/MONO
+
+INPUT
+
+RIGHT
+
+OUTPUT BAL/UNBAL
+L/MONO
+
+RIGHT
+
+USB
+
+DC IN
+9VDC 3A
+
+15
+10
+
+11
+
+12
+4
+
+13 14
+
+18
+
+1. Main Display This color LCD is your window into the power of HX Stomp.
+2.
+
+SHORTCUT: While in Stomp footswitch mode and in the Edit view screen,
+touch (but don’t press) a footswitch for two seconds to create a Bypass Assignment for the selected block.
+
+VIEW If you ever get lost, press this button to return home. Press again
+to toggle between the two main Home views—see "Play View" and "Edit View".
+
+SHORTCUT: While in Stomp footswitch mode, touch and hold (but don’t
+press) two switches to swap all assignments between them.
+
+3. ACTION Press this button to open the action panel for the selected block or
+
+menu. From Edit view, the action panel lets you move, copy, paste, and clear
+blocks. Other menus may have unique action panels; for example, the Global
+Settings action panel lets you reset all global settings at once.
+
+SHORTCUT: While in Stomp or Scroll footswitch modes, touch (but don’t
+press) TAP to briefly display the tempo panel. This lets you quickly fine-tune  
+the current tempo without navigating to the Global Settings > MIDI/Tempo
+menu.
+
+Press
+and ACTION together to open the Save menu for renaming and saving
+changes to a preset. Press both buttons twice to quick save. See "Saving/Naming a Preset".
+
+10. EXP 1/2, FS 4/5 Connect an expression pedal here to adjust a wide variety
+
+4. Upper Knob In Play view, turn this knob to select a preset. Press this knob to
+
+of parameters. With a Y-cable (tip-ring-sleeve 1/4" jack, split to two tip-sleeve
+1/4" jacks), two expression pedals can be connected. Alternatively, one (or with
+a Y-cable, two) external footswitches can be added to access additional stomps,
+presets, snapshots, etc. (FS4=tip, FS5=ring). To set this jack's function(s), see
+page 41. By default, this jack is set to accommodate a Mission SP1-L6H Line
+6 Expression Pedal, which has a toe switch that toggles between EXP 1 (Wah/
+Pitch Wham) and EXP 2 (Volume/Pan). For external footswitches, the momentary
+(unlatched) type should be used.
+
+open the preset list. In Edit view, turn this knob to select a block for editing. Press
+this knob to bypass/enable the selected block.
+
+5. Lower Knob In Edit view, turn this knob to change the current block's model.
+Press this knob to open the model list. See "Choosing a Block's Model".
+
+TIP: Press the Upper Knob and Lower Knob together to completely bypass
+HX Stomp. The display will read "Analog [or DSP] bypass! Press any switch."
+
+PAGE/PAGE In Play view, press PAGE or PAGE to change footswitch modes. In Edit view, press to view more parameters for the selected block
+or menu. Press both
+PAGE and PAGE to dive deeper into HX Stomp, and
+you'll find Controller Assign, Global Settings, and other menus.
+
+11. INPUT L/MONO, RIGHT Connect your guitar, bass guitar, or mono pedals
+
+7. VOLUME Turn this knob to control the main output and headphones volume.
+
+unbalanced TS cables to connect to your guitar amp or other pedals or balanced
+TRS cables to connect to your mixing console or studio monitors. When connecting to a mono pedal or single amp, connect only the L/MONO 1/4" jack.
+
+6.
+
+to the L/MONO input. Connect stereo pedals, keyboards, synths, or modelers to
+both the L/MONO and RIGHT inputs.
+
+12. OUTPUT L/MONO, RIGHT These 1/4" outputs can accommodate either
+
+8. Knobs 1-3 In Edit view, turn one of the three knobs below the main display
+
+to adjust the parameter's value above; press the knob to reset the parameter's
+value. If a rectangular button appears above a knob, press the knob to engage
+its function.
+
+13. USB HX Stomp also functions as a high quality multichannel 24-bit/96kHz audio
+
+interface for Mac and Windows computers, with DI, re-amping and MIDI functionality built right in. Use of a USB 2.0 or 3.0 port is required—do not use an external
+USB hub. HX Stomp can also record to an Apple iPad or iPhone mobile device
+(with optional Apple Camera Connection Kit).
+
+SHORTCUT: For most time-based parameters such as delay time or modulation speed, press the knob to toggle between setting the value in ms or Hz
+and note divisions (1/4-note, dotted 1/8-note, etc.).
+
+14. DC In Line 6 recommends using only the supplied DC-3G power supply. Yes,
+
+SHORTCUT: Controllers can be assigned to most parameters. Press and
+hold a parameter’s knob to quickly jump to the "Controller Assign" page for
+that parameter.
+
+we know it's large, but the HX Stomp pedal packs a lot of circuitry into its tiny
+housing. To ensure the same signal integrity of Helix®, Helix Rack/Control, and
+Helix LT devices, we needed a burly power supply.
+
+9. Footswitches 1-3 These capacitive, touch-sensitive footswitches have col-
+
+That said, Line 6 has provided a list of third-party supplies that we've tested with
+HX Stomp, which can be found here: https://line6.com/support/page/kb/effectscontrollers/.
+
+ored LED rings that tell you the current state of the assigned block or its function.
+See "Play View" for more information.
+
+5
+
+15. Power Switch Nine out of ten blues dentists agree: HX Stomp is more fun
+when powered on. The tenth dentist is a nihilist.
+
+16. MIDI IN, OUT/THRU Connect HX Stomp to your MIDI gear for sending and
+
+receiving program changes, continuous controllers, and other MIDI messages.
+See "MIDI" for more information.
+
+17. Phones Out Connect stereo headphones here; turn the VOLUME knob to
+adjust volume.
+
+IMPORTANT! Always turn the VOLUME knob down before connecting
+headphones. Protect your hearing!
+"What?!"
+I said... ALWAYS TURN THE VOLUME KNOB DOWN BEFORE CONNECTING HEADPHONES. PROTECT YOUR HEARING!
+
+18. SENDS/RETURNS L/R These 1/4” ins and outs can be used as an FX loop
+
+for inserting external stompboxes between specific blocks in HX Stomp, or as
+inputs and outputs for running 4-Cable Method rigs. See "HX Stomp in 4-Cable
+Method". Alternatively, the L/MONO and RIGHT inputs can act as an always-on
+Aux In for monitoring mixers, keyboards, drum machines or MP3 players. To set
+the function of the Return L/R jacks, see "Global Settings > Ins/Outs"
+
+6
+
+Quick Start
+
+HX Stomp in 4-Cable Method
+"4 Cable-Method" is a popular and flexible way of hooking things up, allowing you
+to route some effects blocks (most often drives, distortions, wahs, and compressors)
+before your amp's preamp and other effects blocks (often time-based effects like
+delays and reverbs) in its effects loop.
+
+Hooking It All Up
+
+NOTE: The effects loops on most amplifiers run at instrument level. If your amp's
+effects loop happens to run at line level, you should set the inputs and outputs of
+HX Stomp to line level as well. See "Setting Proper Levels".
+
+There are many ways to connect HX Stomp to other gear, and the following pages
+illustrate only a few.
+
+IMPORTANT! Make sure you add a Send/Return > Mono > FX Loop block at
+the point in your signal flow where you wish your amp's preamp to be, otherwise you won't hear anything.
+
+HX Stomp on a Pedalboard
+Although HX Stomp has amp and cab modeling, there's no reason you have to use it,
+especially if you have a favorite guitar or bass amp. All six processing blocks can be
+dedicated to effects and effects control.
+
+TIP: Look for factory presets starting with "4CM." Note that these presets will
+not pass any audio unless hooked up in the method below!
+
+TIP: Look for factory presets with names starting with "FX." These have been
+created with effects blocks only.
+
+GUITAR IN
+AMP
+RETURN
+AMP
+SEND
+L/MONO
+OUT
+
+L/MONO
+IN
+
+4CM
+
+L/MONO OUT
+
+RETURN
+L/MONO
+
+L/MONO IN
+SEND
+
+FX
+
+7
+
+HX Stomp with Powered Speakers
+
+HX Stomp in a Hybrid Amp/Direct Setup
+
+Depending on how complex your tones are, HX Stomp may be able to act as your
+entire processing rig, providing amp modeling, cab modeling or cab IRs (Impulse Responses), effects, looping, and even a tuner.
+
+When playing live, some guitarists and bassists love running their signal direct to the
+FOH (Front of House) console but prefer the feel of standing in front of a real amp. HX
+Stomp can accommodate both playback systems simultaneously.
+
+When connecting HX Stomp to a powered speaker (or two powered speakers in
+stereo), set the main outputs to line level. See "Setting Proper Levels".
+
+Place a Send/Return > Mono > Send L block directly before any Amp or Amp+Cab
+block in your signal flow. This will be the point where the signal is tapped and sent
+to your real amp. Then the full signal flow with Amp and Cab/IR blocks can be sent to
+the FOH console.
+
+With a Y cable, you can connect up to two expression pedals and/or momentary type
+footswitches to HX Stomp's rear panel EXP 1/2 | FS 4/5 jack. Alternatively, you can
+connect a single Mission SP1-L6H Line 6 Expression Pedal, which has a toe switch
+built in that can toggle its function between EXP 1 (Wah by default) and EXP 2 (Volume
+by default).
+
+TIP: Look for factory presets starting with "BAS." These have been created
+with a Send/Return > Mono > Send L block positioned after Effects blocks and
+before the Amp or Amp+Cab block. Although they've been designed with bass
+players in mind, there's nothing wrong with swapping out the bass amp and cab
+for a guitar amp and cab (or IR).
+
+TIP: Look for factory presets starting with "DIR" (short for direct). These have
+been created with a full tone's worth of amps, cabs, and effects.
+
+L/MONO OUT OR L/R
+(FX+AMP+CAB/IR)
+
+L/MONO
+IN
+
+BAS
+SEND
+(FX ONLY)
+
+Y-CABLE
+L/MONO OUT
+OR L/R STEREO
+
+OR
+
+OR
+
+DIR
+
+8
+
+HX Stomp as DSP Expansion
+
+HX Stomp in the Studio
+
+Let's face it—there are a lot of great digital guitar products out there and maybe you
+just can't part with your favorite box. But maybe you're also a bit curious about HX
+amp modeling and effects. Decisions, decisions.
+
+HX Stomp also includes a multichannel USB audio/MIDI interface for your production
+studio, with professional-quality A/D/A conversion, 123dB of dynamic range, and a
+programmable impedance circuit. This makes it the perfect front end for the Helix
+Native plug-in.
+
+Fortunately, you can have both. If you place HX Stomp in the stereo effects loop of
+your favorite modeler or profiler, it's like instantly adding 77 amps and 200 effects to
+your existing arsenal. Plus, the six processing blocks in HX Stomp are utilized in addition to your modeler's DSP, so you get more simultaneous amps and effects. You may
+even be able to synchronize presets and tempi between the two with a single MIDI
+cable; see your modeler's documentation for more information.
+
+R OUTPUT
+
+If you aren't using Helix Native, HX Stomp can re-amp, or use USB audio streams
+to process tracks or busses in your DAW (Digital Audio Workstation) after they're recorded. See "USB Audio" for more information.
+
+L OUTPUT
+
+USB
+L/MONO IN
+MIDI OUT
+
+RETURN
+L/R
+
+SEND
+L/R
+
+L/R OUT
+
+L/R IN
+
+RETURN L/R
+
+MIDI OUT
+
+MIDI IN
+
+9
+
+MIDI IN
+
+L/R AUDIO OUT
+
+Play View
+
+Selecting a Preset
+
+HX Stomp has two main views—Play view and Edit view. Play view is typically used
+when performing or jamming.
+
+HX Stomp stores 42 banks of three presets (A, B, and C) for a total of 126 presets.
+
+1. Press
+
+1. If not already there, press
+
+VIEW to select Play view.
+
+2. Press PAGE or PAGE to select Preset Mode (see below).
+3. Press FS1+FS2 (or FS2+FS3) to choose the desired bank.
+
+The current preset number and name appear on the upper half of the display and
+the current footswitch mode's assignments appear on the lower half:
+
+16B
+
+1
+
+Dynamix Harmony
+Flanger
+Delay
+
+TAP/
+TUNER
+
+The bank's presets flash, indicating they are ready to load:
+
+17A Not Adorable
+17B Crystal Lettuce
+17C Marketing Bullet
+
+Pastor of Muppets
+
+2. Press PAGE or PAGE
+(see below).
+
+Dynamix Harmony
+Flanger
+Delay
+
+17A 17B 17C
+
+to select one of four footswitch modes
+
+Stomp Mode
+
+4. Press one of the footswitches to load its preset.
+Alternatively, turn the Upper Knob to select a preset.
+
+Scroll Mode
+TAP/
+TUNER
+
+Step on FS1/FS2 to turn any
+assigned block(s) on and off.
+Touch FS1 or FS2 repeatedly to
+view additional assignments, if
+any.
+Step on FS3 to set the tempo.
+Hold FS3 to open the tuner.
+Touch FS3 to open the tempo
+panel.
+
+VIEW to select Play view.
+
+PRESET
+
+PRESET
+
+Preset Mode
+
+16A 16B 16C
+
+TAP/
+TUNER
+
+Step on FS1 to select the previous preset.
+Step on FS2 to select the next
+preset.
+Hold FS1+FS2 to toggle between Preset Up/Down and
+Snapshot Up/Down
+Step on FS3 to set the tempo.
+Hold FS3 to open the tuner.
+Touch FS3 to open the tempo
+panel.
+
+Step on a footswitch to select
+a preset (A, B, or C).
+Step on FS1+FS2 to queue the
+previous bank of presets.
+Step on FS2+FS3 to queue the
+next bank of presets.
+
+10
+
+Snapshot Mode
+1
+
+2
+
+3
+
+Step on a footswitch to select
+Snapshot 1, 2, or 3.
+Step on FS1+FS2 to queue the
+previous bank of presets.
+Step on FS2+FS3 to queue the
+next bank of presets.
+See "Snapshots" for more information.
+
+Preset List
+
+Selecting Blocks/Adjusting Parameters
+
+1. If not already there, press
+
+Each preset in HX Stomp can accommodate up to six blocks. Blocks are objects
+that represent various elements of a preset, such as amps, cabs, effects, or even a
+1 Switch Looper. In addition to the six processing blocks, each preset has an Input
+block, Output block, and for presets with two parallel paths, Split and Mixer blocks.
+
+VIEW to select Play view.
+
+2. Press the Upper Knob to open the Preset list:
+
+16A Bel Haven, Yo!
+16B Pastor of Muppets
+16C Stolarskyvision
+17A Not Adorable
+1
+
+1. While in Edit view, from Stomp footswitch mode, briefly touch
+(but don’t press) the footswitch assigned to the block (if any).
+If multiple blocks are assigned to a footswitch, touch the top of the switch repeatedly until the desired block is selected.
+
+Alternatively, turn the Upper Knob to select blocks.
+The selected block appears with a white outline:
+
+Reorder
+PC:061
+Preset Snapshot CC69:000
+
+Turn the Upper Knob to select a preset.
+Turn Knob 1 (Reorder Preset) to move the selected preset up and down the
+list.
+
+2. Turn Knobs 1-3 below the screen.
+
+Turn Knob 2 (Snapshot) to select Snapshot 1, 2, or 3 without having to be in
+Snapshot footswitch mode. See "Snapshots" for more information.
+
+Some blocks have more than one page of parameters. In this case, the center
+inspector line will display a thin colored scroll bar:
+
+TIP: The grayed out numbers above Knob 3 represent the messages required to recall the current preset (PC:XXX) and snapshot (CC69:XXX) from
+an external MIDI controller or sequencing software.
+
+Harmony Delay
+
+Edit View
+
+3. Press
+able).
+
+HX Stomp has two main views—Play view and Edit view. Edit view is used for creating
+or tweaking your tones.
+
+Press
+
+Colored blocks representing amps, cabs, effects, and other items appear on the upper
+half of the display and the selected block's parameters appear on the lower half:
+
+16B Pastor of Muppets
+
+Harmony Delay
+37%
+
+Time Feedbk
+
+to access more parameters (if avail-
+
+SHORTCUT: For most time-based parameters such as delay time or modulation speed, press the knob to toggle between setting the value in ms or Hz
+and note divisions (1/4-note, dotted 1/8-note, etc.).
+
+VIEW to select Edit view.
+
+1/8
+
+PAGE or PAGE
+
+35%
+
+Mix
+
+11
+
+Bypassing a Block
+1. If not already there, press
+
+Choosing a Block's Model
+VIEW to select Edit view.
+
+1. If not already there, press
+
+2. Turn the Upper Knob to select a block and then press it to toggle the block on and off.
+
+2. Turn the Upper Knob to select the desired block, then turn the
+Lower Knob to change its model.
+
+A bypassed block appears semi-transparent and, if assigned to a Stomp mode
+footswitch, its LED ring dims:
+
+BLOCK ON
+
+VIEW to select Edit view.
+
+To create a new block, turn the Upper Knob to select an empty
+location and then turn the Lower Knob.
+
+BLOCK BYPASSED
+
+Selecting models within the same category can be very quick. However, as HX
+Stomp has hundreds of items to choose from, using this method to, say, change
+a mono distortion block (beginning of the list) into a 1 Switch Looper block (end of
+the list) is very slow. Instead, you should open the model list:
+
+3. Press the Lower Knob to open the model list:
+
+CATEGORY
+
+Bypassing HX Stomp Completely
+1. Press the Upper Knob and Lower Knob together.
+
+While HX Stomp is completely bypassed, the inspector displays the following:
+
+ANALOG BYPASS
+Analog Bypass!
+Press any switch
+
+SUBCATEGORY
+Delay
+Mono
+Stereo
+Legacy
+
+Category
+EQ
+Modulation
+Delay
+Reverb
+Pitch/Synth
+
+DSP BYPASS
+
+MODEL
+
+Delay
+Transistor Tape
+Cosmos Echo
+Harmony Delay
+Bucket Brigade
+Adriatic Delay
+
+Most model categories include subcategories. For example, effects in the "Mono"
+and "Stereo" subcategories are HX (Helix) models. Effects in the "Legacy" subcategory are taken from the classic Line 6 M13®, M9®, M5®, DL4™, MM4™,
+FM4™, and DM4™ pedals. Amp+Cab and Amp models have Guitar and Bass
+subcategories. Cab models have Single and Dual subcategories.
+
+DSP Bypass!
+Press any switch
+
+Turn the Lower Knob to select items in a list.
+Press the Lower Knob (or PAGE ) to view a category or subcategory’s contents.
+
+NOTE: There are two types of All Bypass in HX Stomp: Analog bypass
+(sometimes called "true bypass"), where mechanically switching relays route
+your signal directly from the inputs to the outputs with no processing or
+A/D/A conversion, and DSP bypass, where any delay echoes and reverb
+tails decay naturally. By default, HX Stomp is set for Analog bypass, but this
+behavior can be set from "Global Settings > Preferences".
+
+Press
+
+PAGE to go back one level.
+
+NOTE: Effects blocks with stereo or legacy models display small icons to
+the right of the model name:
+
+MONO
+
+2. Press any footswitch.
+
+STEREO
+
+Courtesan Flange
+
+HX Stomp returns to normal operation.
+
+4.3
+
+TIP: You can also re-purpose the TAP/TUNER switch (or external footswitch
+FS4 or FS5) to All Bypass. See "Global Settings > Footswitches".
+
+7.1
+
+5.3
+
+LEGACY
+
+Courtesan Flange
+
+4.3
+
+7.1
+
+5.3
+
+Analog Flanger
+
+0.055Hz
+
+33%
+
+88%
+
+IMPORTANT! If you encounter items in the list that are grayed out or
+unavailable, this means the preset cannot accommodate that category,
+subcategory, or model. See "Dynamic DSP".
+
+12
+
+4. Using the Lower Knob, PAGE, and PAGE , select the desired
+category, subcategory, and model.
+
+4. Press Knob 3 (Paste Block).
+NOTE: Inputs, Outputs, Splits, Mixers, and Loopers can also be copied and
+pasted, where permitted. If you, for example, try pasting the Looper into the Split
+block's location, Knob 2 (Paste Block) will be grayed out. Furthermore, if the
+destination preset cannot accommodate the copied block, the header will briefly
+read “DSP full!” See "Dynamic DSP".
+
+5. To close the model list, select an item in the far right column
+and press the Lower Knob again (or press to cancel).
+
+Moving Blocks
+
+DSP full!
+
+1. If not already there, press
+
+A
+
+VIEW to select Edit view.
+
+Path
+
+2. Turn the Upper Knob to select any block (other than Input or
+Output) and press ACTION.
+The block appears "picked up" and the action panel appears.
+
+1. From Edit view, select the block you wish to clear and press
+ACTION.
+2. Press PAGE
+
+Harmony Delay
+Path
+
+Copy
+Block
+
+and press Knob 1 (Clear Block).
+
+Clearing All Blocks
+
+Paste
+Block
+
+Clearing all blocks removes all processing blocks and resets the signal flow to serial.  
+It does not affect Input and Output blocks.
+
+3. Turn the Upper Knob to move the block.
+4. Press ACTION again (or
+
+Paste
+Block
+
+Clearing a Block
+
+Turn to move
+
+B
+
+Copy
+Block
+
+1. Press ACTION.
+
+) to close the action panel.
+
+2. Press PAGE
+
+NOTE: To move a block between parallel paths A and B, press ACTION and then
+turn Knob 1 - See "Serial vs. Parallel Routing".
+
+and press Knob 2 (Clear All Blocks).
+
+The following dialog appears:
+
+Clear all blocks?
+
+Copying/Pasting a Block
+
+Cancel
+
+Blocks can be copied and then pasted onto either another block location, or into an
+entirely different preset.
+
+OK
+
+3. Press Knob 3 (OK).
+
+1. From Edit view, select the block you wish to copy and press
+ACTION.
+
+TIP: To retain your changes, remember to Save after making edits before switching to a different preset (see next section). Once a preset change is made, all
+edited settings in an unsaved preset are discarded.
+
+2. Press Knob 2 (Copy Block).
+
+3. Select the location you wish to paste the block—even in a location within different preset—and press ACTION.
+
+13
+
+Saving/Naming a Preset
+
+For more sophisticated tones, a parallel (two stereo paths) signal flow can be created.  
+This lets one split the signal into two stereo paths, process them separately, and mix
+the two paths back together.
+
+SHORTCUT: To quickly save any changes to the current preset, press
+and
+ACTION together twice. Remember the mantra - Save early and save often!
+
+1. Press
+
+A few advantages of parallel routing:
+•
+
+and ACTION together to open the Save Preset screen:
+
+Save Preset
+
+Pa s t o r o f Mupp e t
+
+•
+
+16B Pastor of Muppet
+
+•
+
+P
+
+Cancel Character
+
+Save
+
+•
+
+Turn the Upper Knob to move the cursor left and right.
+
+Turn Knob 2 (Character) to change the selected character.
+
+If a reverb follows a delay on a serial path, the delay's echoes will have reverb
+applied. Likewise, if a delay follows a reverb on a serial path, the reverb's
+tail will have distinct echoes. Conversely, if a reverb and delay are on separate parallel paths, they won't affect one another and can sometimes result in
+cleaner, more defined notes
+
+If your effect blocks don't have Mix or Blend controls, adding them to a parallel
+path allows the dry guitar or bass signal to pass through unaffected and be
+blended with the effected signal. This can be especially effective when blending clean and distorted bass signals
+
+Instead of a single Amp+Cab block, you may be able to run a standalone Amp
+block into two parallel Cab blocks or Impulse Responses (or one of each)
+
+With stereo rigs, by using the Mixer block, each path can be panned freely
+between the left and right speakers or amps. Different delay and/or reverb
+models panned hard left and hard right can sound particularly huge
+TIP: Remember that with parallel routing, both paths A and B are stereo paths,
+allowing you to utilize either mono or stereo processing blocks on each, and pan
+as desired. Also see "Block Order and Stereo Imaging" on page 17.
+
+Press PAGE and then Knob 1 (Delete) to delete the selected character and
+shift all following characters to the left.
+Press PAGE and then Knob 2 (Insert) to insert a space and shift all following characters to the right.
+
+1. From Edit view, turn the Upper Knob to select a processing
+block and press ACTION to pick it up.
+
+SHORTCUT: Press Knob 2 (Character) to cycle between upper case, lower
+case, 0, and [SPACE].
+
+2. Turn Knob 1 (Path) to select "B."
+
+The Delay block is moved to a newly created parallel path B.
+
+2. Turn the Lower Knob to choose the preset location you wish
+to overwrite.
+Any of the 126 presets can be overwritten.
+
+3. Press Knob 3 (Save).
+
+In the preceding illustration:
+
+Serial vs. Parallel Routing
+
+Our guitar signal goes into the purple Pitch block and then the red Amp+Cab
+block. The signal is split to path A (upper) and path B (lower).
+
+For many guitar tones, a serial (a single, stereo path) signal flow is more than adequate.
+For example, the preset below has a Pitch/Synth block (violet) into an Amp+Cab block
+(red) into a Delay block (green) into a Reverb block (dark orange):
+
+Stereo path A (upper) is sent to the dark orange Reverb block and stereo path B
+(lower) is sent to the green Delay block.
+Stereo paths A and B are merged together and sent to the Output.
+
+3. Press ACTION again to drop the Delay block.
+To remove path B, return all blocks that reside on path B (lower) to path A (upper).
+
+14
+
+Setting Path B's Output
+
+SHORTCUT: From Stomp or Scroll mode, touch FS3 (TAP/TUNER) to briefly
+display Tempo parameters.
+
+There may be situations where you want parallel path B to be sent to a completely
+different set of outputs.
+
+Tempo
+
+1. From Edit view, turn the Upper Knob to select the point where
+the two paths merge.
+The Mixer block appears only when selected:
+
+Knob Parameter
+
+2. Press ACTION and turn Knob 1 (Path) to select "B."
+
+The Mixer moves to path B and a new Output block is created. In this case, path
+A is being sent from the HX Stomp Main L/R outputs, and path B is being sent
+from its stereo Send L/R output:
+
+2
+
+Tempo
+
+Choose whether the tempo is stored and recalled with
+each snapshot, recalled with each preset, or is applied
+globally across all presets and snapshots.
+
+3
+
+BPM
+
+Depending on the Knob 2 (Tempo) setting, this Beats Per
+Minute value is saved per snapshot, per preset, or globally.
+
+VIEW to select Play view.
+
+3. Hold FS3 (TAP/TUNER) until the Tuner screen appears:
+
+A
+
+From either Stomp or Scroll footswitch modes, press FS3 (TAP/
+TUNER) repeatedly to set the tempo in BPM (Beats Per Minute).
+Certain Delay and Modulation parameters such as Time and Speed can be represented with fixed numeric values (ms or Hz) or note values (1/4-note, dotted 1/8-note,
+etc.). When set to note values, the parameter will follow Tap Tempo or incoming MIDI
+clock. Press the parameter knob to toggle between ms (or Hz) and note values.
+
+MANUAL TIME/SPEED
+
+Time Feedbk
+
+BPM
+
+2. Press PAGE or PAGE to select either Stomp Mode or Scroll
+Mode.
+FS3 appears as TAP/TUNER.
+
+TAP Tempo
+
+37%
+
+Tempo
+
+The Tuner
+
+3. Press ACTION again to drop the Mixer block.
+
+Harmony Delay
+
+120.0
+
+Description
+
+1. If not already there, press
+
+750 ms
+
+Preset
+
+Tuner
+
+Mute
+
+Harmony Delay
+
+1/4
+
+37%
+
+Mix
+
+Time Feedbk
+
+On
+
+Output Refrnc Offsets
+
+TAP/MIDI CLOCK TEMPO
+
+35%
+
+440 Hz
+
+4. Pluck an individual string on your guitar.
+
+35%
+
+When the colored box is left of center, your string is flat. When the colored box is
+right of center, your string is sharp. When the colored box approaches the correct
+tuning, a second smaller colored box can be used for more precision. When both
+arrows are illuminated, your string is perfectly in tune.
+
+Mix
+
+The current tempo can also be set from "Global Settings > MIDI/Tempo".
+
+15
+
+5. To exit the Tuner, step on any footswitch.
+
+To see which models can be added to the current preset, from Edit
+view, press the Lower Knob to open the model list.
+
+All tuner settings are global.
+
+Grayed out items cannot be accommodated and are skipped over - See "Selecting
+Blocks/Adjusting Parameters".
+
+TIP: If you have a favorite pedal tuner and wish to use it instead of the tuner
+in HX Stomp, connect the HX Stomp Send output to your tuner's input
+and turn Knob 1 (Output) to select "Send L/R." This way, every time you
+hold the TAP footswitch, HX Stomp will automatically route the signal to
+your favorite tuner.
+
+Amp+Cab
+A30 Fawn Brt
+Matchstick Ch1
+Matchstick Ch2
+Matchstick Jump
+Mandarin 80
+
+Tuner Settings
+Page Knob Parameter
+
+1
+
+2
+
+3
+
+Description
+
+1
+
+Output
+
+Determines the active output while the Tuner screen
+is active. If you prefer to hear nothing while tuning,
+choose "Mute." Normally, you should choose "Main
+L/R."
+
+2
+
+Refrnc
+
+If you'd like to tune to a reference other than standard 440 Hz, select from 425 to 455 Hz.
+
+3
+
+Offsets
+
+Enables the Tuner offsets displayed on Pages 2 and
+3.
+
+1
+
+String 6 Offset
+
+2
+
+String 5 Offset
+
+3
+
+String 4 Offset
+
+1
+
+String 3 Offset
+
+2
+
+String 2 Offset
+
+3
+
+String 1 Offset
+
+Tips to Optimize DSP
+•
+
+•
+
+Some guitarists feel that tuning certain strings
+slightly sharp or flat in relation to concert tuning can
+improve intonation. String offsets calibrate the tuner
+so that these slightly out-of-tune pitches appear
+as in tune. String 6 is low E and String 1 is high
+E. Tuning offsets won't be applied unless Knob 3
+(Offsets) on Page 1 is turned on.
+
+•
+
+•
+
+•
+
+Dynamic DSP
+
+•
+•
+
+Like nearly all modern audio processors, the HX Stomp engine is based on DSP (Digital Signal Processing). Some models require many times more DSP horsepower than
+others, so it makes logical sense that fewer of those models could exist in a tone. To
+work around this, some processors restrict you to one amp, one reverb, one delay,
+etc. With HX Stomp, who are we to say you can't run six distortions in a row? Or two
+Amp blocks into two IRs? Or two parallel mods into two parallel delays into two parallel reverbs for some massive swirly stereo ambient wash? We feel it's important to let
+you keep adding whatever you want to your tone, even if you may eventually run out
+of DSP.
+
+16
+
+Some block types use much more DSP than others, such as amps, cabs, IRs,
+and pitch shifters. Not surprisingly, the Amp+Cab block uses the most. EQ,
+Dynamics, Volume/Pan, and Send/Return blocks use relatively little
+Some models may use more DSP than others in the same category. This is
+especially true with amp models
+
+Instead of a parallel path with two Amp+Cab blocks or two separate Amps
+and Cabs, try adding a single Amp block followed by a single Cab > Dual block
+(mixing two different Cabs can provide some substantial variations)
+
+The stereo version of an effects block will use roughly twice as much DSP as
+a mono version of the same block. Likewise, the dual version of a cab block
+will use roughly twice as much DSP as the single version
+Some model categories have “Simple” blocks, which utilize less DSP than
+others
+Effects models in the Legacy subcategory generally—but not always—use
+less DSP than those in the Mono and Stereo subcategories
+
+Instead of toggling between two of the same amp or effects blocks (with different settings), use controllers or snapshots to instantly adjust parameters
+within a single block. You'd be surprised at how wildly different tones you can
+get from simply adjusting an amp model's tonestack knobs
+
+Block Order and Stereo Imaging
+The signal path in HX Stomp is stereo, carrying two channels of audio. When the
+device is fed a stereo input source (i.e., when discrete left and right signals are connected into the HX Stomp Left and Right input jacks), the source audio is processed
+discretely in stereo wherever stereo blocks are used within the path. Whenever a mono
+block is added within a path, both channels of audio are combined and sent out of the
+block as mono.
+Most of the effects models in HX Stomp have both mono and stereo versions. A stereo
+block displays
+after its model name in the inspector. The stereo imaging—or how
+wide your tone appears with stereo speakers or headphones—is highly dependent on
+the type of blocks you add and in what order.
+Legacy effects models vary in behavior, just as on the classic Line 6 effects from where
+these models originated.
+•
+•
+
+•
+
+Legacy Distortion, Dynamics & Pitch/Synth effects are mono
+
+Legacy Modulation & Delay effects vary in that some are mono, some stereo,
+and some mono in/stereo out, where adjusting the effect's Mix parameter
+can narrow the stereo image that is fed into them. It's best to experiment
+with these effects and tweak the Mix parameter to achieve the desired stereo
+output results
+Legacy Filter and Reverb effects are stereo
+
+TIP: Even if you’re running a single amp or other mono playback system, sometimes stereo effects can still sound “fuller” than their mono counterparts. This is
+especially true with stereo reverbs.
+
+17
+
+The Blocks
+
+Input Settings
+Page Knob Parameter
+
+Input
+
+1
+
+The Input block has a dedicated noise gate. Threshold and Decay parameters are
+grayed out unless Knob 1 (Gate) is turned on.
+The vast majority of the time, you'll want the Input block to be fed from the Main L/
+MONO and RIGHT inputs. However, you can instead feed the Return L/MONO and
+RIGHT inputs into the signal flow or even USB In 5/6 for re-amping purposes.
+
+2
+
+From Edit view, turn the Upper Knob to select the Input block and
+then turn the Lower Knob to change the input.
+
+INPUT MAIN L/R
+
+INPUT RETURN L/R
+
+Description
+
+1
+
+Gate
+
+2
+
+Sets the input level at which the noise gate acts on
+Thresh[old] the signal. If your guitar gets cut off abruptly, turn the
+Threshold up.
+
+3
+
+Decay
+
+Determines how abruptly the noise gate is applied
+once the signal drops below the threshold level.
+
+In-Z
+
+HX Stomp has an impedance circuit on its Main L/R
+inputs that affects tone and feel by loading your
+guitar's pickups as they would by an effect pedal or
+amplifier. A lower value will typically result in some
+high frequency attenuation, lower gain, and an overall
+"softer" feel. A higher value provides full frequency
+response, higher gain, and an overall "tighter" feel.
+
+1
+
+INPUT USB 5/6
+
+Turns the Input noise gate on and off.
+
+Outputs
+Most presets have one Output Main L/R block, which is used to adjust its overall level
+and balance between stereo speakers. When a parallel path configuration exists, if
+you route the Mixer block to path B, a second Output block appears for routing path B
+signals from the stereo Send output. See "Setting Path B's Output".
+
+Main L/R Both the L/MONO and RIGHT inputs are active simultaneously. Normally, you should choose Input Main L/R.
+
+OUTPUT MAIN L/R
+
+Return Return L/MONO and RIGHT can act as a stereo Input block for proL/R cessing keyboards, a drum machine, or even another modeler. If a
+
+OUTPUT MAIN L/R+SEND L/R
+
+Return or FX Loop processing block exists in the preset, the utilized
+Return input will be non-selectable. See "Send/Return".
+
+USB 5/6 USB inputs 5/6 can be used for processing tracks from your Mac or
+Windows DAW software. See "USB Audio".
+
+Output Settings
+
+NOTE: HX Stomp also receives input from USB 1/2 and 3/4, but they're dedicated for monitoring audio from your computer (or iPad device) and bypass all processing blocks. As such, USB 1/2 or 3/4 are not available as input block sources.
+
+Knob Parameter
+
+18
+
+Description
+
+1
+
+Pan
+
+Sets the balance between the left and right outputs. If you're
+only running the L/MONO output, leave this set to Center.
+
+2
+
+Level
+
+Sets the overall level of the entire preset.
+
+3
+
+Type (Send
+only)
+
+Determines whether the Send L/R Output (appears when the
+Mixer block is routed to Path B) is mono or stereo.
+
+Effects
+
+Distortion Models
+
+HX Stomp has all the effects of the Line 6 award-winning Helix guitar processor. These
+effects are found within the Mono and Stereo subcategories of the model list. In addition, HX Stomp includes selected effects from the classic DL4, DM4, MM4, and FM4
+stompboxes as well as M13, M9, and M5 processors; these appear in the Legacy
+subcategory.
+
+MONO
+
+STEREO
+
+Courtesan Flange
+
+4.3
+
+7.1
+
+5.3
+
+LEGACY
+
+Courtesan Flange
+
+4.3
+
+7.1
+
+5.3
+
+Analog Flanger
+
+0.055Hz
+
+33%
+
+88%
+
+From Edit view, turn the Upper Knob to select the desired block
+and then turn the Lower Knob to change its model.
+
+Distortion Models
+
+Model
+
+Subcategories
+
+Based On*
+
+Wringer Fuzz
+
+Mono, Stereo
+
+Garbage's modded BOSS® FZ-2
+
+Megaphone
+
+Mono, Stereo
+
+Megaphone
+
+Bitcrusher
+
+Mono, Stereo
+
+Line 6 Original
+
+Obsidian 7000
+
+Mono, Stereo
+
+Darkglass® Electronics Microtubes® B7K Ultra
+
+Clawthorn Drive
+
+Mono, Stereo
+
+Wounded Paw Battering Ram
+
+Tube Drive
+
+Legacy
+
+Chandler Tube Driver
+
+Screamer
+
+Legacy
+
+Ibanez® Tube Screamer®
+
+Overdrive
+
+Legacy
+
+DOD® Overdrive/Preamp 250
+
+Classic Dist
+
+Legacy
+
+ProCo RAT
+
+Model
+
+Subcategories
+
+Based On*
+
+Heavy Dist
+
+Legacy
+
+BOSS® Metal Zone
+
+Kinky Boost
+
+Mono, Stereo
+
+Xotic® EP Booster
+
+Colordrive
+
+Legacy
+
+Colorsound® Overdriver
+
+Deranged Master
+
+Mono, Stereo
+
+Dallas Rangemaster Treble Booster
+
+Buzz Saw
+
+Legacy
+
+Maestro® Fuzz Tone
+
+Minotaur
+
+Mono, Stereo
+
+Klon® Centaur
+
+Facial Fuzz
+
+Legacy
+
+Arbiter® Fuzz Face®
+
+Teemah!
+
+Mono, Stereo
+
+Paul Cochrane Timmy® Overdrive
+
+Jumbo Fuzz
+
+Legacy
+
+Vox® Tone Bender
+
+Compulsive Drive
+
+Mono, Stereo
+
+Fulltone® OCD
+
+Fuzz Pi
+
+Legacy
+
+Electro-Harmonix® Big Muff Pi®
+
+Valve Driver
+
+Mono, Stereo
+
+Chandler Tube Driver
+
+Jet Fuzz
+
+Legacy
+
+Roland® Jet Phaser
+
+Top Secret OD
+
+Mono, Stereo
+
+DOD® OD-250
+
+L6 Drive
+
+Legacy
+
+Colorsound® Overdriver (modded)
+
+Scream 808
+
+Mono, Stereo
+
+Ibanez® TS808 Tube Screamer®
+
+L6 Distortion
+
+Legacy
+
+Line 6 Original
+
+Hedgehog D9
+
+Mono, Stereo
+
+MAXON SD9 Sonic Distortion
+
+Sub Oct Fuzz
+
+Legacy
+
+PAiA Roctave Divider
+
+Stupor OD
+
+Mono, Stereo
+
+BOSS® SD-1 Overdrive
+
+Octave Fuzz
+
+Legacy
+
+Tycobrahe® Octavia
+
+Deez One Vintage
+
+Mono, Stereo
+
+BOSS DS-1 Distortion (Made-in-Japan)
+
+Deez One Mod
+
+Mono, Stereo
+
+BOSS® DS-1 Distortion (Keeley modded)
+
+Vermin Dist
+
+Mono, Stereo
+
+Pro Co RAT
+
+KWB
+
+Mono, Stereo
+
+Benadrian Kowloon Walled Bunny Distortion
+
+Arbitrator Fuzz
+
+Mono, Stereo
+
+Arbiter® FuzzFace®
+
+Triangle Fuzz
+
+Mono, Stereo
+
+Electro-Harmonix® Big Muff Pi®
+
+Industrial Fuzz
+
+Mono, Stereo
+
+Z.Vex Fuzz Factory
+
+Tycoctavia Fuzz
+
+Mono, Stereo
+
+Tycobrahe® Octavia
+
+Thrifter Fuzz
+
+Mono, Stereo
+
+Line 6 Original
+
+®
+
+®
+
+Dynamics Models
+Model
+
+Subcategories
+
+Based On*
+
+Deluxe Comp
+
+Mono, Stereo
+
+Line 6 Original
+
+Red Squeeze
+
+Mono, Stereo
+
+MXR® Dyna Comp
+
+Kinky Comp
+
+Mono, Stereo
+
+Xotic® SP Compressor
+
+LA Studio Comp
+
+Mono, Stereo
+
+Teletronix® LA-2A®
+
+3-Band Comp
+
+Mono, Stereo
+
+Line 6 Original
+
+Noise Gate
+
+Mono, Stereo
+
+Line 6 Original
+
+*See "U.S. Registered Trademarks" on page 31. All product names used in this document are trademarks of their respective owners and neither Yamaha Guitar Group nor Line 6 are associated or affiliated with them.  
+These trademarks appear solely to identify products whose tones and sounds were studied by Line 6 during sound model development.
+
+19
+
+Dynamics Models
+
+Modulation Models
+
+Model
+
+Subcategories
+
+Based On*
+
+Model
+
+Subcategories
+
+Based On*
+
+Hard Gate
+
+Mono, Stereo
+
+Line 6 Original
+
+Harmonic Flanger
+
+Mono, Stereo
+
+A/DA Flanger
+
+Autoswell
+
+Mono, Stereo
+
+Line 6 Original
+
+Courtesan Flange
+
+Mono, Stereo
+
+Electro-Harmonix® Deluxe EM
+
+Tube Comp
+
+Legacy
+
+Teletronix® LA-2A®
+
+Dynamix Flanger
+
+Mono, Stereo
+
+Line 6 Original
+
+Red Comp
+
+Legacy
+
+MXR® Dyna Comp
+
+Chorus
+
+Mono, Stereo
+
+Line 6 Original
+
+Blue Comp
+
+Legacy
+
+BOSS CS-1
+
+70s Chorus
+
+Mono, Stereo
+
+BOSS® CE-1
+
+Blue Comp Treb
+
+Legacy
+
+BOSS® CS-1 (Treble switch on)
+
+PlastiChorus
+
+Mono, Stereo
+
+Modded Arion SCH-Z chorus
+
+Vetta Comp
+
+Legacy
+
+Line 6 Original
+
+Trinity Chorus
+
+Stereo
+
+Dytronics® Tri-Stereo Chorus
+
+Vetta Juice
+
+Legacy
+
+Line 6 Original
+
+Bubble Vibrato
+
+Mono, Stereo
+
+BOSS® VB-2 Vibrato
+
+Boost Comp
+
+Legacy
+
+MXR® Micro Amp
+
+Vibe Rotary
+
+Stereo
+
+Fender® Vibratone
+
+122 Rotary
+
+Stereo
+
+Leslie® 122
+
+145 Rotary
+
+Stereo
+
+Leslie® 145
+
+Double Take
+
+Mono, Stereo
+
+Line 6 Original
+
+AM Ring Mod
+
+Mono, Stereo
+
+Line 6 Original
+
+Pitch Ring Mod
+
+Stereo
+
+Line 6 Original
+
+Pattern Tremolo
+
+Legacy
+
+Line 6 Original
+
+Panner
+
+Legacy
+
+Line 6 Original
+
+Bias Tremolo
+
+Legacy
+
+1960 Vox® AC-15 Tremolo
+
+Opto Tremolo
+
+Legacy
+
+1964 Fender® Deluxe Reverb®
+
+Script Phase
+
+Legacy
+
+MXR® Phase 90 (script logo version)
+
+Panned Phaser
+
+Legacy
+
+Ibanez® Flying Pan
+
+Barberpole
+
+Legacy
+
+Line 6 Original
+
+Dual Phaser
+
+Legacy
+
+Mu-Tron® Bi-Phase
+
+U-Vibe
+
+Legacy
+
+Shin-ei Uni-Vibe®
+
+Phaser
+
+Legacy
+
+MXR® Phase 90
+
+Pitch Vibrato
+
+Legacy
+
+BOSS® VB-2
+
+Dimension
+
+Legacy
+
+Roland® Dimension D
+
+Analog Chorus
+
+Legacy
+
+BOSS® CE-1
+
+Tri Chorus
+
+Legacy
+
+Dytronics® Tri-Stereo Chorus
+
+Analog Flanger
+
+Legacy
+
+MXR® Flanger
+
+®
+
+EQ Models
+Model
+
+Subcategories
+
+Based On*
+
+Simple EQ
+
+Mono, Stereo
+
+Line 6 Original
+
+Low and High Cut
+
+Mono, Stereo
+
+Line 6 Original
+
+Parametric
+
+Mono, Stereo
+
+Line 6 Original
+
+10 Band Graphic
+
+Mono, Stereo
+
+MXR® 10-Band Graphic EQ
+
+Cali Q Graphic
+
+Mono, Stereo
+
+MESA/Boogie® Mark IV Graphic EQ
+
+Modulation Models
+Model
+
+Subcategories
+
+Based On*
+
+Optical Trem
+
+Mono, Stereo
+
+Fender® optical tremolo circuit
+
+60s Bias Trem
+
+Mono, Stereo
+
+Vox® AC-15 Tremolo
+
+Tremolo/Autopan
+
+Mono, Stereo
+
+BOSS® PN-2
+
+Harmonic Tremolo
+
+Mono, Stereo
+
+Line 6 Original
+
+Bleat Chop Trem
+
+Mono, Stereo
+
+Lightfoot Labs Goatkeeper
+
+Script Mod Phase
+
+Mono, Stereo
+
+MXR® Phase 90
+
+Ubiquitous Vibe
+
+Mono, Stereo
+
+Shin-ei Uni-Vibe®
+
+Deluxe Phaser
+
+Mono, Stereo
+
+Line 6 Original
+
+Gray Flanger
+
+Mono, Stereo
+
+MXR® 117 Flanger
+
+*See "U.S. Registered Trademarks" on page 31. All product names used in this document are trademarks of their respective owners and neither Yamaha Guitar Group nor Line 6 are associated or affiliated with them.  
+These trademarks appear solely to identify products whose tones and sounds were studied by Line 6 during sound model development.
+
+20
+
+Modulation Models
+
+Delay Models
+
+Model
+
+Subcategories
+
+Based On*
+
+Model
+
+Subcategories
+
+Based On*
+
+Jet Flanger
+
+Legacy
+
+A/DA Flanger
+
+Multi Pass
+
+Mono, Stereo
+
+Line 6 Original
+
+AC Flanger
+
+Legacy
+
+MXR Flanger
+
+Ping Pong
+
+Legacy
+
+Line 6 Original
+
+80A Flanger
+
+Legacy
+
+A/DA Flanger
+
+Dynamic
+
+Legacy
+
+TC Electronic® 2290
+
+Frequency Shift
+
+Legacy
+
+Line 6 Original
+
+Stereo
+
+Legacy
+
+Line 6 Original
+
+Ring Modulator
+
+Legacy
+
+Line 6 Original
+
+Digital
+
+Legacy
+
+Line 6 Original
+
+Rotary Drum
+
+Legacy
+
+Fender Vibratone
+
+Dig w/Mod
+
+Legacy
+
+Line 6 Original
+
+Leslie 145
+
+Reverse
+
+Legacy
+
+Line 6 Original
+
+Lo Res
+
+Legacy
+
+Line 6 Original
+
+Tube Echo
+
+Legacy
+
+Maestro® Echoplex EP-1
+
+Tape Echo
+
+Legacy
+
+Maestro® Echoplex EP-3
+
+Sweep Echo
+
+Legacy
+
+Line 6 Original
+
+Echo Platter
+
+Legacy
+
+Binson® EchoRec®
+
+Analog Echo
+
+Legacy
+
+BOSS® DM-2
+
+Analog w/Mod
+
+Legacy
+
+Electro-Harmonix® Deluxe Memory Man
+
+Rotary Drum/Horn Legacy
+
+®
+
+®
+
+®
+
+Delay Models
+Model
+
+Subcategories
+
+Based On*
+
+Simple Delay
+
+Mono, Stereo
+
+Line 6 Original
+
+Mod/Chorus Echo
+
+Mono, Stereo
+
+Line 6 Original
+
+Dual Delay
+
+Stereo
+
+Line 6 Original
+
+Multitap 4
+
+Stereo
+
+Line 6 Original
+
+Multitap 6
+
+Stereo
+
+Line 6 Original
+
+Ping Pong
+
+Stereo
+
+Line 6 Original
+
+Sweep Echo
+
+Mono, Stereo
+
+Line 6 Original
+
+Ducked Delay
+
+Mono, Stereo
+
+TC Electronic® 2290
+
+Reverb Models
+
+Reverse Delay
+
+Mono, Stereo
+
+Line 6 Original
+
+Vintage Digital
+
+Mono, Stereo
+
+Vintage Swell
+
+Auto-Volume Echo Legacy
+
+Line 6 Original
+
+Multi-Head
+
+Legacy
+
+Roland® RE-101 Space Echo
+
+Model
+
+Subcategory
+
+Based On*
+
+Line 6 Original
+
+Glitz
+
+Mono, Stereo
+
+Line 6 Original
+
+Mono, Stereo
+
+Line 6 Original
+
+Ganymede
+
+Mono, Stereo
+
+Line 6 Original
+
+Pitch Echo
+
+Mono, Stereo
+
+Line 6 Original
+
+Searchlights
+
+Mono, Stereo
+
+Line 6 Original
+
+Transistor Tape
+
+Mono, Stereo
+
+Maestro Echoplex EP-3
+
+Plateaux
+
+Mono, Stereo
+
+Line 6 Original
+
+Cosmos Echo
+
+Mono, Stereo
+
+Roland RE-201 Space Echo
+
+Double Tank
+
+Mono, Stereo
+
+Line 6 Original
+
+Harmony Delay
+
+Stereo
+
+Line 6 Original
+
+Plate
+
+Legacy
+
+Line 6 Original
+
+Bucket Brigade
+
+Mono, Stereo
+
+BOSS DM-2
+
+Room
+
+Legacy
+
+Line 6 Original
+
+Adriatic Delay
+
+Mono, Stereo
+
+BOSS DM-2 w/ Adrian Mod
+
+Chamber
+
+Legacy
+
+Line 6 Original
+
+Adriatic Swell
+
+Mono, Stereo
+
+Line 6 Original
+
+Hall
+
+Legacy
+
+Line 6 Original
+
+Elephant Man
+
+Mono, Stereo
+
+Electro-Harmonix Deluxe Memory Man
+
+Echo
+
+Legacy
+
+Line 6 Original
+
+®
+
+®
+
+®
+®
+
+®
+
+*See "U.S. Registered Trademarks" on page 31. All product names used in this document are trademarks of their respective owners and neither Yamaha Guitar Group nor Line 6 are associated or affiliated with them.  
+These trademarks appear solely to identify products whose tones and sounds were studied by Line 6 during sound model development.
+
+21
+
+Reverb Models
+
+Filter Models
+
+Model
+
+Subcategory
+
+Based On*
+
+Model
+
+Subcategories
+
+Based On*
+
+Tile
+
+Legacy
+
+Line 6 Original
+
+Mutant Filter
+
+Mono, Stereo
+
+Musitronics® Mu-Tron® III
+
+Cave
+
+Legacy
+
+Line 6 Original
+
+Mystery Filter
+
+Mono, Stereo
+
+Korg® A3
+
+Ducking
+
+Legacy
+
+Line 6 Original
+
+Autofilter
+
+Mono, Stereo
+
+Line 6 Original
+
+Octo
+
+Legacy
+
+Line 6 Original
+
+Voice Box
+
+Legacy
+
+Line 6 Original
+
+'63 Spring
+
+Legacy
+
+Line 6 Original
+
+V Tron
+
+Legacy
+
+Musitronics® Mu-Tron® III
+
+Spring
+
+Legacy
+
+Line 6 Original
+
+Particle Verb
+
+Q Filter
+
+Legacy
+
+Line 6 Original
+
+Legacy
+
+Line 6 Original
+
+Seeker
+
+Legacy
+
+Z Vex Seek Wah
+
+Obi Wah
+
+Legacy
+
+Oberheim® voltage-controlled S&H filter
+
+Tron Up
+
+Legacy
+
+Musitronics® Mu-Tron® III (up position)
+
+Tron Down
+
+Legacy
+
+Musitronics® Mu-Tron® III (down position)
+
+Throbber
+
+Legacy
+
+Electrix® Filter Factory
+
+Slow Filter
+
+Legacy
+
+Line 6 Original
+
+Spin Cycle
+
+Legacy
+
+Craig Anderton's Wah/Anti-Wah
+
+Comet Trails
+
+Legacy
+
+Line 6 Original
+
+Model
+
+Subcategories
+
+Based On*
+
+UK Wah 846
+
+Mono, Stereo
+
+Vox® V846
+
+Teardrop 310
+
+Mono, Stereo
+
+Dunlop® Cry Baby® Fasel model 310
+
+Fassel
+
+Mono, Stereo
+
+Dunlop® Cry Baby® Super
+
+Weeper
+
+Mono, Stereo
+
+Arbiter® Cry Baby®
+
+Chrome
+
+Mono, Stereo
+
+Vox® V847
+
+Chrome Custom
+
+Mono, Stereo
+
+Modded Vox® V847
+
+Throaty
+
+Mono, Stereo
+
+RMC® Real McCoy 1
+
+Vetta Wah
+
+Mono, Stereo
+
+Line 6 Original
+
+Colorful
+
+Mono, Stereo
+
+Colorsound® Wah-fuzz
+
+Conductor
+
+Mono, Stereo
+
+Maestro® Boomerang
+
+Pitch/Synth Models
+Model
+
+Subcategories
+
+Based On*
+
+Pitch Wham
+
+Mono, Stereo
+
+Digitech® Whammy®
+
+Twin Harmony
+
+Mono, Stereo
+
+Eventide® H3000
+
+Simple Pitch
+
+Mono, Stereo
+
+Line 6 Original
+
+Dual Pitch
+
+Mono, Stereo
+
+Line 6 Original
+
+3 OSC Synth
+
+Stereo
+
+Line 6 Original
+
+3 Note Generator
+
+Mono, Stereo
+
+Line 6 Original
+
+4 OSC Generator
+
+Mono, Stereo
+
+Line 6 Original
+
+Bass Octaver
+
+Legacy
+
+EBS® OctaBass
+
+Smart Harmony
+
+Legacy
+
+Eventide® H3000
+
+Octi Synth
+
+Legacy
+
+Line 6 Original
+
+Synth O Matic
+
+Legacy
+
+Line 6 Original
+
+Attack Synth
+
+Legacy
+
+Korg® X911 Guitar Synth
+
+Synth String
+
+Legacy
+
+Roland® GR700 Guitar Synth
+
+Growler
+
+Legacy
+
+Line 6 Original
+
+Wah Models
+
+*See "U.S. Registered Trademarks" on page 31. All product names used in this document are trademarks of their respective owners and neither Yamaha Guitar Group nor Line 6 are associated or affiliated with them.  
+These trademarks appear solely to identify products whose tones and sounds were studied by Line 6 during sound model development.
+
+22
+
+Volume/Pan Models
+Model
+
+Subcategories
+
+Based On*
+
+Volume Pedal
+
+Mono, Stereo
+
+Line 6 Original
+
+Gain
+
+Mono, Stereo
+
+Line 6 Original
+
+Pan
+
+Stereo
+
+Line 6 Original
+
+Stereo Width
+
+Stereo
+
+Line 6 Original
+
+Parameter
+
+Description
+
+Decay
+
+Sets the length of time the reverb effect sustains.
+
+Predly
+
+Determines predelay—or the time before the reverb effect is heard.
+
+Spread
+
+Common FX Settings
+Parameter
+
+Description
+
+Drive
+
+Adjusts the amount of overdrive, distortion, or fuzz.
+
+Bass
+
+Adjusts the bass level.
+
+Mid
+
+Adjusts the midrange level.
+
+Treble
+
+Adjusts the treble level.
+
+Speed
+
+Adjusts the speed of the effect, with higher settings providing faster
+rates. Press the knob to toggle between Hz and note values.
+Choosing a Hz value provides a specific modulation speed in cycles
+per second; choosing a note value provides a time based on the current tempo. Not all Speed parameters can be synced to note values,
+as they may be non-linear and highly interactive.
+
+Rate
+
+Adjusts the rate of the effect, with higher settings providing faster
+rates. Press the knob to toggle between numeric and note values.
+Not all Rate parameters can be synced to note values, as they may be
+non-linear and highly interactive.
+
+Time
+
+Adjusts the delay/repeat time, with higher settings providing longer
+delays. Press the knob to toggle between ms and note values.
+Choosing a ms value provides a specific time in milliseconds; choosing a Note Division value provides a time based on the current tempo.
+With a note division value, this parameter’s value is retained when
+changing models.
+
+Scale
+
+Delay models with multiple taps have a Scale parameter for each tap,
+which adjusts its time relative to the main Time value. For example,
+if the Time parameter is set to 500ms, setting T1 Scale to "50%" will
+mean that tap will be at 250ms. If you then adjust the Time parameter,
+the timing of all the taps will scale accordingly.
+
+Depth
+
+Adjusts the intensity of the modulation. Higher settings result in more
+extreme pitch bending, wobble, or throb, depending on the effect.
+
+Feedbk
+
+Adjusts the amount of delayed signal fed back into the effect. Higher
+settings can provide more dramatic textures.
+
+Headrm
+Low Cut
+Hi Cut
+
+23
+
+Spread differs slightly among stereo delay effects. For most delays,
+it adjusts how widely the repeats bounce left and right. With the Ping
+Pong Delay, for example, 0 is in the middle (mono), and 10 is full left to
+right panning for the repeats.
+For modulated stereo delays, Spread affects the LFOs' (low frequency
+oscillators) stereo modulation behavior. At 0 the LFOs are in sync. At
+10, the two LFOs are 180 degrees out of sync, so that when one side
+is modulating up, the other side is modulating down.
+Some mod and delay pedals' internal signal paths exhibit a bit of grit,
+especially when placed after a high-gain distortion block. Negative
+values increase the perceived amount of grit; positive values clean
+things up a bit. At 0dB, the model behaves like the original pedal.
+Filters a portion of the block's bass and/or treble frequencies, which
+can help remove rumble and/or high-end harshness.
+
+Mix
+
+Blends the effected "wet" signal vs. the "dry" signal passed through
+the block. When set to 0%, the path bypasses the effect completely.
+When set to 100%, the entire path is fed through the effect, and no
+dry thru signal is heard.
+
+Level
+
+Adjusts the overall output level of the effects block. Be careful not to
+boost this parameter too high on multiple blocks, as digital clipping
+could occur. You should typically leave this at 0.0dB for most blocks.
+Where the original pedal's level or volume knob behavior doesn't
+really apply to dB values, 0.0-10 may be used.
+
+Trails
+
+Trails Off: Any delay repeats or reverb decays are instantly muted
+when the block is bypassed. Trails On: Any delay repeats or reverb
+decays continue to decay naturally when the block is bypassed or a
+different snapshot is selected.
+
+Amp+Cab
+
+Amp Models
+
+Amp+Cab blocks are convenient in that when you select an Amp model, its matching Cab model is automatically loaded. It also only uses up one of the six available
+processing blocks.
+
+To change the amp model in an Amp+Cab block, press PAGE until the amp icon is bright red and turn the Lower Knob. To change
+the cab model, press PAGE until the cab icon is bright red and
+turn the Lower Knob.
+
+Amp Models
+Model
+
+Subcategory
+
+Based On*
+
+WhoWatt 100
+
+Guitar
+
+Hiwatt® DR-103 Brill
+
+Soup Pro
+
+Guitar
+
+Supro® S6616
+
+Stone Age 185
+
+Guitar
+
+Gibson® EH-185
+
+Voltage Queen
+
+Guitar
+
+Victoria Electro King
+
+Tweed Blues Nrm
+
+Guitar
+
+Fender® Bassman® (normal channel)
+
+Tweed Blues Brt
+
+Guitar
+
+Fender® Bassman® (bright channel)
+
+US Small Tweed
+
+Guitar
+
+Fender® Champ®
+
+US Deluxe Nrm
+
+Guitar
+
+Fender® Deluxe Reverb® (normal channel)
+
+US Deluxe Vib
+
+Guitar
+
+Fender® Deluxe Reverb® (vibrato channel)
+
+US Double Nrm
+
+Guitar
+
+Fender® Twin Reverb® (normal channel)
+
+US Double Vib
+
+Guitar
+
+Fender® Twin Reverb® (vibrato channel)
+
+Mail Order Twin
+
+Guitar
+
+Silvertone® 1484
+
+Divided Duo
+
+Guitar
+
+÷13 JRT 9/15
+
+Interstate Zed
+
+Guitar
+
+Dr Z® Route 66
+
+Derailed Ingrid
+
+Guitar
+
+Trainwreck® Circuits Express
+
+Jazz Rivet 120
+
+Guitar
+
+Roland® JC-120 Jazz Chorus
+
+Essex A15
+
+Guitar
+
+Vox® AC-15
+
+Essex A30
+
+Guitar
+
+Vox® AC-30 with top boost
+
+Model
+
+Subcategory
+
+Based On*
+
+A30 Fawn Nrm
+
+Guitar
+
+Vox® AC-30 Fawn (normal channel)
+
+A30 Fawn Brt
+
+Guitar
+
+Vox® AC-30 Fawn (bright channel)
+
+Matchstick Ch1
+
+Guitar
+
+Matchless® DC30 (channel 1)
+
+Matchstick Ch2
+
+Guitar
+
+Matchless® DC30 (channel 2)
+
+Matchstick Jump
+
+Guitar
+
+Matchless® DC30 (jumped)
+
+Mandarin 80
+
+Guitar
+
+Orange® OR80
+
+Brit J45 Nrm
+
+Guitar
+
+Marshall® JTM-45 (normal channel)
+
+Brit J45 Brt
+
+Guitar
+
+Marshall® JTM-45 (bright channel)
+
+Brit Trem Nrm
+
+Guitar
+
+Marshall® JTM-50 (normal channel)
+
+Brit Trem Brt
+
+Guitar
+
+Marshall® JTM-45 (bright channel)
+
+Brit Trem Jump
+
+Guitar
+
+Marshall® JTM-45 (jumped)
+
+Brit Plexi Nrm
+
+Guitar
+
+Marshall® Super Lead 100 (normal channel)
+
+Brit Plexi Brt
+
+Guitar
+
+Marshall® Super Lead 100 (bright channel)
+
+Brit Plexi Jump
+
+Guitar
+
+Marshall® Super Lead 100 (jumped)
+
+Brit P75 Nrm
+
+Guitar
+
+Park® 75 (normal channel)
+
+Brit P75 Brt
+
+Guitar
+
+Park® 75 (bright channel)
+
+Brit 2204
+
+Guitar
+
+Marshall® JCM-800
+
+Placater Clean
+
+Guitar
+
+Friedman BE-100 (clean channel)
+
+Placater Dirty
+
+Guitar
+
+Friedman BE-100 (BE/HBE channel)
+
+Cartographer
+
+Guitar
+
+Ben Adrian Cartographer
+
+German Mahadeva Guitar
+
+Bogner® Shiva
+
+German Ubersonic Guitar
+
+Bogner® Überschall®
+
+Cali Texas Ch 1
+
+Guitar
+
+MESA/Boogie® Lone Star (clean channel)
+
+Cali Texas Ch 2
+
+Guitar
+
+MESA/Boogie® Lone Star (drive channel)
+
+Cali IV Rhythm 1
+
+Guitar
+
+MESA/Boogie® Mark IV (channel I)
+
+Cali IV Rhythm 2
+
+Guitar
+
+MESA/Boogie® Mark IV (channel II)
+
+Cali IV Lead
+
+Guitar
+
+MESA/Boogie® Mark IV (lead channel)
+
+Cali Rectifire
+
+Guitar
+
+MESA/Boogie® Dual Rectifier®
+
+*See "U.S. Registered Trademarks" on page 31. All product names used in this document are trademarks of their respective owners and neither Yamaha Guitar Group nor Line 6 are associated or affiliated with them.  
+These trademarks appear solely to identify products whose tones and sounds were studied by Line 6 during sound model development.
+
+24
+
+Tonestack and deeper amp parameters found on subsequent pages may differ depending on the amp model selected.
+
+Amp Models
+Model
+
+Subcategory
+
+Based On*
+
+Archetype Clean
+
+Guitar
+
+Paul Reed Smith® Archon® (clean channel)
+
+Archetype Lead
+
+Guitar
+
+Paul Reed Smith® Archon® (lead channel)
+
+ANGL Meteor
+
+Guitar
+
+ENGL® Fireball 100
+
+Solo Lead Clean
+
+Guitar
+
+Soldano SLO-100 (clean channel)
+
+Solo Lead Crunch
+
+Guitar
+
+Soldano SLO-100 (crunch channel)
+
+Solo Lead OD
+
+Guitar
+
+Soldano SLO-100 (overdrive channel)
+
+PV Panama
+
+Guitar
+
+Peavey® 5150®
+
+Line 6 Elektrik
+
+Guitar
+
+Line 6 Original
+
+Line 6 Doom
+
+Guitar
+
+Line 6 Original
+
+Line 6 Epic
+
+Guitar
+
+Line 6 Original
+
+Line 6 2204 Mod
+
+Guitar
+
+Line 6 Original
+
+Line 6 Fatality
+
+Guitar
+
+Line 6 Original
+
+Line 6 Litigator
+
+Guitar
+
+Line 6 Original
+
+Line 6 Badonk
+
+Guitar
+
+Line 6 Original
+
+Tuck n' Go
+
+Bass
+
+Ampeg® B-15NF Portaflex®
+
+SV Beast Nrm
+
+Bass
+
+Ampeg SVT (normal channel)
+
+SV Beast Brt
+
+Bass
+
+Ampeg SVT (bright channel)
+
+Woody Blue
+
+Bass
+
+Acoustic® 360
+
+Agua 51
+
+Bass
+
+Aguilar® DB51
+
+Cali Bass
+
+Bass
+
+MESA/Boogie® M9 Carbine
+
+Cali 400 Ch1
+
+Bass
+
+MESA/Boogie® Bass 400+ (channel 1)
+
+Cali 400 Ch2
+
+Bass
+
+MESA/Boogie® Bass 400+ (channel 2)
+
+G Cougar 800
+
+Bass
+
+Gallien-Krueger® GK 800RB
+
+Del Sol 300
+
+Bass
+
+Sunn® Coliseum 300
+
+Busy One Ch1
+
+Bass
+
+Pearce BC-1 preamp (channel 1)
+
+Busy One Ch2
+
+Bass
+
+Pearce BC-1 preamp (channel 2)
+
+Busy One Jump
+
+Bass
+
+Pearce BC-1 preamp (jumped)
+
+Studio Tube Pre
+
+Preamp > Mic
+
+Requisite Y7 mic preamp
+
+®
+®
+
+Common Amp Settings
+Parameter
+
+Description
+
+Master
+
+Adjusts the amount of overall amp output level, as well as power amp
+distortion. This parameter is highly interactive with all other power
+amp parameters—the lower the Master is set, the less effect the other
+controls will have.
+
+Sag
+
+Lower Sag values offer a "tighter" responsiveness for faster metal
+performances; higher values provide more touch dynamics & sustain
+for blues and classic rock riffs.
+
+Hum
+Ripple
+
+Controls how much heater hum and AC ripple interacts with your tone.
+At higher settings, things get freaky.
+
+Bias
+
+Changes the bias of the power tubes. Lower values achieve a "colder"
+Class AB biasing. At maximum, the amp is operating in Class A.
+
+Bias X
+
+Determines how the power amp tubes' voicing reacts when pushed
+hard. Set low for a tighter feel. Set high for more tube compression.
+This parameter is highly reactive with the Drive and Master settings.
+
+Amp
+
+®
+
+Amp blocks are identical to Amp+Cab blocks, except they contain no matched cab
+model.
+
+®
+
+Preamp
+We’ve also included a complete set of Preamp versions of each Amp model, which
+provide the tone of just the preamp stage of the amp—recommended when feeding
+the HX Stomp pedal into the power amp section of your favorite amplifier. You'll also
+find a studio microphone preamp within the Preamp > Mic category.
+
+Preamp blocks require less DSP than a full Amp block.
+
+*See "U.S. Registered Trademarks" on page 31. All product names used in this document are trademarks of their respective owners and neither Yamaha Guitar Group nor Line 6 are associated or affiliated with them.  
+These trademarks appear solely to identify products whose tones and sounds were studied by Line 6 during sound model development.
+
+25
+
+Cab
+
+Cab Models
+
+There are two subcategories of Cab blocks—Single and Dual. Dual cabs have a stereo
+output, with each cab panned hard left and right. Not surprisingly, dual cabs take twice
+as much DSP as single cabs.
+
+To change the first cab model in a Cab > Dual block, press <PAGE
+until the left cab icon is bright red and turn the Lower Knob. To
+change the second cab, press PAGE> until the right cab icon is
+bright red and turn the Lower Knob.
+
+Cab Models
+
+Model
+
+Subcategories
+
+Based On*
+
+2x12 Blue Bell
+
+Single, Dual
+
+2x12" Vox® AC-30 Fawn Blue
+
+2x12 Match H30
+
+Single, Dual
+
+1x12" Matchless® DC-30 G12H30
+
+2x12 Match G25
+
+Single, Dual
+
+1x12" Matchless® DC-30 Greenback 25
+
+4x10 Tweed P10R
+
+Single, Dual
+
+4x10" Fender® Bassman® P10R
+
+4x12 WhoWatt 100 Single, Dual
+
+4x12" Hiwatt® AP Fane®
+
+4x12 Mandarin EM Single, Dual
+
+4x12" Orange® Eminence
+
+4x12 Greenback25 Single, Dual
+
+4x12" Marshall® Basketweave G12 M25
+
+4x12 Greenback20 Single, Dual
+
+4x12" Marshall® Basketweave G12 M20
+
+4x12 Blackback30
+
+Single, Dual
+
+4x12" Park® 75 G12 H30
+
+4x12 1960 T75
+
+Single, Dual
+
+4x12" Marshall® 1960 AT75
+
+4x12 Uber V30
+
+Single, Dual
+
+4x12" Bogner® Uberkab V30
+
+Model
+
+Subcategories
+
+Based On*
+
+4x12 Uber T75
+
+Single, Dual
+
+4x12" Bogner® Uberkab T75
+
+Soup Pro Ellipse
+
+Single, Dual
+
+1 x 6x9" Supro® S6616
+
+4x12 Cali V30
+
+Single, Dual
+
+4x12" MESA/Boogie® 4FB V30
+
+1x8 Small Tweed
+
+Single, Dual
+
+1x8" Fender® Champ
+
+4x12 XXL V30
+
+Single, Dual
+
+4x12" ENGL® XXL V30
+
+1x12 Field Coil
+
+Single, Dual
+
+1x12" Gibson® EH185
+
+4x12 SoloLead EM Single, Dual
+
+4x12" Soldano
+
+1x12 US Deluxe
+
+Single, Dual
+
+1x12" Fender Deluxe Oxford
+
+1x12 Del Sol
+
+Single, Dual
+
+1x12" Sunn® Coliseum
+
+1x12 Celest 12H
+
+Single, Dual
+
+1x12" ÷13 JRT 9/15 G12 H30
+
+1x15 Tuck n' Go
+
+Single, Dual
+
+1x15" Ampeg® B-15
+
+1x12 Blue Bell
+
+Single, Dual
+
+1x12" Vox® AC-15 Blue
+
+1x18 Del Sol
+
+Single, Dual
+
+1x18" Sunn® Coliseum
+
+1x12 Lead 80
+
+Single, Dual
+
+1x12" Bogner® Shiva CL80
+
+1x18 Woody Blue
+
+Single, Dual
+
+1x18" Acoustic® 360
+
+1x12 Cali IV
+
+Single, Dual
+
+1x12" MESA/Boogie® Mk IV
+
+2x15 Brute
+
+Single, Dual
+
+2x15" MESA/Boogie® 2x15 EV
+
+1x12 Cali EXT
+
+Single, Dual
+
+1x12" MESA/Boogie EVM12L
+
+4x10 Rhino
+
+Single, Dual
+
+4x10" Ampeg® SVT® 410HLF
+
+2x12 Double C12N
+
+Single, Dual
+
+2x12" Fender Twin C12N
+
+6x10 Cali Power
+
+Single, Dual
+
+6x10" MESA/Boogie® Power House
+
+2x12 Mail C12Q
+
+Single, Dual
+
+2x12" Silvertone® 1484
+
+8x10 SV Beast
+
+Single, Dual
+
+8x10" Ampeg® SVT®
+
+2x12 Interstate
+
+Single, Dual
+
+2x12" Dr Z® Z Best V30
+
+2x12 Jazz Rivet
+
+Single, Dual
+
+2x12" Roland® JC-120
+
+2x12 Silver Bell
+
+Single, Dual
+
+2x12" Vox® AC-30TB Silver
+
+®
+
+®
+
+®
+
+*See "U.S. Registered Trademarks" on page 31. All product names used in this document are trademarks of their respective owners and neither Yamaha Guitar Group nor Line 6 are associated or affiliated with them.  
+These trademarks appear solely to identify products whose tones and sounds were studied by Line 6 during sound model development.
+
+26
+
+Impulse Response (IR)
+
+Mic Models
+Model
+
+Based On*
+
+57 Dynamic
+
+Shure® SM57
+
+409 Dynamic
+
+Sennheiser® MD 409
+
+421 Dynamic
+
+Sennheiser® MD 421-U
+
+30 Dynamic
+
+Heil Sound® PR 30
+
+20 Dynamic
+
+Electro-Voice® RE20
+
+121 Ribbon
+
+Royer® R-121
+
+160 Ribbon
+
+Beyerdynamic® M 160
+
+4038 Ribbon
+
+Coles 4038
+
+414 Cond
+
+AKG® C414 TLII
+
+84 Cond
+
+Neumann® KM84
+
+67 Cond
+
+Neumann® U67
+
+1. Connect HX Stomp to your computer via USB and open the HX
+Edit application.
+
+87 Cond
+
+Neumann® U87
+
+47 Cond
+
+Neumann® U47
+
+2. Click the Impulses tab.
+
+112 Dynamic
+
+AKG® D112
+
+12 Dynamic
+
+AKG® D12
+
+7 Dynamic
+
+Shure® SM7
+
+Impulse Responses are mathematical functions representing the sonic measurements
+of specific audio systems (for HX Stomp, acoustic guitar body resonance or speaker cabinet and microphone combinations). HX Stomp can load and store up to 128
+custom or third-party IRs at a time.
+
+Loading Custom IRs
+
+Loading custom impulse responses requires connecting to the HX Edit software in
+your Mac or Windows computer. The HX Edit application is available as a free download from line6.com/software.
+
+3. Drag one or more IR files from the desktop or any Finder window directly into the HX Edit app's Impulses list.
+
+HX Edit updates the HX Stomp hardware's IR list automatically. HX Stomp can
+load and store up to 128 IRs at a time. 48kHz, 16-bit, mono, .WAV type IRs of
+up to 2,048 samples are natively supported; however, HX Edit lets you import IR
+.WAV files of different sample rate, bit depth, length and stereo format, and the
+app will convert these attributes automatically before sending to HX Stomp.
+
+Cab Settings
+Knob Parameter
+
+Description
+
+1
+
+Mic
+
+Selects one of the 16 available mic models.
+
+2
+
+Distanc
+
+Sets the distance (1 inch to 12 inches) between the mic and
+the speaker grille.
+
+3
+
+Low Cut
+
+4
+
+High Cut
+
+Filters a portion of the cab's bass and/or treble frequencies,
+which can help remove rumble and/or high-end harshness.
+
+5
+
+Reflec
+
+Sets the amount of "early reflections." Higher values add more
+reflective room sound to your Amp tone.
+
+6
+
+Level
+
+Adjusts the overall output level of the Cab.
+
+•
+
+•
+
+Go to the HX Edit app's Preferences to set the preferred behavior for importing Stereo WAV IRs - there you can choose to import the left or right channel
+data of the file, or a mix of both channels for the (mono) IR.
+
+The imported IR is automatically shortened (or lengthened) to 2,048 samples.
+You may optionally choose a 1,024-sample version from the model list to
+save DSP, which fades out the IR halfway through.
+IMPORTANT! IR blocks reference an IR index number, not the actual IR
+file. For example, if you happen to replace or clear "IR 12" from the HX
+Edit application, it will affect any presets containing IR blocks with "IR 12"
+selected.
+
+*See "U.S. Registered Trademarks" on page 31. All product names used in this document are trademarks of their respective owners and neither Yamaha Guitar Group nor Line 6 are associated or affiliated with them.  
+These trademarks appear solely to identify products whose tones and sounds were studied by Line 6 during sound model development.
+
+27
+
+Impulse Response Settings
+
+Send Settings
+
+Page Knob Parameter
+
+Knob Parameter
+
+1
+1
+
+2
+
+IR Sel
+
+2
+
+Low Cut
+
+3
+
+Hi Cut
+
+Description
+Selects one of the 128 available IR index locations. If a
+location contains an IR, its name appears in the inspector header.
+Filters a portion of the IR's bass and/or treble frequencies, which can help remove rumble and/or high-end
+harshness.
+
+1
+
+Mix
+
+Blends the IR signal with the dry signal passed through
+the IR block. When set to 0%, the path bypasses the
+IR completely. When set to 100%, the entire path is fed
+through the IR, and no dry signal is heard.
+
+2
+
+Level
+
+Adjusts the overall output level of the IR block.
+
+Description
+
+1
+
+Send
+
+Adjusts the level sent to your external devices.
+
+2
+
+Dry Thru
+
+Adjusts the level of the signal passed through the Send block,
+independent of the Knob 1 (Send) level. Normally, this should
+be set to 0.0dB.
+
+Return Settings
+Knob Parameter
+1
+2
+
+Send/Return
+
+Description
+
+Return
+
+Adjusts the level received at the Return jack.
+
+Mix
+
+Blends the Return signal vs. the dry signal passed through the
+Return block. When set to 0%, the path bypasses the Return
+completely. When set to 100%, the entire signal is fed from the
+Return, and no dry thru signal is heard.
+
+FX Loop Settings
+
+Each of the sends and returns can be used independently, or used together as a
+(mono or stereo) FX loop.
+
+Page Knob Parameter
+
+FX loops let you dynamically insert your favorite external stompboxes (or rack effects)
+into any location in your preset.
+
+1
+
+Send
+
+Adjusts the level sent to your external device.
+
+2
+
+Return
+
+Adjusts the level received at the Return jack.
+
+Mix
+
+Blends the FX loop signal vs. the dry signal passed
+through the FX Loop block. When set to 0%, the path
+bypasses the FX loop completely. When set to 100%,
+the entire path is fed through the FX loop, and no dry
+thru signal is heard.*
+
+1
+3
+
+NOTE: Each send and return pair can be set for instrument (for inserting stompboxes) or line-level operation. See "Global Settings > Ins/Outs"
+
+2
+
+28
+
+Description
+
+1
+
+Trails
+
+This means that, if you don't currently have your external gear connected to the Send & Return jacks, you
+won't hear any output signal unless you bypass the FX
+Loop block!
+Trails Off: An external stompbox would be instantly
+muted when the FX Loop block is bypassed. Trails On:
+An external delay or reverb stompbox would continue to
+decay naturally when the FX Loop block is bypassed or
+a different snapshot is selected.
+
+Looper
+
+Looper Settings
+
+`
+
+Page Knob
+
+A single mono or stereo Looper block can be added.
+
+Parameter
+
+Description
+
+Playbk
+
+Adjusts looper playback level. You may find it useful to
+turn this down a bit so your live guitar can be slightly
+louder.
+
+2
+
+Ovrdub
+
+Relatively sets the level of your loop while overdubbing.
+For example, if your Overdub Level is set to 90%, each
+time your loop repeats, its volume will be reduced by
+10%, sounding quieter and quieter with each overdub
+pass.
+
+3
+
+Low Cut
+
+1
+
+High Cut
+
+1
+1
+
+The 1 Switch Looper only functions if it has been assigned to a footswitch in Stomp
+mode. See "Bypass Assign" for information on how to assign blocks to footswitches.
+You can also access Looper functions via MIDI - see "MIDI CC".
+Looper Type
+
+Max. Loop Length (Full Speed)
+
+Mono
+
+60 seconds
+
+Stereo
+
+30 seconds
+
+2
+
+Filters a portion of the loop's bass and/or treble
+frequencies, which can improve the mix with your live
+guitar.
+
+1. Add a 1 Switch Looper block to your preset and assign it to a
+footswitch in Stomp mode.
+
+Split
+
+2. Press the 1 Switch Looper switch.
+
+A Split block appears any time a parallel path is created, but is visible only when selected:
+
+See "Quick Footswitch Assign".
+
+The LED lights red, indicating the loop is recording.
+
+3. Press the 1 Switch Looper switch again.
+
+The LED lights green, indicating the loop is playing back.
+
+4. Press the 1 Switch Looper switch again.
+
+HX Stomp has three different types of Split blocks—Y, A/B, and Crossover.
+
+The LED lights amber, indicating the loop is in overdub mode. Subsequent presses of the switch toggle between play and overdub mode.
+
+Turn the Upper Knob to select the Split block and then turn the
+Lower Knob to change the Split type.
+
+5. While the Looper is in play or overdub mode, press and hold
+the switch for 1 second.
+
+Split > Y Settings
+
+The most recent recording is undone. Holding the switch again will redo the recording.
+
+6. Quickly double-press the 1 Switch Looper switch.
+
+Playback/recording stops and the LED lights white, indicating a loop is in memory.
+
+7. While Looper playback/recording is stopped, press and hold
+the switch.
+
+Knob
+
+Parameter
+
+Description
+
+1
+
+BalnceA
+
+Adjusts the left/right stereo balance of Path A.
+
+2
+
+BalnceB
+
+Adjusts the left/right stereo balance of Path B.
+
+TIP: Okay, this one's for the power users: If you move a Split > Y block all the
+way left, set its BalnceA to "L100" and its BalnceB to "R100," you can process
+the L/MONO and RIGHT inputs independently. In addition, if you route the Mixer
+block to Path B (Send L/R), you can process two instruments simultaneously,
+each with its own mono input, stereo processing, and stereo outputs!
+
+The recording is deleted and the LED lights dim white.
+
+IMPORTANT! You may change presets while looping, but loop playback will
+stop unless the preset you select includes the same type of looper block (mono
+or stereo).
+
+29
+
+Split > A/B Settings
+Knob Parameter
+1
+
+RoutTo
+
+Description
+Determines the amount of the signal sent to Path A vs. Path B.
+Press the knob to set to Even Split.
+
+Split > Crossover Settings
+Knob
+
+Parameter
+
+Description
+
+1
+
+Freq
+
+Any signal above this frequency is sent to Path A (upper); any
+signal below this frequency is sent to Path B (lower).
+
+2
+
+Revrse
+
+When on, reverses the path assignments (any signal above
+the crossover frequency is sent to Path B, any signal below
+the crossover frequency is sent to Path A).
+
+Mixer
+A Mixer block appears any time a parallel path is created, but is visible only when
+selected:
+
+Mixer Settings
+Page Knob Parameter Description
+1
+
+2
+
+1
+
+A Level
+
+Adjusts the output level of Path A (upper).
+
+2
+
+A Pan
+
+Adjusts the left/right stereo balance of Path A.
+
+3
+
+B Level
+
+Adjusts the output level of Path B (lower).
+
+4
+
+B Pan
+
+Adjusts the left/right stereo balance of Path B.
+
+5
+
+B Polari
+
+Inverts the polarity of Path B. Typically, this should be
+set to "Normal."
+
+6
+
+Level
+
+Adjusts the overall output level of the Mixer block.
+
+30
+
+U.S. Registered Trademarks
+All product names used in this document are trademarks of their respective owners and neither Yamaha Guitar Group nor Line 6 are associated or affiliated with them. These trademarks appear solely to identify products whose tones and sounds were studied by Line 6 during sound model development.
+5150 is a registered trademark of ELVH Inc.
+
+Ibanez is a registered trademark of Hoshino, Inc.
+
+Acoustic is a registered trademark of GTRC Services, Inc.
+
+Klon is a registered trademark of Klon, LLC.
+
+Aguilar is a registered trademark David Boonshoft.
+
+Korg is a registered trademark of Korg, Inc.
+
+AKG, DOD and Whammy are registered trademarks of Harman International
+Industries, Inc.
+
+Leslie is a registered trademark of Suzuki Musical Instrument Manufacturing Co. Ltd.
+Lone Star is a registered trademark of Randall C. Smith.
+
+Arbiter is a registered trademark of Sound City Amplification LLC.
+
+Marshall is a registered trademark of Marshall Amplification Plc.
+
+Binson, Dytronics, LA-2A and Teletronix are registered trademarks of Universal
+Audio, Inc.
+
+Matchless is a registered trademark of Matchless, LLC.
+MAXON is a registered trademark of Nisshin Onpa Co., Ltd.
+
+Beyerdynamic is a registered trademark of Beyer Dynamic GmbH & Co. KG.
+
+Mesa/Boogie and Rectifier are registered trademarks of Mesa/Boogie, Ltd.
+
+Bogner and Überschall are registered trademarks of Bogner Amplification.
+
+Musitronics is a registered trademark of Mark S. Simonsen.
+
+BOSS and Roland are registered trademarks of Roland Corporation U.S.
+Colorsound is a registered trademark of Sola Sound Limited Corporation, UK.
+
+Mu-Tron is a registered trademark of Henry Zajac.
+
+Cry Baby, Dunlop, Fuzz Face, MXR and Uni-Vibe are registered trademarks of Dunlop
+Manufacturing, Inc.
+
+Neumann is a registered trademark of Georg Neumann GmbH.
+
+Darkglass and Microtubes are registered trademarks of Darkglass Electronics, TMI
+Douglas Castro.
+
+Orange is a registered trademark of Orange Brand Services Limited.
+Park is a registered trademark of AMP RX LLC.
+Paul Reed Smith and Archon are registered trademarks of Paul Reed Smith Guitars,
+LP.
+
+Digitech is a registered trademark of DOD Electronics Corporation.
+Dr. Z is a registered trademark of Dr. Z Amps, Inc.
+
+Peavey is a registered trademark of Peavey Electronics Corporation.
+
+EBS is a registered trademark according of EBS Holding.
+
+RMC is a registered trademark of Richard McClish.
+
+EchoRec is a registered trademark of Nicholas Harris.
+
+Royer is a registered trademark of Bulldog Audio, Inc. DBA Rover Labs.
+
+Electro-Harmonix and Big Muff Pi are registered trademarks of New Sensor Corp.
+
+Sennheiser is a registered trademark of Sennheiser Electronic GmbH & Co. KG.
+
+Electro-Voice is a registered trademark of Bosch Security Systems, Inc.
+
+Shure is a registered trademark of Shure Inc.
+
+Engl is a registered trademark of Beate Ausflug and Edmund Engl.
+
+Silvertone is a registered trademark of Samick Music Corporation.
+
+Eventide is a registered trademark of Eventide Inc.
+
+Supro is a registered trademark of Absara Audio LLC.
+
+Fane is a trademark of Fane International Ltd.
+
+TC Electronic is a registered trademark of MUSIC Group IP Ltd.
+
+Fender, Twin Reverb, Bassman, Champ, Deluxe Reverb and Sunn are registered
+trademarks of Fender Musical Instruments Corp.
+
+Timmy is a registered trademark of Paul Cochrane AKA PAULCAUDIO.
+Trainwreck is a registered trademark of of Scott Alan Fischer and Mona Fischer.
+
+Fulltone is a registered trademark of Fulltone Musical Products, Inc.
+
+Tube Screamer is a registered trademark of Hoshino Gakki Co. Ltd.
+
+Gallien-Krueger is a registered trademark of Gallien Technology, Inc.
+
+Tycobrahe is a registered trademark of Kurt Stier.
+
+Gibson and Maestro are registered trademarks of Gibson Guitar Corp.
+
+Vox is a registered trademark of Vox R&D Limited.
+
+Heil Sound is a registered trademark of Heil Sound Ltd.
+
+Xotic is a registered trademark of Prosound Communications, Inc.
+
+Hiwatt is a registered trademark of Simon Giles and Justin Harrison.
+
+31
+
+Snapshots
+
+Each of the three snapshots in HX Stomp stores and recalls the state of certain elements in the current preset, including:
+•
+
+In Play view, a small camera icon appears in the upper right corner of the screen. Its
+number indicates the current snapshot.
+
+•
+
+1
+
+•
+
+Effect Bypass—The bypass (on/off) state of all processing blocks (The bypass
+state of the 1 Switch Looper is not stored/recalled via snapshot)
+Parameter Control—The values of any parameters assigned to controllers
+(up to 64 per preset)
+
+Tempo—The current system tempo, if "Global Settings > MIDI/Tempo" >
+Tempo Select is set to "Per Snapshot." (By default, it's set to "Per Preset")
+
+Depending on how you configure them, snapshots can act as three variations of the
+same tone, three drastically different tones, or any combination thereof—all within the
+same preset. In many cases, a single preset's snapshots may accommodate all the
+various tones required for a song.
+
+What are Snapshots?
+Imagine you have eight pet octopuses, all slithering around your amp and pedalboard.
+Instead of tap-dancing on your pedals (and accidentally stepping on a tentacle), you
+shout "Okay, gang—here's the verse... now!" and your octopuses switch some pedals
+on, switch other pedals off, and tweak all your amps and pedals' knobs to make the
+best possible settings for your song's verse, all seamlessly with spillover delay and
+reverb trails. Then you shout "Ready for the chorus... now!" and your octopuses instantly tweak everything for your song's chorus. That's the power of snapshots.
+
+Using Snapshots
+1. From Play view, press PAGE
+switch mode:
+
+1
+
+until you see Snapshot foot-
+
+2
+
+3
+
+2. Press one of the three snapshot switches to select a different
+snapshot.
+3. Adjust the preset by doing one or more of the following:
+
+The only thing your octopuses/snapshots can't do is rearrange your pedalboard or
+swap out an effect or amp for a different one (unless both effect or amp blocks exist
+in the same preset).
+
+•
+
+Turn one or more effects on or off by pressing stomp mode footswitches or pressing the Upper Knob in "Edit View". Snapshots remember every
+block's on/off state.
+
+•
+
+To adjust a parameter AND have it automatically update per snapshot,
+press and turn the knob. Snapshots remember the values of up to 64 effects
+parameters. The parameter's value appears white, indicating a controller's assigned to it—in this case, the Snapshots controller:
+
+Harmony Delay
+
+Each preset can have up to 64 parameters assigned to Snapshots; hence, eight octopuses with eight tentacles each. The octopuses can remember three separate groups
+of on/off statuses and setting tweaks per preset (say, for your verse, chorus, and overindulgent noise segue); that is, HX Stomp has three snapshots per preset.
+
+1/8
+
+37%
+
+Time Feedbk
+
+32
+
+35%
+
+Mix
+
+Saving Snapshots
+
+SHORTCUT: Hold ACTION and press a parameter knob to quickly remove
+any controller assignment (including the Snapshots controller). The value
+appears in color, indicating no controller is assigned to it.
+
+Press
+
+Saving a preset stores all of its 3 snapshots automatically.
+
+NOTE: You can also manually assign the Snapshots controller. From the
+"Controller Assign" page, select the desired block and parameter and
+turn Knob 2 (Controller) to select "Snapshot."
+
+NOTE: Selecting a preset recalls the snapshot that was active when the preset
+was saved.
+
+4. Switch back to the snapshot you started with.
+
+HX Stomp instantly and seamlessly returns to its previous state.
+
+Determining Snapshot Edit Behavior
+
+NOTE: If you've changed "Global Settings > Preferences" > Snapshot Edits
+to "Discard," you must save the preset before selecting a different snapshot;
+otherwise any edits will be discarded!
+
+Say you’re on Snapshot 1 (verse) and you change a few things—switch a delay block
+on, switch a mod block off, tweak a distortion’s Drive parameter, etc. If you switch to
+Snapshot 2 (chorus) and then back to Snapshot 1 for the second verse, should HX
+Stomp recall those changes or return Snapshot 1 to its state when the preset was last
+saved? There’s no right answer, therefore, HX Stomp lets you choose.
+
+Copying/Pasting a Snapshot
+
+1. Press
+
+Instead of creating a new snapshot from scratch, you may want to copy an existing
+one to another snapshot location and tweak just a few things.
+
+PAGE and PAGE
+
+2. Press PAGE
+
+1. From Snapshot mode, while touch-holding the footswitch for
+the snapshot you want to copy, briefly touch and release the
+footswitch for the snapshot you want to overwrite.
+
+together to open the Menu.
+
+and then press Knob 2 (Global Settings).
+
+3. Turn the Upper Knob to select the Preferences submenu.
+
+4. Turn the Snapshot Edits knob to set snapshot edit behavior:
+•
+
+A dialog panel appears:
+
+•
+
+Copy Snap 1 to 2?
+Cancel
+
+and ACTION together twice to save the preset.
+
+OK
+
+Recall—Any snapshot edits are recalled when jumping from snapshot to
+snapshot, and appear as you last left them (the default).
+
+Discard—Any snapshot edits are discarded when jumping from snapshot to
+snapshot, and appear as the preset was last saved. If you want to save changes made to the current snapshot while Snapshot Edits is set to “Discard,”
+press the
+and ACTION buttons together twice to save before selecting
+another snapshot.
+
+The camera icon on the Play screen shows you the Snapshot Edits setting at a glance—
+When set to “Recall,” the camera is gray; when set to “Discard,” the camera is red:
+
+2. Press Knob 3 (OK).
+
+Swapping Snapshots
+1. From Snapshot mode, simultaneously touch-hold the two
+footswitches for the snapshots you wish to swap until the following dialog appears:
+
+DISCARD
+
+1
+
+1
+
+NOTE: Don't forget to save before changing to a different preset to store all your
+snapshot settings!
+
+Swap Snaps 1 and 2?
+Cancel
+
+RECALL
+
+OK
+
+2. Press Knob 3 (OK).
+
+33
+
+Tips for Creative Snapshot Use
+•
+
+•
+•
+
+•
+•
+•
+
+The obvious use case for snapshots is designating them to specific sections
+of your song. For example, Snapshot 1 could be the Intro, Snapshot 2 might
+be Verse 1, Snapshot 3 might be the Chorus, and so on.
+
+Turn any Delay, Reverb, and/or FX Loops blocks' Trails parameter to "On" for
+seamless spillover between snapshots.
+
+Worried that further tweaking might make your tone worse, not better? Snapshots are a great way to compare minor changes between tones without
+having to take your hands off the guitar.
+Set different keys in Harmony Delay blocks or intervals in Pitch blocks per snapshot.
+
+Having difficulty maintaining consistent volume throughout a song? Set one of
+the effects' Gain or Level parameter per snapshot.
+You can alternatively change snapshots via MIDI. See "MIDI CC" on page 49.
+
+34
+
+Bypass Assign
+
+Manual Bypass Assign
+
+Aside from pressing the Upper Knob from Edit view, HX Stomp has a variety of additional methods for turning blocks on and off:
+
+2. Press Knob 1 (Bypass Assign).
+
+•
+•
+•
+
+1. Press
+
+PAGE and PAGE
+
+together to open the Menu.
+
+The Bypass Assign screen looks very similar to the Edit screen:
+
+Pressing a Stomp mode footswitch
+
+Bypass
+16B Pastor
+Assign
+of Muppets
+
+Moving a connected expression pedal (sometimes called "auto-engage")
+Sending a MIDI CC message to HX Stomp's MIDI In (or via USB)
+
+Quick Footswitch Assign
+
+Harmony Delay
+
+1. While in Edit view, turn the Upper Knob to select the block you
+wish to assign to a footswitch.
+2. While in Stomp footswitch mode, touch and hold FS1 or FS2
+(or FS3 if Global Settings > Footswitches > FS3 Function is set
+to "Stomp 3") until the following dialog appears:
+
+Switch
+
+Type
+
+Input, Output and Mixer blocks cannot be assigned. Split blocks can be assigned;
+when bypassed, the Split Y and Split A/B type blocks revert to an even signal split
+to each path, and the Split Crossover type applies no frequency split, with the
+signal fed to each path evenly.
+
+Merge
+
+Assign
+
+Latching
+
+3. Turn the Upper Knob to select the block you want to bypass.
+
+Assign block to FS?
+Cancel
+
+FS2
+
+4. Turn Knob 1 (Switch) to select the desired footswitch or expression pedal.
+
+OK
+
+None Removes the bypass assignment.
+
+If you want to replace any other blocks that may already be assigned to the footswitch, turn Knob 2 (Assign) to "Replace." Otherwise, leave it set to "Merge,"
+which allows for multiple blocks to be assigned to the same switch.
+
+FS1-FS5 Stepping on the Stomp mode footswitch turns the block on and off.
+Note that FS3, FS4 or FS5 won't function unless Global Settings > Footswitches > FS3 [FS4, FS5] Function is set to "Stomp 3 [Stomp 4, Stomp
+5]."
+
+3. Press Knob 3 (OK).
+
+Selecting a footswitch displays Knob 2 (Type). Turn Knob 2 to select
+"Moment[ary]" or "Latching" behavior. When set to Momentary, the
+block is bypassed (or enabled, if already bypassed) for as long as you
+hold the switch. When set to Latching, the block is bypassed (or enabled, if already bypassed) every time you press the switch.
+EXP 1, EXP 2 Moving the expression pedal automatically enables (or bypasses) the
+block.
+Selecting EXP 1 or 2 displays Knob 2 (Position) and Knob 3 (Wait). Position determines where in the expression pedal's travel the block is
+enabled or bypassed. 0% is heel down; 99% is toe down. Wait determines how long HX Stomp waits before bypassing the block; for example, you wouldn't want the wah to turn off every time you touched
+the heel down position in your big funk wah solo.
+
+35
+
+Swapping Stomp Footswitches
+
+SHORTCUT: Alternatively, press PAGE , press Knob 3 (Learn) and then
+either move the desired expression pedal or send the desired MIDI CC message from your MIDI controller. HX Stomp automatically selects it.
+
+If you want to change the location of Stomp mode footswitches (especially those with
+multiple items assigned), instead of manually reassigning everything, you can quickly
+swap all assignments between two stomp footswitches.
+
+TIP: By default, bypass toggling for the block via EXP 1 or EXP 2 is configured for "heel down = off" behavior. To reverse bypass behavior, press
+the Upper Knob (bypass). In such case, the block will be bypassed when
+moving the expression pedal past the configured Position location. Since
+it is possible to configure the bypass of multiple blocks to be assigned to
+an expression pedal, you can set each block's Position value differently thereby allowing the pedal to turn some blocks on and others off at different
+positions in the pedal's travel.
+
+1. Touch (but don't press) any two Stomp footswitches until the
+following dialog appears:
+
+Swap FS1 and FS2?
+
+5. If desired, press PAGE and turn Knob 1 (MIDI In) to assign an
+incoming MIDI CC message to turn the block on and off.
+
+Cancel
+
+2. Press Knob 3 (OK).
+
+Incoming CC values 0-63 turn the block off; values 64-127 turn the block on. Note
+that some MIDI CCs are reserved for global functions and cannot be selected see "MIDI CC".
+
+Tips for Creative Bypass Assignment
+•
+
+Clearing Bypass Assignments
+1. From the Bypass Assign screen, select the block whose bypass
+assignment you want to clear and press ACTION.
+
+•
+
+2. Press Knob 1 (Clear Assignments).
+
+Clearing All Bypass Assignments
+
+•
+
+1. From the Bypass Assign screen, press ACTION.
+
+•
+
+2. Press Knob 2 (Clear All Assignments) to clear all blocks' Bypass assignments.
+
+•
+
+The following dialog appears:
+
+Clear all assignments?
+Cancel
+
+OK
+
+OK
+
+3. Press Knob 3 (OK).
+
+36
+
+If you find yourself constantly toggling one switch off and another on, assign  
+both blocks to the same footswitch, and while one is selected, press the
+Upper Knob. Now pressing the footswitch will toggle one off and the other on  
+simultaneously.
+
+Assign a Wah block to be engaged only when moving an expression pedal
+past 1%. Set the Wait time long enough so that natural foot movements don't
+turn the wah off every time you reach the heel-down position, but no so long  
+that it turns off noticeably late when you rest the expression pedal at heeldown - See "Manual Bypass Assign".
+Different blocks can be enabled or bypassed at different locations of an expression pedal's travel. Experiment with turning on multiple overdrive blocks—one
+at Position 5%, another at Position 30%, another at Position 70%, and so on.
+
+When using a footswitch to toggle between two Amp or Amp+Cab blocks,
+the amp models may sound notably different from one another (just like real  
+amps!). Use an EQ block to make one Amp block sound a bit closer to the
+other Amp block and assign its bypass to the same footswitch.
+Assign a delay block with very high feedback to be turned on only when reaching the toe position of an expression pedal. Squeals galore.
+
+Controller Assign
+
+NOTE: To manually access the Controller Assign menu, press
+Knob 2 (Controller Assign).
+
+2. Press PAGE
+
+HX Stomp provides a wide variety of tools for controlling your tone during a performance. The most obvious controller would be a connected expression pedal (often
+assigned to Wah, Pitch Wham or Volume), but you may also assign footswitches to
+toggle between two values of a given parameter or parameters, or even have parameters instantly change when selecting different snapshots within a preset.
+
+1/8
+
+37%
+
+Time Feedbk
+
+3. Step on a footswitch, move a connected expression pedal,
+send a MIDI CC message from your keyboard, etc.
+The controller name appears above Knob 2 (Controller).
+
+NOTE: To manually select a controller, turn Knob 2 (Controller).
+
+35%
+
+None Removes the controller assignment.
+
+Mix
+
+EXP 1 or 2 Expression pedals are the most common type of controller, used
+to control volume, wah, Pitch Wham, etc.
+
+IMPORTANT! Adding a Wah or Pitch Wham block automatically assigns it to be
+controlled by EXP 1. Adding a Volume or Pan block automatically assigns it to
+be controlled by EXP 2. With a Mission SP1-L6H Line 6 Expression Pedal, connecting it to HX Stomp with a Y-cable will just work, and its built-in toe switch
+will toggle between any Wah/Pitch Wham and Volume/Pan blocks. Also see
+page 42.
+
+FS1-FS5 Stepping on a Stomp mode footswitch can toggle between a parameter's min and max values.
+Selecting FS1-FS5 will display Knob 3 (Switch Type). Turn Knob
+3 to select "Moment[ary]" or "Latch[ing]" behavior. Momentary
+means the value will change for as long as you hold the switch.
+Latching toggles between Min and Max values every time you press
+the switch.*
+
+Assigning a Controller
+
+MIDI CC Selecting "MIDI CC" will display Knob 3 (CC#). Turn Knob 3 to
+select the desired MIDI CC number.
+
+1. From Stomp mode, press and hold the knob for the parameter
+you wish to control.
+
+Snpshot Although all controller-assigned parameters are updated per snapshot, an additional "Snapshots" controller is available when other
+controllers are already used.
+
+HX Stomp jumps to the Controller Assign page and displays your parameter at
+Knob 1 (Parameter).
+
+*NOTE: Footswitch behavior (momentary or latching) is determined per
+footswitch, not per assignment.
+
+Controller Assign
+
+NOTE: HX Stomp has reserved specific MIDI CC messages for global functions; these CCs cannot be used as controllers. If you attempt to learn a CC
+message reserved for global functions, the following dialog appears:
+
+Harmony Delay
+
+Feedbk
+
+and then press Knob 3 (Learn).
+
+The button’s brain icon glows blue.
+
+If a parameter has a controller assigned, its value appears with white text:
+
+Harmony Delay
+
+and then
+
+This CC# is reserved!
+
+None
+
+Param Controller
+
+Learn
+See "MIDI CC" for more information.
+
+37
+
+Tips for Creative Controller Assignment
+
+4. If desired, press PAGE and turn Knob 1 (Min Value) and Knob
+2 (Max Value) to set the range you wish to control.
+
+•
+
+TIP: To reverse controller behavior, swap the min and max values.
+
+5. Press
+
+•
+
+to return to the Home screen.
+
+SHORTCUT: To assign a parameter to the Snapshots controller, it's even
+easier—just push and turn the parameter's knob. The value appears in
+white text, indicating it's now assigned to a controller.
+
+•
+
+SHORTCUT: Hold ACTION and press a parameter knob to quickly
+remove any controller assignment (including the Snapshots controller).
+The value's text changes from white back to its original color, indicating no
+controller is assigned to it.
+
+•
+
+•
+
+Clearing a Block's Controller Assignment(s)
+
+•
+
+1. From the Controller Assign screen, select the block whose
+controller assignments you want to clear and press ACTION.
+
+•
+
+2. Press Knob 1 (Clear Controller).
+
+Clearing All Controller Assignments
+1. From the Controller Assign screen, press ACTION.
+2. Press Knob 2 (Clear All Controller) to clear all blocks' controller assignments.
+The following dialog appears:
+
+Clear all controllers?
+Cancel
+
+OK
+
+3. Press Knob 3 (OK).
+IMPORTANT! Clearing All Controller Assignments also removes the Wah and
+Volume assignments from EXP 1 and EXP 2. Use this function with caution!
+
+38
+
+By default, a parameter's Min and Max values will be pretty extreme. It pays to
+play pretty conservative here, as subtle parameter adjustments go a long way.
+
+To smoothly blend between the tone on parallel paths A and B, select a Split
+> A/B block and assign the Route To parameter to an expression pedal. By
+default, a heel-down position means the signal passes fully through Path A.
+Moving the pedal toward the toe-down position will gradually crossfade into
+Path B. Alternatively, assign a footswitch to control the Route To parameter, for
+instantly switching back and forth.
+If you're looking for an ultra-clean boost, instead of adding a Volume/Pan >
+Gain block, try assigning a footswitch to increase the Level parameter of a
+Mixer or Output block.
+If you have a favorite delay or reverb pedal, use an FX Loop block to insert it
+into your tone. Assign EXP 1 or 2 to control the block's Mix parameter, which
+will smoothly blend the pedal into your tone.
+
+For extreme psychedelic dub delay squeals, assign a footswitch to both increase a Delay's feedback and decrease its time.
+Assign a footswitch to toggle between two Delay > Time parameter values,
+such as 1/4 and 1/8 dotted.
+Assign IR Select to a footswitch. Set the two IRs as min and max values. Now
+you can instantly toggle between them.
+
+Global EQ
+
+Resetting Global EQ
+Resetting the Global EQ returns its settings to factory default (flat).
+
+1. From the Global EQ screen, press ACTION.
+
+The Global EQ built into HX Stomp has three fully parametric bands plus variable low
+and high cut filters, and is used for compensating for the wide disparity in acoustic
+environments on tour or when traveling from studio to studio. Global EQ is applied to
+all presets.
+
+2. Press Knob 1 (Reset EQ).
+The following dialog appears:
+
+Reset Global EQ?
+
+NOTE: Global EQ is never heard from the Send or USB outputs.
+
+1. Press
+
+PAGE and PAGE
+
+together to open the Menu.
+
+Cancel
+
+2. Press Knob 3 (Global EQ).
+
+3. Press Knob 3 (OK).
+
+The Global EQ screen appears:
+
+GLOBAL EQ OFF
+Global EQ
+
+Low
+
+GLOBAL EQ ON
+Global EQ
+
+Low
+
+110 Hz
+
+0.7
+
+0.0 dB
+
+110 Hz
+
+0.7
+
+0.0 dB
+
+Freq
+
+Q
+
+Gain
+
+Freq
+
+Q
+
+Gain
+
+3. Press the Upper Knob to turn Global EQ on and off.
+
+4. Turn the Upper Knob to select the desired EQ band—Low Cut,
+Low, Mid, High, or High Cut.
+5. Turn Knobs 1-3 to adjust the selected EQ band.
+
+39
+
+OK
+
+Global Settings
+
+Jack
+
+Guitar or bass with passive pickups
+INPUT
+Guitar or bass with really loud active
+L/MONO,
+pickups
+RIGHT
+Keyboard, synth, or drum machine
+
+The Global Settings menu contains additional parameters that apply to all presets,
+such as input and output levels, footswitch configurations, etc.
+
+1. Press
+
+PAGE and PAGE
+
+2. Press PAGE
+
+and then press Knob 1 (Global Settings).
+
+To the instrument-level effects return
+OUTPUT
+of a guitar or bass amp for post efL/MONO,
+fects or 4-cable method
+RIGHT
+To the line-level effects return of a
+guitar or bass amp for post effects or
+4-cable method
+
+Global Settings
+
+Inst
+
+Inst
+
+Input
+Level
+
+Output
+Level
+
+Send/
+ReturnL
+
+To the inputs of a studio rack effect
+or mixer
+
+Set Input Level to either "Inst"
+or "Line" (trust your ears)
+Set Input Level to "Line"
+
+Set Output Level to "Line"
+
+Resetting All Global Settings
+
+3. Turn the Upper Knob to select one of the six submenus.
+If necessary, press PAGE
+
+Set Input Level to "Inst"
+
+To the guitar input(s) of a stompbox or
+other multieffect
+Set Output Level to "Inst"
+
+The Global Settings screen appears:
+
+Inst
+
+Then do this:
+
+To the Guitar In on a guitar or bass
+amp
+
+together to open the Menu.
+
+Ins/Outs
+
+What are you connecting?
+
+Resetting the Global Settings returns them to factory default. Performing this reset
+does not affect any presets you may have created.
+
+to view more parameters.
+
+NOTE: See next page for a description of all Global Settings.
+
+1. From the Global Settings menu, press ACTION.
+2. Press Knob 1 (Factory Settings).
+
+Setting Proper Levels
+
+The following dialog appears:
+
+Factory Settings?
+
+The various inputs and outputs should be set to match that of your instrument, amp,
+and other pedals to ensure an ideal tone, low noise, and no ugly clipping distortion
+(unless, of course, you want ugly clipping distortion. Who are we to judge?). Just
+know that if you run to the internet, screaming "HX Stomp sounds bad!" the first thing
+people will ask is if you read this section of the manual. And if you didn't, they'll make
+fun of you.
+
+Cancel
+
+3. Press Knob 3 (OK).
+
+1. From the Global Settings menu, turn the Upper Knob to select
+the Ins/Outs submenu.
+2. Using Knobs 1 and 2, set levels according to the following table:
+
+40
+
+OK
+
+Global Settings > Ins/Outs
+Page Knob Parameter
+
+1
+
+2
+
+3
+
+Description
+
+1
+
+Input Level
+
+Choose "Inst[rument]" when connecting a guitar, bass, or stompboxes to HX Stomp's input jack(s); choose "Line" when connecting synths, drum
+machines, the sends from mixers, or other line-level sources. If your guitar or bass has really loud active pickups (or if you just happen to prefer
+the sound of a "padded" input level for your instrument), choose "Line" - Or, just try both and trust your ears.
+
+2
+
+Output Level
+
+Choose "Inst[rument]" when connecting the 1/4" outputs to stompboxes or the front of guitar amps; choose "Line" when connecting to mixers or
+standalone recorders. When using a single amp or mixer channel, connect only the LEFT/MONO 1/4” jack.
+
+3
+
+Send/ReturnL
+
+1
+
+Send/ReturnR
+
+Choose "Inst[rument]" when using a Send/Return pair as an FX loop for stompboxes; choose "Line" when using a Send/Return pair as an FX loop
+for line-level rack processors, or as additional inputs and outputs for connecting keyboards, drum machines, mixers, and other gear.
+
+2
+
+Return Type
+
+Determines whether the signal received at the Return jacks should be used for Return and FX Loop blocks—or—act as a stereo Aux In (no processing) for jamming along with mixers, MP3 players, etc. To utilize the Return jacks for an unprocessed Aux In, set the preset's Input block to
+"Main L/R" - this allows your instrument signal (connected via the Main L/R input) to be heard simultaneously along with the (unprocessed) Return
+L/R signal for jamming along.
+
+3
+
+USB In 1/2 Trim
+
+Sets the level of incoming audio from USB 1/2, which bypasses all HX Stomp processing. Normally, this should be left at 0.0dB.
+
+1
+
+Phones Monitor Determines which signal(s) are heard from the Phones output. Normally you would set this to "Main L/R."
+
+2
+
+Volume
+Controls
+
+Determines whether the top panel VOLUME knob controls both the 1/4" main output and headphone output ("Main+HP") or just the headphone
+output ("Phones"). When set to "Phones" the 1/4" main outputs remain at unity gain.
+
+Global Settings > Preferences
+Page Knob Parameter
+Bypass Type
+
+When pressing the Upper and Lower knobs together (or a footswitch assigned to "All Bypass"), HX Stomp bypasses all blocks. There are two types
+of All Bypass in HX Stomp—Choose "Analog" if you want to your guitar's signal routed directly from the HX Stomp inputs to its outputs, with no processing or A/D/A conversion (also called "true bypass"). Choose "DSP" if you want delay echoes and reverb tails to decay naturally when HX Stomp
+is bypassed.
+
+2
+
+Snapsht Edits
+
+Determines whether or not any edits made to a snapshot (block on/off, parameter control, tempo) are remembered when returning to that snapshot. When set to "Recall," any snapshot edits are recalled when jumping from snapshot to snapshot, and appear as you last left them. When set
+to "Discard," any snapshot edits are discarded when jumping from snapshot to snapshot, and appear as the preset was last saved. If you want
+to save changes made to a snapshot while Snapshot Edits is set to "Discard,” press SAVE twice before selecting another. Also see "Determining
+Snapshot Edit Behavior".
+
+3
+
+Tempo Pitch
+
+Determines how delay repeats behave when repeatedly pressing TAP. "Authentc" [Authentic] respects the natural pitch fluctuations inherent when changing a
+real delay pedal's time knob; "Transpr" [Transparent] minimizes these artifacts.
+
+1
+
+EXP/FS Tip
+
+Determines whether the rear panel PEDAL jack's Tip signal is an Expression Pedal 1 input jack or a Footswitch 4 input jack.
+
+2
+
+EXP/FS Ring
+
+Determines whether the rear panel PEDAL jack's Ring signal is an Expression Pedal 2 input jack or a Footswitch 5 input jack.
+
+3
+
+Tip Polarity
+
+1
+
+Ring Polarity
+
+lf your external expression pedal or footswitch appears to work backwards—for example, a Volume pedal block is loudest with the heel all the way
+down, or if your FS4 or FS5 assigned function is not performing as expected when toggled via your external footswitch—set its polarity to "Invert."
+
+2
+
+Preset
+Number
+
+Determines whether presets appear as 42 banks of three (A B C) or are numbered 000-125 (convenient when recalling presets via MIDI program
+change messages).
+
+1
+
+1
+
+2
+
+3
+
+Description
+
+41
+
+Global Settings > Footswitches
+Page Knob Parameter
+
+1
+
+2
+
+Description
+
+1
+
+Stomp Select
+
+When set to "Touch," touching a Stomp mode switch selects its assigned item(s) but pressing doesn't. When set to "Press," pressing a Stomp
+mode switch selects its assigned item(s) but touching doesn't (helpful if you insist on playing barefoot). When set to "Both," either touching or
+pressing will select the assigned item. The default is "Touch."
+
+2
+
+FS3 Function
+
+Sets the function of Footswitch 3. Choose from TAP/Tuner, Stomp 3, Preset Up, Preset Down, Snapshot Up, Snapshot Down, All Bypass, or
+Toggle EXP 1/2. The default is TAP/Tuner.
+
+3
+
+FS4 Function
+
+Sets the function of Footswitch 4, but only when Global Settings > Preferences > EXP/FS Tip is set to "FS4." (It's set to "EXP 1" by default, so you
+must change this to "FS4" for FS4 Function to work properly!) Choose from TAP/Tuner, Stomp 4, Bank Up, Bank Down, Preset Up, Preset Down,
+Snapshot Up, Snapshot Down, Next Footswitch Mode (same as pressing PAGE from Play view), Previous Footswitch Mode (same as pressing
+from Play view), All Bypass, or Toggle EXP 1/2.* The default is "All Bypass."
+
+1
+
+FS5 Function
+
+Sets the function of Footswitch 5, but only when Global Settings > Preferences > EXP/FS Ring is set to "FS5." Choose from TAP/Tuner, Stomp 5,
+Bank Up, Bank Down, Preset Up, Preset Down, Snapshot Up, Snapshot Down, Next Footswitch Mode (same as pressing PAGE from Play view),
+Previous Footswitch Mode (same as pressing from Play view), All Bypass, or Toggle EXP 1/2.* The default is "ToglEXP[1/2]."
+
+*For connecting an external footswitch to access the FS4 or FS5 functions, the use of a momentary (unlatched) type footswitch is recommended.
+
+Mission Helix Expression Pedal
+
+One Expression Pedal
+
+Two Expression Pedals
+
+By default, the HX Stomp EXP 1/2 | FS4/5 jack is set
+up to accommodate the Mission Helix expression pedal,
+connected via an optional Y cable (sometimes called
+a TRS insert cable). The main advantage of this setup
+is that pressing the integrated toe switch will not only
+toggle the pedal's function between EXP 1 (Wah/Pitch
+Wham) and EXP 2 (Volume Pedal/Pan), but it will also
+toggle the appropriate blocks on and off.
+
+When connecting one traditional expression pedal, there
+are a few things to be aware of:
+
+When connecting two traditional expression pedals with
+a Y cable, there are a few things to be aware of:
+
+•
+
+•
+
+•
+
+TRS
+TIP (EXP 1)
+RING (FS5)
+
+From the "Controller Assign" menu, assign the
+Position parameter of Volume Pedal and Pan
+blocks to "EXP 1"
+
+From the "Bypass Assign" menu, assign the
+Switch parameter of Volume Pedal and Pan
+blocks to "None"
+
+From the "Bypass Assign" menu, assign the
+Switch parameter of Wah and Pitch Wham
+blocks to either "EXP 1" (where HX Stomp
+engages the block when moving EXP 1 away
+from its heel down position) or a stomp footswitch
+
+TIP (EXP 1)
+
+42
+
+•
+•
+
+•
+
+Set "Global Settings > Preferences" > EXP/FS
+Ring to "EXP 2"
+
+From the "Bypass Assign" menu, assign the
+Switch parameter of Volume Pedal and Pan
+blocks to "None"
+
+From the "Bypass Assign" menu, assign the
+Switch parameter of Wah and Pitch Wham
+blocks to either "EXP 1" (where HX Stomp
+engages the block when moving EXP 1 away
+from its heel down position) or a stomp footswitch
+
+TIP (EXP 1) RING (EXP 2)
+
+Global Settings > EXP Pedals
+Page Knob Parameter
+1
+
+1
+
+EXP 1 Position
+
+2
+
+EXP 2 Position
+
+Description
+Determines whether each expression pedal position is recalled per snapshot, per preset, or applied globally. If you want a Volume Pedal or Wah to
+maintain its position when switching presets, set this to "Global."
+
+Global Settings > MIDI/Tempo
+Page Knob Parameter
+
+1
+
+2
+
+3
+
+Description
+
+1
+
+MIDI Base
+Channel
+
+Sets the system base MIDI channel that HX Stomp uses for both receiving and sending MIDI communication via MIDI and USB.
+
+2
+
+MIDI Thru
+
+When on, MIDI OUT also acts as a MIDI THRU; that is, it passes through any MIDI messages received at the MIDI IN jack.
+
+3
+
+Rx MIDI Clock
+
+Determines whether HX Stomp responds to incoming MIDI beat clock received at its MIDI IN port, via USB, or whichever it senses first ("Auto"). If
+you don't want HX Stomp to respond to MIDI clock at all, set this to "Off."
+
+1
+
+Tx MIDI Clock
+
+Determines whether HX Stomp transmits MIDI beat clock from its MIDI OUT port, via USB, or both. If you don't want HX Stomp to transmit MIDI
+clock at all, set this to "Off."
+
+2
+
+Tempo Select
+
+Choose whether the tempo is stored and recalled with each snapshot, recalled with each preset, or is applied globally across all presets and snapshots.
+
+3
+
+BPM
+
+Depending on the Knob 2 (Tempo Select) setting, this Beats Per Minute tempo value is saved per snapshot, per preset, or globally.
+
+1
+
+USB MIDI
+
+When on, HX Stomp receives and transmits MIDI data via USB in the same capacity as its MIDI jacks.
+
+2
+
+MIDI PC Rx
+
+Determines whether or HX Stomp responds to incoming MIDI program change (PC) messages from its MIDI IN port, via USB, or both MIDI and
+USB. If you don't want HX Stomp to respond to PC messages at all, set this to "Off."
+
+3
+
+MIDI PC Tx
+
+Determines whether HX Stomp automatically sends MIDI program change (PC) messages from its MIDI OUT port, via USB, or both MIDI and USB
+when selecting presets.
+
+Global Settings > Displays
+Knob Parameter
+
+Description
+
+1
+
+LED Rings
+
+Determines whether the Stomp mode footswitches' colored LED rings appear dim when bypassed ("Dim/Brt"), or off when bypassed ("Off/Brt"). When
+playing in bright sunlight, you may want to set to this to "Off/Brt" to increase contrast.
+
+2
+
+Tap LED
+
+If you'd prefer to not see the red TAP LED constantly flashing, you can turn it off.
+
+43
+
+USB Audio
+
+Computer Input
+
+HX Stomp functions as a USB 2.0, multichannel, 24-bit/96kHz, low-latency audio interface for Windows and Mac computers, as well as for iPad and iPhone mobile devices (with optional Apple Camera Connection Kit adapter), and is compatible with all
+major DAW software. Refer to the illustration and tables below for a description of how
+audio is handled between HX Stomp and your computer.
+NOTE:  For USB audio operation on Windows computers, you must first download and install the Line 6 HX Stomp ASIO driver (see page 46). For Mac computers, it is only necessary to download and install the latest Line 6 Helix Mac
+Core Audio driver if you desire audio sample rate operation at rates other than
+48kHz (see page 46). These drivers are available from line6.com/software.
+There is no driver installation necessary for Apple iPad or iPhone mobile devices.
+
+RIGHT
+
+SEND
+
+STEREO
+
+Input block
+set to USB 5/6
+
+L/MONO
+
+Harmony Delay
+
+1/8
+
+37%
+
+Time Feedbk
+
+Output of HX Stomp's Path A (with all Path A processing)
+
+USB 3 and 4
+
+Output of HX Stomp's Path B (with all Path B processing)
+
+USB 5 and 6
+
+HX Stomp's Main L/MONO and RIGHT inputs (dry, no processing).
+Note that if you have a Return or FX Loop block, or the Input
+block is set to Return L/R, the Return/Aux In L/MONO and
+RIGHT signal will be captured as well.
+
+USB 7 and 8
+
+HX Stomp's Return/Aux L/MONO and RIGHT inputs (dry, no
+processing)
+
+USB 1/2
+
+HX Stomp's Main L/MONO, RIGHT and Phones outputs (direct,
+no processing) for monitoring your DAW's master output or
+jamming along with YouTube™, iTunes, etc.
+
+USB 3/4
+
+HX Stomp's stereo SEND stereo output (direct, no processing)
+
+USB 5/6
+
+HX Stomp's Input block for re-amping (only active when Input
+block is set to USB 5/6)
+
+USB 7/8
+
+The never-ending abyss (reserved for future use)
+
+Hardware Monitoring vs. DAW Software
+Monitoring
+
+INPUT
+
+L/MONO
+
+RIGHT
+
+HX Stomp provides hardware monitoring, which lets you hear your live input signal at all
+times, independent of your DAW software's monitor settings. Hardware monitoring can
+be desirable since it allows you to hear your live guitar with HX processing added and essentially "latency-free," since the monitor signal is not routed through your DAW software.
+
+DI (Dry) Signal
+
+Jamming with
+YouTube, iTunes, etc.
+OUTPUT BAL/UNBAL
+
+16B Pastor of Muppets
+
+USB 1 and 2
+
+Computer Output Destination
+
+USB INPUTS
+12 3 4 5 6 7 8
+
+DI (Dry) Signal
+for Re-amping
+
+USB OUTPUTS
+1/2 3/4 5/6
+
+Source
+
+In some DAW recording scenarios, it may be preferable to utilize your recording application's "input monitoring" or "software monitoring" feature, which routes your live
+input signal through the armed recording track, thus allowing you to monitor the input
+effected by any plug-ins you may have inserted on the track. The one downside of
+DAW software monitoring, however, is that your live input signal will be delayed slightly
+due to being routed through the software and back to HX Stomp's outputs, which is
+referred to as "latency." HX Stomp is designed to provide very low latency operation—
+see "ASIO Driver Settings (Windows only)" for info and settings.
+
+RETURN / AUX IN
+
+L/MONO
+
+RIGHT
+
+35%
+
+Mix
+
+When a DAW track's software monitoring is active, you'll likely not want to simultaneously hear the HX Stomp hardware monitoring signal. To achieve this, it is best to use
+the HX Stomp USB 5/6 inputs as your DAW audio track’s input source, and to select
+the Main L/R Output block on HX Stomp and turn its Level all the way down. This
+configuration allows you to hear and record only the dry, DI signal from HX Stomp into
+your audio track. (See the next section for more on recording a DI track.)
+
+44
+
+DI Recording and Re-amping
+
+NOTE: Setting the stereo track's output to Helix USB 1/2 allows you to hear
+your processed tone via HX Stomp's hardware monitoring while recording.
+For this configuration, disable software input monitoring on all DAW tracks.
+
+A common DAW recording technique is to record a dry DI (Direct Input) signal, such as
+the unprocessed signal from your guitar. This lets you process the DI track later with
+plug-ins (such as the Helix Native plug-in), and/or "re-amp" the DI track through an
+amp or other outboard gear. HX Stomp has handy options built right in for recording
+DI tracks, as well as for easy re-amplification of DI tracks back through your own HX
+Stomp tones, all without extra hardware or cabling!
+
+3. Arm both these DAW audio tracks, hit the Record button and
+start laying down your guitar performance!
+Now you have your processed track to hear with the project, and a separate DI track
+with which you can further experiment at any time with DAW plug-ins and/or re-amping (see the next section).
+
+HX Stomp offers two special DI outputs—USB Outs 5 and 6, which are fed directly
+from the Main L/MONO and RIGHT inputs. Also note that USB Outs 7 and 8 are fed
+directly (unprocessed) from the Return/Aux In L/MONO and RIGHT inputs for simultaneously tracking a stereo digital piano, synth, drum machine, or other device.
+
+Re-amping Through HX Stomp
+Now let's take the dry DI guitar track we recorded and route it back through HX Stomp
+for processing.
+
+Recording a Dry DI Track
+For this example, we'll record guitar into two DAW tracks simultaneously, with one
+capturing the processed tone and the other the unprocessed DI guitar.
+INPUT
+
+USB
+
+Dry DI Guitar
+
+Harmony Delay
+
+1/8
+
+37%
+
+Time Feedbk
+
+35%
+
+Mix
+
+TRACK 1 (Dry DI Guitar)
+TRACK 2 (Processed Guitar)
+Processed Guitar
+
+16B Pastor of Muppets
+
+16B Pastor of Muppets
+
+USB
+In 5
+
+USB
+In 1/2
+
+Harmony Delay
+
+1/8
+
+37%
+
+Time Feedbk
+
+35%
+
+Mix
+
+Re-amped Guitar
+
+L/MONO
+
+USB
+
+Dry DI Guitar
+
+USB
+Out 5/6
+
+TRACK 1 (Dry DI Guitar)
+TRACK 2 (Processed Guitar)
+TRACK 3 (Re-amped Guitar)
+
+USB
+In 1/2
+
+OUTPUT BAL/UNBAL
+L/MONO
+
+RIGHT
+
+OUTPUT BAL/UNBAL
+L/MONO
+
+RIGHT
+
+1. From Play view, turn the Upper Knob to select the Input block
+and then turn the Lower Knob to choose "Input USB 5/6."
+You'll see that a small USB icon has replaced the Input block:
+
+1. Create two new audio tracks in your DAW software project:
+
+INPUT MAIN L/R
+
+Create one mono track to record the dry DI guitar, and set the track's input
+to HX Stomp USB 5.
+
+INPUT USB 5/6
+
+Create one stereo track to record your full, stereo, processed tone and set
+the track's input to HX Stomp USB 1/2.
+
+2. Set both tracks' outputs, as well as the DAW Master output to
+HX Stomp USB 1/2 to allow all tracks to play back through HX
+Stomp.
+
+2. In your DAW software, set the DI track's Output setting to HX
+Stomp USB 5/6.
+
+45
+
+ASIO Driver Settings (Windows only)
+
+3. Create a new stereo track in your DAW project and set both its
+Input and Output to USB 1/2. Arm the track for recording.
+
+When using HX Stomp as an audio interface for Windows DAW applications, it is
+highly recommended to configure the software to utilize the HX Stomp "ASIO" driver.
+The Line 6 HX Stomp ASIO driver offers the superior, low-latency audio performance
+required for DAW recording. This driver selection is typically found in your DAW software's Preferences or Options dialog - see your software's documentation.
+
+NOTE: In some DAW software it may be necessary to also activate the software monitoring feature on this "re-amped" track to monitor the processed
+signal when playing back your project. See your software's documentation.
+
+4. Now play your DAW project and you'll hear the DI track "reamped" through HX Stomp! Tweak your amp & effects blocks
+as desired while listening with the playback of your project
+mix.
+
+NOTE: Download and install the latest Line 6 HX Stomp ASIO driver from
+line6.com/software.
+Once the HX Stomp ASIO driver has been selected in your DAW software, you'll also
+see a button in the same dialog for "ASIO Settings" (or with a similar title). Press this
+button to launch the HX Stomp Control Panel, where you make the following driver
+settings.
+
+5. Once you have your re-amplified guitar tone they way you like
+it, Solo both the DI and re-amped tracks, rewind to the start of
+the project and hit the DAW Record button, allowing it to capture the signal into the new re-amped track in real-time.
+Allow the DI track to play to the end, stop recording and you've created your new reamped guitar track!
+TIP: Note that you still have your original Guitar DI track, and you can repeat this
+process to create additional re-amped tracks with different HX Stomp settings,
+add plug-ins, blend with your original guitar track, and more.
+
+Re-amping is powerful but really slow. Isn't there an
+easier way?
+Absolutely! Instead of routing your dry DI guitar tracks through HX Stomp and then
+re-tracking everything in real time (something that can take forever if you have a long
+song with many guitar and bass tracks to re-amp), you can simply insert the Helix
+Native plug-in on each track. Helix Native lets you apply the DSP horsepower of HX
+Stomp to any of your production's tracks (including vocals, keyboards, synths, drums,
+busses or more), without having to deal with routing or re-amping.
+Sound This button launches the Windows Sound Control Panel, which is
+Control where you can optionally configure HX Stomp to be the audio playPanel back device for multi-media applications (such as Windows Media
+Player, iTunes, etc.) The settings within the Windows Sound Control Panel are not relevant for your DAW software, since standard
+multi-media applications utilize the standard Windows driver.
+
+Core Audio Driver Settings (macOS only)
+To use HX Stomp as an audio interface for Mac applications, it is not necessary to install any additional driver. HX Stomp will utilize the Mac computer's "Class Compliant"
+USB driver automatically simply by connecting to your USB port. HX Stomp will then
+appear as a selectable Core Audio device within the Mac Utilities > Audio MIDI Setup
+panel and/or directly within your DAW host and multimedia applications. However,
+note that this Apple Class Compliant driver offers strictly 48kHz native sample rate operation. If you prefer to use a different native sample rate (or if your particular DAW application requires it), you can optionally download and install the Line 6 Helix Mac Core
+Audio driver from line6.com/software. This Line 6 driver supports HX Stomp, as well as
+all Helix devices, and offers 44.1kHz, 48kHz, 88kHz or 96kHz sample rate operation.
+
+Default Bit Select the Bit Depth at which HX Stomp will operate for recording
+Depth and playback with your DAW software. 24 bit or 32 bit are recommended for quality audio production.
+
+46
+
+ASIO Your goal is to achieve the lowest latency possible in your DAW
+Buffer Size software, but with glitch-free audio performance. Smaller buffer
+size results in lower latency, however, also increases the demands
+on your computer, which can result in clicks, pops or other audio
+artifacts. Start with a lower slider setting here and, if you encounter
+audio performance issues, come back to this panel and move this
+slider to the right incrementally to remedy the problem.
+Click the Apply and OK buttons when your HX Stomp Control Panel settings are complete to return to your DAW software. Please also refer to your DAW software's documentation for more about its own specific audio device, buffer and project settings.
+
+47
+
+MIDI
+
+Block Bypass via MIDI
+1. Press
+
+together to open the Menu.
+
+2. Press Knob 1 (Bypass Assign).
+
+NOTE: HX Stomp transmits and responds to MIDI messages over USB in the
+same manner as via its MIDI connectors. For USB MIDI operation on Windows
+computers, it is necessary to download and install the Line 6 HX Stomp ASIO
+driver, available from line6.com/software. There is no driver installation necessary
+for Mac computers or iPad or iPhone devices.
+
+3. Turn the Upper Knob to select the block whose bypass you
+want to assign to incoming MIDI.
+
+4. Press PAGE and then Knob 3 (Learn). Send a MIDI CC message from your foot controller, keyboard, etc.
+The CC number appears above Knob 1 (MIDI In).
+
+Preset and Snapshot Recall via MIDI
+
+Incoming CC values 0-63 turn the block off; values 64-127 turn the block on. Note
+that some MIDI CCs are reserved for global functions and cannot be selected (see
+"MIDI CC").
+
+MIDI can be frustrating enough as it is without having to slog through a manual to
+figure out what messages your particular device needs to change presets. Conveniently enough, HX Stomp has handy helper text to tell you exactly which MIDI messages will recall the current preset and snapshot.
+
+1. If not already there, press
+
+PAGE and PAGE
+
+NOTE: To manually select a MIDI CC, instead of step 4 above, press PAGE
+and turn Knob 1 (MIDI In) to select the desired MIDI CC number.
+
+VIEW to select Play view.
+
+2. Press the Upper Knob to open the Preset list:
+
+Parameter Control via MIDI
+
+16A Bel Haven, Yo!
+16B Pastor of Muppets
+16C Stolarskyvision
+17A Not Adorable
+1
+
+1. From Edit view, press and hold the knob for the parameter you
+wish to control.
+
+HX Stomp jumps to the Controller Assign page and displays your parameter at
+Knob 1 (Parameter).
+
+2. Press PAGE and then Knob 3 (Learn). Send a MIDI CC message from your foot controller, keyboard, etc.
+
+Reorder
+PC:061
+Preset Snapshot CC69:000
+
+The CC number appears above Knob 3 (CC#).
+
+The dark text above Knob 3 displays the required MIDI messages for recalling presets and/or snapshots from external MIDI devices or software. In the illustration
+above, the 16B Pastor of Muppets preset is recalled with a PC (program change)
+message of 061, and Snapshot 1 is recalled with a CC69 message of 000.
+
+NOTE: To manually select a MIDI CC, turn Knob 2 (Controller) to select
+"MIDI CC" and Knob 3 to the desired MIDI CC number.
+
+3. If desired, press PAGE and turn Knob 1 (Min Value) and Knob
+2 (Max Value) to set the range you wish to control.
+
+NOTE: HX Stomp responds to MIDI channel 1 by default, but this can be
+changed from "Global Settings > MIDI/Tempo".
+
+TIP: To reverse controller behavior, swap the min and max values.
+
+NOTE:   When selecting different presets, HX Stomp automatically transmits a
+MIDI Program Change message corresponding to the selected preset. If you'd
+prefer to not automatically transmit PC messages, set "Global Settings > MIDI/
+Tempo" > MIDI PC Tx to "Off."
+
+4. Press
+when finished. Remember to save your preset to retain all assignments!
+
+48
+
+Synchronizing Tempo via MIDI
+
+MIDI CC# Value
+
+Pedal and Footswitch Assignments
+
+Certain Delay and Modulation parameters such as Time and Speed can be represented with fixed numeric values (ms or Hz) or note values (1/4-note, dotted 1/8-note,
+etc.). When set to note values, the parameter will follow Tap Tempo or incoming MIDI
+clock. Press the parameter knob to toggle between ms (or Hz) and note values.
+
+Harmony Delay
+
+750 ms
+
+37%
+
+Time Feedbk
+
+Harmony Delay
+
+35%
+
+1/4
+
+37%
+
+Mix
+
+Time Feedbk
+
+Function
+
+35%
+
+Mix
+
+By default, HX Stomp responds to MIDI clock received from external gear (or your
+DAW software via USB). HX Stomp can also transmit MIDI clock to external gear or
+software (transmit is disabled by default). MIDI clock reception (Rx) and transmission
+(Tx) can be enabled or disabled from the "Global Settings > MIDI/Tempo" menu.
+
+1
+
+0-127
+
+Emulates EXP 1 Pedal
+
+2
+
+0-127
+
+Emulates EXP 2 Pedal
+
+49
+
+0-127
+
+Emulates FS1
+
+50
+
+0-127
+
+Emulates FS2
+
+51
+
+0-127
+
+Emulates FS3
+
+52
+
+0-127
+
+Emulates FS4
+
+53
+
+0-127
+
+Emulates FS5
+1 Switch Looper Controls
+
+In addition, certain modulation effects with have distinct rhythmic elements; for example, a tremolo set to a square wave (sometimes called a "slicer") not only has a
+tempo, but a beat, where the upswing of the wave lands with relation to your song.
+That is, the effect may be in perfect tempo sync with your song, but its "downbeat"
+may be shifted ahead or behind of your drummer's—or in the studio, your recorded
+song's—downbeat.
+
+From Stomp or Scroll mode, on the downbeat of your song, press
+TAP once.
+
+60
+
+0-63: Overdub;
+1 Switch Looper Record/Overdub
+64-127: Record
+
+61
+
+0-63: Stop;
+64-127: Play
+
+1 Switch Looper Play/Stop
+
+62
+
+64-127
+
+1 Switch Looper Play Once
+
+63
+
+64-127
+
+1 Switch Looper Undo/Redo
+
+65
+
+0-63: Forward;
+64-127: Reverse
+
+1 Switch Looper Forward/Reverse
+
+66
+
+0-63: Full;
+64-127: Half
+
+1 Switch Looper Full/Half Speed
+
+Any beat sync-based (sometimes called "LFO") effects reset from the beginning.
+
+MIDI CC
+
+Additional Controls
+
+HX Stomp has reserved specific MIDI CC messages for global functions; these CCs
+cannot be used as controllers. If you attempt to learn a CC message reserved for
+global functions (see "Controller Assign"), the following dialog appears:
+
+0
+
+n/a
+
+Bank MSB (unused, but reserved)
+
+32
+
+n/a
+
+Bank LSB (unused, but reserved)
+
+64
+
+64-127
+
+Tap Tempo
+
+This CC# is reserved!
+
+68
+
+0-127
+
+Tuner screen on/off
+
+69
+
+0-2, 8 and 9
+
+Snapshot select (0=Snapshot 1, 1=Snapshot 2,
+2=Snapshot 3, 8=Next snapshot, 9=Previous snapshot)
+
+70
+
+0-63: Bypass;
+64-127: On
+
+All Bypass
+
+71
+
+0-5
+
+Footswitch Mode (0=Stomp, 1=Scroll, 2=Preset,
+3=Snapshot, 4=Next footswitch mode, 5=Previous
+footswitch mode)
+
+Learn
+
+49
+
+MIDI CC# Value
+3
+
+0-127
+
+54
+
+0-127
+
+55
+
+0-127
+
+56
+
+0-127
+
+57
+
+0-127
+
+58
+
+0-127
+
+59
+
+0-127
+
+67
+
+0-127
+
+72
+
+0-127
+
+73
+
+0-127
+
+74
+
+0-127
+
+75
+
+0-127
+
+76
+
+0-127
+
+128
+
+0-63: Jealous;
+64-127: Codependent
+
+Function
+
+Additional global MIDI commands
+(reserved for future use)
+
+HX Stomp sends late-night texts to all of your ex-significant others, professing your undying love to them and
+their cats
+
+50
+
+Additional Resources
+Looking for more info? We’ve got plenty of online resources, just a click away.
+•
+•
+•
+
+•
+
+•
+
+Download additional Help documentation covering Helix family devices and
+software from the Line 6 website at Line 6 Product Manuals
+
+Check out the Line 6 Support page for access to helpful tips, videos, discussion forums, or to contact Line 6 Technical Support
+
+Stay up to date with the latest updated version of HX Edit, Helix Native and all
+your other Line 6 applications, available from the Line 6 Software Downloads
+page
+Visit the Line 6 CustomTone site where you can share your Helix presets with
+the world, and download free presets created by Line 6 and other users just
+like you
+Can’t get enough Line 6 Gear & accessories? Head on over to the Line 6 Store
+
+51
+
+®
+
+52
+
+
