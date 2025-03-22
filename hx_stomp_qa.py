@@ -149,65 +149,71 @@ class HXStompQA:
         self.embeddings = self.semantic_model.encode(self.knowledge_chunks, convert_to_tensor=True)
 
     def clean_answer(self, text):
-        # Improved cleaning with better parameter formatting
+        # Remove more prefixes and clean up formatting
         text = re.sub(r'\[CLS\]|\[SEP\]', '', text)
-        text = re.sub(r'^.*\?', '', text)
+        text = re.sub(r'^(?:question:|response:|answer:|a:|q:)\s*', '', text, flags=re.IGNORECASE)
         
-        # Standardize parameter formatting
-        text = re.sub(r'(\w+):\s*(\d+(?:\.\d+)?%?)', r'\1: \2', text)  # Standardize parameter value format
-        text = re.sub(r'(\w+):\s*(\d+(?:\.\d+)?)\s*-\s*(\d+(?:\.\d+)?)', r'\1: \2-\3', text)  # Standardize ranges
-        
-        # Improve parameter list formatting
-        if 'parameters:' in text.lower():
-            parts = text.split('Parameters:', 1)
-            if len(parts) > 1:
-                params = parts[1].split('|')
-                formatted_params = '\nParameters:\n' + '\n'.join(f'  • {p.strip()}' for p in params)
-                text = f"{parts[0].strip()}{formatted_params}"
+        # Clean up numeric values
+        text = re.sub(r'(\d+)\s*\.\s*(\d+)', r'\1.\2', text)  # Fix decimal formatting
+        text = re.sub(r'(\d+(?:\.\d+)?)\s*%', r'\1%', text)
+        text = re.sub(r'(\d+(?:\.\d+)?)\s*(ms|hz|db)', r'\1 \2', text, flags=re.IGNORECASE)
         
         # Improve list formatting
-        text = re.sub(r'(?m)^(\d+\.\s+)', '• ', text)
         text = re.sub(r'(?m)^[-•]\s*', '• ', text)
+        text = re.sub(r'(?m)^\d+\.\s+', '• ', text)
         
-        # Capitalize sentences and ensure proper spacing
-        sentences = []
-        for s in text.split('.'):
-            s = s.strip()
-            if s:
-                s = re.sub(r'(\d+)\s*%', r'\1%', s)
-                s = re.sub(r'(\d+)\s*-\s*(\d+)', r'\1-\2', s)
-                s = re.sub(r'\s+\-\s+', '-', s)
-                sentences.append(s.capitalize())
+        # Clean up spacing
+        text = re.sub(r'\s+', ' ', text)
+        text = text.replace(' . ', '. ')
+        lines = []
+        for line in text.split('\n'):
+            line = line.strip()
+            if line.startswith('•'):
+                lines.append(line)
+            else:
+                lines.append(line.capitalize())
         
-        text = '. '.join(sentences)
-        if not text.endswith('.'):
+        text = '\n'.join(lines)
+        
+        # Ensure proper sentence endings
+        if text and not text.endswith('.'):
             text += '.'
             
         return text
 
     def format_parameters(self, text):
-        """Enhanced parameter formatting with better structure"""
+        """Format parameters with consistent spacing and organization"""
         if 'parameters:' in text.lower():
-            parts = text.split('Parameters:', 1)
-            if len(parts) > 1:
-                main_content = parts[0].strip()
+            main_content, params = text.split('parameters:', 1)
+            main_content = main_content.strip()
+            
+            # Process and group parameters
+            param_list = []
+            current_group = []
+            
+            for param in params.split('|'):
+                param = param.strip()
+                if not param:
+                    continue
+                    
+                if ':' in param:
+                    name, value = param.split(':', 1)
+                    param_formatted = f"• {name.strip()}: {value.strip()}"
+                else:
+                    param_formatted = f"• {param}"
                 
-                # Format parameters with better structure and examples
-                params = [p.strip() for p in parts[1].split('|')]
-                formatted_params = []
-                
-                for param in params:
-                    # Add typical range information if available
-                    if ':' in param:
-                        param_name, param_value = param.split(':', 1)
-                        formatted_params.append(f'  • {param_name.strip()}: {param_value.strip()}')
-                    else:
-                        formatted_params.append(f'  • {param}: (0-100%)')
-                
-                param_section = '\n\nParameters:\n' + '\n'.join(formatted_params)
-                
-                # Add separator lines for visual distinction
-                return f"{main_content}.\n\n{'─' * 40}{param_section}\n"
+                if len(current_group) >= 3:  # Group parameters in sets of 3
+                    param_list.extend(current_group)
+                    param_list.append('')  # Add spacing between groups
+                    current_group = []
+                current_group.append(param_formatted)
+            
+            if current_group:
+                param_list.extend(current_group)
+            
+            if param_list:
+                return f"{main_content}\n\nParameters:\n" + '\n'.join(param_list)
+        
         return text
 
     def find_relevant_context(self, question, top_k=2):
@@ -225,33 +231,24 @@ class HXStompQA:
         return context
 
     def enhance_with_tinyllama(self, base_answer: str, question: str, context: str) -> str:
-        """Enhanced TinyLlama prompt with better structure and parameter guidance"""
-        context_guidelines = "\n".join([
-            f"- {setting}: {details['description']}" 
-            for setting, details in self.ai_context.items()
-        ])
-        
-        prompt = f"""Based on the following context and guidelines about the Line 6 HX Stomp, 
-        please provide a clear and natural response. Include specific parameter values and ranges 
-        where applicable, and organize the response with clear sections.
+        """Generate clearer, more focused responses"""
+        prompt = f"""Based on the following context about the Line 6 HX Stomp, 
+        provide a clear and focused response. Include specific parameter values where relevant, 
+        but keep the response concise and practical.
 
         Guidelines:
-        {context_guidelines}
-
-        Format Requirements:
-        - List all parameters with their typical ranges (e.g., Mix: 0-100%)
+        - Remove unnecessary prefixes (Question:, Response:, etc.)
+        - Format parameter values consistently (e.g., 0.5 not 0. 5)
         - Group related parameters together
         - Use bullet points for lists
-        - Include specific example settings for common use cases
-        - Maintain consistent formatting for parameter values
+        - Focus on practical information
+        - Keep responses concise
 
-        Context: {context}
-        
         Question: {question}
-        
+        Context: {context}
         Initial Answer: {base_answer}
-        
-        Enhanced Response (remember to include specific parameter values and ranges):"""
+
+        Enhanced Response:"""
 
         try:
             response = requests.post(
@@ -265,19 +262,17 @@ class HXStompQA:
             )
             
             if response.status_code == 200:
-                enhanced_answer = response.json().get("response", "").strip()
-                if enhanced_answer and len(enhanced_answer) > 20:
-                    # Apply additional formatting to the enhanced answer
-                    enhanced_answer = self.clean_answer(enhanced_answer)
-                    enhanced_answer = self.format_parameters(enhanced_answer)
-                    return enhanced_answer
+                enhanced = response.json().get("response", "").strip()
+                if enhanced and len(enhanced) > 20:
+                    enhanced = self.clean_answer(enhanced)
+                    return self.format_parameters(enhanced)
             
             return base_answer
             
         except Exception as e:
-            print(f"Error with TinyLlama enhancement: {str(e)}")
+            print(f"Error enhancing response: {str(e)}")
             return base_answer
-            
+
     def answer_question(self, question: str) -> Dict[str, Optional[str]]:
         try:
             # Find relevant context
