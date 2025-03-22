@@ -58,12 +58,14 @@ class HXStompQA:
                             desc += f"Category: {category['name']} > {subcat['name']}\n"
                             
                             # Add parameters if available
-                            if 'params' in model:
+                            if 'params' in model and model['params']:  # Check if params exists and is not empty
                                 params = []
                                 for param in model['params']:
-                                    param_name = list(param.keys())[0]
-                                    display_name = param[param_name] if param[param_name] else param_name
-                                    params.append(display_name)
+                                    if isinstance(param, dict):  # Check if param is a dictionary
+                                        param_name = list(param.keys())[0] if param else None
+                                        if param_name:
+                                            display_name = param[param_name] if param[param_name] else param_name
+                                            params.append(display_name)
                                 if params:
                                     desc += f"Parameters: {' | '.join(params)}"
                             
@@ -71,25 +73,53 @@ class HXStompQA:
         return knowledge
 
     def load_manual_qa(self):
-        """Load Q&A pairs from the manual QA data"""
-        qa_df = pd.read_csv('data/hx_manual_qa_data.csv', sep=';')
-        # Convert Q&A pairs into contextual knowledge
-        knowledge = [f"Q: {row['Question']}\nA: {row['Answer']}" for _, row in qa_df.iterrows()]
-        return knowledge
+        """Load and process the HX Stomp manual Q&A data from CSV"""
+        try:
+            # Read CSV with error handling for inconsistent delimiters
+            qa_df = pd.read_csv('data/hx_manual_qa_data.csv', sep=';', on_bad_lines='skip')
+            
+            # Ensure we only have two columns
+            if len(qa_df.columns) > 2:
+                # Keep only the first two columns
+                qa_df = qa_df.iloc[:, :2]
+                qa_df.columns = ['Question', 'Answer']
+            
+            # Convert to list of strings
+            knowledge = []
+            for _, row in qa_df.iterrows():
+                qa_text = f"Q: {row['Question']}\nA: {row['Answer']}"
+                knowledge.append(qa_text)
+            
+            return knowledge
+        except Exception as e:
+            print(f"Error loading manual QA data: {str(e)}")
+            return []
 
     def load_pedal_order_qa(self):
         """Load Q&A pairs about pedal ordering from the dedicated dataset"""
-        order_df = pd.read_csv('data/hx_pedal_order_qa_data.csv', sep=';')
-        # Convert pedal order Q&A pairs into contextual knowledge
-        knowledge = [f"Q: {row['Question']}\nA: {row['Answer']}" for _, row in order_df.iterrows()]
-        return knowledge
+        try:
+            order_df = pd.read_csv('data/hx_pedal_order_qa_data.csv', sep=';', on_bad_lines='skip')
+            if len(order_df.columns) > 2:
+                order_df = order_df.iloc[:, :2]
+                order_df.columns = ['Question', 'Answer']
+            knowledge = [f"Q: {row['Question']}\nA: {row['Answer']}" for _, row in order_df.iterrows()]
+            return knowledge
+        except Exception as e:
+            print(f"Error loading pedal order QA data: {str(e)}")
+            return []
         
     def load_receipts_qa(self):
         """Load tone recipes Q&A pairs"""
-        recipes_df = pd.read_csv('data/hx_receipts.csv', sep=';')
-        # Convert recipes Q&A pairs into contextual knowledge
-        knowledge = [f"Q: {row['Question']}\nA: {row['Answer']}" for _, row in recipes_df.iterrows()]
-        return knowledge
+        try:
+            recipes_df = pd.read_csv('data/hx_receipts.csv', sep=';', on_bad_lines='skip')
+            if len(recipes_df.columns) > 2:
+                recipes_df = recipes_df.iloc[:, :2]
+                recipes_df.columns = ['Question', 'Answer']
+            knowledge = [f"Q: {row['Question']}\nA: {row['Answer']}" for _, row in recipes_df.iterrows()]
+            return knowledge
+        except Exception as e:
+            print(f"Error loading recipes QA data: {str(e)}")
+            return []
 
     def load_manual_text(self):
         """Load the full manual text"""
