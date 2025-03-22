@@ -317,7 +317,8 @@ if __name__ == "__main__":
         "Show me all available distortion pedals and their parameters",
         "How do I create an ethereal soundscape?",
         "What's a good setting for rhythmic delays?",
-        "List all modulation effects available in the HX Stomp"
+        "List all modulation effects available in the HX Stomp",
+        "For a Simple Delay pedal, how can I set the feedback to and mix to create an ambient sound?",
     ]
     
     print("Running test questions:")
