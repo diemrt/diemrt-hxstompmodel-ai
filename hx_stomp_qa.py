@@ -153,48 +153,75 @@ class HXStompQA:
         self.embeddings = self.semantic_model.encode(self.knowledge_chunks, convert_to_tensor=True)
 
     def clean_answer(self, text):
-        # Remove more prefixes and clean up formatting
+        """Clean and format the answer in Markdown"""
+        # Remove special tokens and prefixes
         text = re.sub(r'\[CLS\]|\[SEP\]', '', text)
         text = re.sub(r'^(?:question:|response:|answer:|a:|q:)\s*', '', text, flags=re.IGNORECASE)
         
-        # Clean up numeric values
-        text = re.sub(r'(\d+)\s*\.\s*(\d+)', r'\1.\2', text)  # Fix decimal formatting
-        text = re.sub(r'(\d+(?:\.\d+)?)\s*%', r'\1%', text)
-        text = re.sub(r'(\d+(?:\.\d+)?)\s*(ms|hz|db)', r'\1 \2', text, flags=re.IGNORECASE)
+        # Split into paragraphs and process each
+        paragraphs = text.split('\n\n')
+        formatted_paragraphs = []
         
-        # Improve list formatting
-        text = re.sub(r'(?m)^[-•]\s*', '• ', text)
-        text = re.sub(r'(?m)^\d+\.\s+', '• ', text)
+        for paragraph in paragraphs:
+            lines = paragraph.strip().split('\n')
+            formatted_lines = []
+            
+            for i, line in enumerate(lines):
+                line = line.strip()
+                if not line:
+                    continue
+                
+                # Format numbered steps
+                if re.match(r'^\d+[\.)]\s*', line):
+                    line = re.sub(r'^(\d+)[\.)]\s*', r'\1. ', line)
+                    formatted_lines.append(line)
+                # Format bullet points
+                elif line.startswith('•') or line.startswith('-'):
+                    line = '* ' + line[1:].strip()
+                    formatted_lines.append(line)
+                # Format headings
+                elif re.match(r'^(steps|parameters|settings|configuration|summary|note):', line, re.IGNORECASE):
+                    heading = re.match(r'^([^:]+):', line, re.IGNORECASE).group(1)
+                    content = line[len(heading)+1:].strip()
+                    formatted_lines.append(f'\n### {heading.capitalize()}\n')
+                    if content:
+                        formatted_lines.append(content)
+                # Format parameters with values
+                elif ':' in line and not line.startswith('http'):
+                    param, value = line.split(':', 1)
+                    formatted_lines.append(f'* **{param.strip()}**: {value.strip()}')
+                else:
+                    formatted_lines.append(line)
+            
+            # Join lines with proper spacing
+            if formatted_lines:
+                formatted_paragraph = '\n'.join(formatted_lines)
+                formatted_paragraphs.append(formatted_paragraph)
         
-        # Clean up spacing
-        text = re.sub(r'\s+', ' ', text)
-        text = text.replace(' . ', '. ')
-        lines = []
-        for line in text.split('\n'):
-            line = line.strip()
-            if line.startswith('•'):
-                lines.append(line)
-            else:
-                lines.append(line.capitalize())
+        # Join paragraphs with double newlines
+        text = '\n\n'.join(formatted_paragraphs)
         
-        text = '\n'.join(lines)
+        # Ensure consistent spacing around lists and sections
+        text = re.sub(r'\n\n+', '\n\n', text)  # Remove excessive newlines
+        text = re.sub(r'(^|\n)(\d+\. )', r'\1\n\2', text)  # Add newline before numbered lists
+        text = re.sub(r'(^|\n)(\* )', r'\1\n\2', text)  # Add newline before bullet points
+        text = re.sub(r'(###[^\n]+)', r'\n\1\n', text)  # Add spacing around headers
         
-        # Ensure proper sentence endings
-        if text and not text.endswith('.'):
+        # Final cleanup
+        text = text.strip()
+        if text and not text.endswith(('.', ':', '*', '?', '!')):
             text += '.'
             
         return text
 
     def format_parameters(self, text):
-        """Format parameters with consistent spacing and organization"""
+        """Format parameters section in Markdown"""
         if 'parameters:' in text.lower():
             main_content, params = text.split('parameters:', 1)
             main_content = main_content.strip()
             
-            # Process and group parameters
-            param_list = []
-            current_group = []
-            
+            # Process parameters
+            param_lines = []
             for param in params.split('|'):
                 param = param.strip()
                 if not param:
@@ -202,21 +229,12 @@ class HXStompQA:
                     
                 if ':' in param:
                     name, value = param.split(':', 1)
-                    param_formatted = f"• {name.strip()}: {value.strip()}"
+                    param_lines.append(f"* **{name.strip()}**: {value.strip()}")
                 else:
-                    param_formatted = f"• {param}"
-                
-                if len(current_group) >= 3:  # Group parameters in sets of 3
-                    param_list.extend(current_group)
-                    param_list.append('')  # Add spacing between groups
-                    current_group = []
-                current_group.append(param_formatted)
+                    param_lines.append(f"* {param}")
             
-            if current_group:
-                param_list.extend(current_group)
-            
-            if param_list:
-                return f"{main_content}\n\nParameters:\n" + '\n'.join(param_list)
+            if param_lines:
+                return f"{main_content}\n\n### Parameters\n\n" + '\n'.join(param_lines)
         
         return text
 
@@ -235,24 +253,28 @@ class HXStompQA:
         return context
 
     def enhance_with_tinyllama(self, base_answer: str, question: str, context: str) -> str:
-        """Generate clearer, more focused responses"""
+        """Generate clearer, more focused responses in Markdown format"""
         prompt = f"""Based on the following context about the Line 6 HX Stomp, 
-        provide a clear and focused response. Include specific parameter values where relevant, 
-        but keep the response concise and practical.
+        provide a clear and focused response in Markdown format using this structure:
 
-        Guidelines:
-        - Remove unnecessary prefixes (Question:, Response:, etc.)
-        - Format parameter values consistently (e.g., 0.5 not 0. 5)
-        - Group related parameters together
-        - Use bullet points for lists
-        - Focus on practical information
-        - Keep responses concise
+        ### Creating an Ethereal Soundscape
+
+        To create an ethereal soundscape, follow these steps:
+
+        1. First step details
+        2. Second step details
+        3. Third step details
+
+        ### Parameters
+        * **Mix**: 50% - explanation
+        * **Time**: 500ms - explanation
+        * **Feedback**: 40% - explanation
 
         Question: {question}
         Context: {context}
         Initial Answer: {base_answer}
 
-        Enhanced Response:"""
+        Enhanced Response (following the above format):"""
 
         try:
             response = requests.post(
@@ -268,14 +290,18 @@ class HXStompQA:
             if response.status_code == 200:
                 enhanced = response.json().get("response", "").strip()
                 if enhanced and len(enhanced) > 20:
-                    enhanced = self.clean_answer(enhanced)
-                    return self.format_parameters(enhanced)
+                    # Clean and format the response
+                    enhanced = re.sub(r'\*\*Question\*\*:.*?(?=\n|$)', '', enhanced)  # Remove question repeats
+                    enhanced = re.sub(r'\*\*Response\*\*:.*?(?=\n|$)', '', enhanced)  # Remove response markers
+                    enhanced = re.sub(r'\*\*Enhanced Response\*\*:.*?(?=\n|$)', '', enhanced)  # Remove enhanced response markers
+                    enhanced = re.sub(r'\*\*\n', '', enhanced)  # Remove floating asterisks
+                    return self.clean_answer(enhanced)
             
-            return base_answer
+            return self.clean_answer(base_answer)
             
         except Exception as e:
             print(f"Error enhancing response: {str(e)}")
-            return base_answer
+            return self.clean_answer(base_answer)
 
     def answer_question(self, question: str) -> Dict[str, Optional[str]]:
         try:
