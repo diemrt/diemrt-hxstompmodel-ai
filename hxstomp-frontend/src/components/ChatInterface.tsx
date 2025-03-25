@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useQuery, useMutation, QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { useMutation, QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import axios from 'axios';
 
 interface ChatMessage {
