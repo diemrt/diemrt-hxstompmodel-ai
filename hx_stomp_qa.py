@@ -158,60 +158,59 @@ class HXStompQA:
         text = re.sub(r'\[CLS\]|\[SEP\]', '', text)
         text = re.sub(r'^(?:question:|response:|answer:|a:|q:)\s*', '', text, flags=re.IGNORECASE)
         
-        # Split into paragraphs and process each
-        paragraphs = text.split('\n\n')
-        formatted_paragraphs = []
-        
-        for paragraph in paragraphs:
-            lines = paragraph.strip().split('\n')
-            formatted_lines = []
-            
-            for i, line in enumerate(lines):
+        # Extract parameters section if it exists
+        params_match = re.search(r'(?:parameters?|settings?):(.+?)(?=\n\n|\Z)', text, re.IGNORECASE | re.DOTALL)
+        params_section = ""
+        if params_match:
+            params_text = params_match.group(1)
+            params = []
+            for line in params_text.split('\n'):
                 line = line.strip()
-                if not line:
-                    continue
+                if ':' in line:
+                    param, value = line.split(':', 1)
+                    params.append(f"* **{param.strip()}**: {value.strip()}")
+                elif line and not line.startswith('*'):
+                    params.append(f"* {line}")
+            if params:
+                params_section = "\n### Parameters\n\n" + "\n".join(params) + "\n"
+            text = re.sub(r'(?:parameters?|settings?):(.+?)(?=\n\n|\Z)', '', text, re.IGNORECASE | re.DOTALL)
+
+        # Split into sections and process each
+        sections = re.split(r'\n(?=###)', text)
+        formatted_sections = []
+        
+        for section in sections:
+            if section.strip():
+                # Process section title
+                if section.startswith('###'):
+                    title, content = section.split('\n', 1)
+                    formatted_sections.append(f"\n{title.strip()}\n")
+                    section = content
                 
                 # Format numbered steps
-                if re.match(r'^\d+[\.)]\s*', line):
-                    line = re.sub(r'^(\d+)[\.)]\s*', r'\1. ', line)
-                    formatted_lines.append(line)
-                # Format bullet points
-                elif line.startswith('•') or line.startswith('-'):
-                    line = '* ' + line[1:].strip()
-                    formatted_lines.append(line)
-                # Format headings
-                elif re.match(r'^(steps|parameters|settings|configuration|summary|note):', line, re.IGNORECASE):
-                    heading = re.match(r'^([^:]+):', line, re.IGNORECASE).group(1)
-                    content = line[len(heading)+1:].strip()
-                    formatted_lines.append(f'\n### {heading.capitalize()}\n')
-                    if content:
-                        formatted_lines.append(content)
-                # Format parameters with values
-                elif ':' in line and not line.startswith('http'):
-                    param, value = line.split(':', 1)
-                    formatted_lines.append(f'* **{param.strip()}**: {value.strip()}')
+                if re.search(r'^\d+[\.)]\s*', section, re.MULTILINE):
+                    steps = []
+                    for line in section.split('\n'):
+                        if re.match(r'^\d+[\.)]\s*', line):
+                            line = re.sub(r'^(\d+)[\.)]\s*', r'\1. ', line)
+                            steps.append(line)
+                        elif line.strip():
+                            steps.append(line)
+                    formatted_sections.append("\n".join(steps))
                 else:
-                    formatted_lines.append(line)
-            
-            # Join lines with proper spacing
-            if formatted_lines:
-                formatted_paragraph = '\n'.join(formatted_lines)
-                formatted_paragraphs.append(formatted_paragraph)
+                    formatted_sections.append(section)
+
+        # Combine all sections
+        text = "\n\n".join(s.strip() for s in formatted_sections if s.strip())
         
-        # Join paragraphs with double newlines
-        text = '\n\n'.join(formatted_paragraphs)
-        
-        # Ensure consistent spacing around lists and sections
-        text = re.sub(r'\n\n+', '\n\n', text)  # Remove excessive newlines
-        text = re.sub(r'(^|\n)(\d+\. )', r'\1\n\2', text)  # Add newline before numbered lists
-        text = re.sub(r'(^|\n)(\* )', r'\1\n\2', text)  # Add newline before bullet points
-        text = re.sub(r'(###[^\n]+)', r'\n\1\n', text)  # Add spacing around headers
-        
+        # Add parameters section if it exists
+        if params_section:
+            text += "\n" + params_section
+
         # Final cleanup
+        text = re.sub(r'\n\n+', '\n\n', text)  # Remove excessive newlines
         text = text.strip()
-        if text and not text.endswith(('.', ':', '*', '?', '!')):
-            text += '.'
-            
+        
         return text
 
     def format_parameters(self, text):
@@ -238,7 +237,7 @@ class HXStompQA:
         
         return text
 
-    def find_relevant_context(self, question, top_k=2):
+    def find_relevant_context(self, question, top_k=5):  # Increased from 2 to 5 for more context
         # Encode the question
         question_embedding = self.semantic_model.encode(question, convert_to_tensor=True)
         
@@ -248,33 +247,35 @@ class HXStompQA:
         # Get top k indices
         top_indices = torch.argsort(similarities, descending=True)[:top_k]
         
-        # Combine relevant contexts
-        context = " ".join([self.knowledge_chunks[i] for i in top_indices])
-        return context
+        # Get similarity scores for weighting
+        top_scores = similarities[top_indices]
+        
+        # Weight contexts by similarity score and combine
+        weighted_contexts = []
+        for idx, score in zip(top_indices, top_scores):
+            context = self.knowledge_chunks[idx]
+            # Only include contexts with similarity above 0.3
+            if score > 0.3:
+                weighted_contexts.append(context)
+        
+        return " ".join(weighted_contexts)
 
     def enhance_with_tinyllama(self, base_answer: str, question: str, context: str) -> str:
         """Generate clearer, more focused responses in Markdown format"""
-        prompt = f"""Based on the following context about the Line 6 HX Stomp, 
-        provide a clear and focused response in Markdown format using this structure:
+        prompt = f"""As an expert on the Line 6 HX Stomp, provide a detailed and structured response in Markdown format.
+        Focus on practical, actionable information and specific parameter values where relevant.
 
-        ### Creating an Ethereal Soundscape
-
-        To create an ethereal soundscape, follow these steps:
-
-        1. First step details
-        2. Second step details
-        3. Third step details
-
-        ### Parameters
-        * **Mix**: 50% - explanation
-        * **Time**: 500ms - explanation
-        * **Feedback**: 40% - explanation
+        When describing effects or settings:
+        1. Start with an overview
+        2. List specific steps or configurations
+        3. Include parameter values with explanations
+        4. Add any relevant tips or warnings
 
         Question: {question}
         Context: {context}
-        Initial Answer: {base_answer}
+        Base Information: {base_answer}
 
-        Enhanced Response (following the above format):"""
+        Provide a clear, structured response with appropriate sections and formatting:"""
 
         try:
             response = requests.post(
@@ -282,7 +283,9 @@ class HXStompQA:
                 json={
                     "model": "tinyllama",
                     "prompt": prompt,
-                    "stream": False
+                    "stream": False,
+                    "temperature": 0.7,  # Added temperature for more focused responses
+                    "top_p": 0.9  # Added top_p for better quality
                 },
                 timeout=30
             )
@@ -290,11 +293,6 @@ class HXStompQA:
             if response.status_code == 200:
                 enhanced = response.json().get("response", "").strip()
                 if enhanced and len(enhanced) > 20:
-                    # Clean and format the response
-                    enhanced = re.sub(r'\*\*Question\*\*:.*?(?=\n|$)', '', enhanced)  # Remove question repeats
-                    enhanced = re.sub(r'\*\*Response\*\*:.*?(?=\n|$)', '', enhanced)  # Remove response markers
-                    enhanced = re.sub(r'\*\*Enhanced Response\*\*:.*?(?=\n|$)', '', enhanced)  # Remove enhanced response markers
-                    enhanced = re.sub(r'\*\*\n', '', enhanced)  # Remove floating asterisks
                     return self.clean_answer(enhanced)
             
             return self.clean_answer(base_answer)
@@ -320,29 +318,48 @@ class HXStompQA:
 
             with torch.no_grad():
                 outputs = self.qa_model(**inputs)
-                start_logits = outputs.start_logits
-                end_logits = outputs.end_logits
                 
-            start_idx = torch.argmax(start_logits)
-            end_idx = torch.argmax(end_logits)
-            
-            tokens = self.tokenizer.convert_ids_to_tokens(inputs["input_ids"][0])
-            base_answer = self.tokenizer.convert_tokens_to_string(tokens[start_idx:end_idx+1])
+                # Get the top 3 most likely answers
+                start_logits = outputs.start_logits[0]
+                end_logits = outputs.end_logits[0]
+                
+                # Get top 3 start and end positions
+                top_starts = torch.topk(start_logits, k=3)
+                top_ends = torch.topk(end_logits, k=3)
+                
+                answers = []
+                for start_idx, end_idx in zip(top_starts.indices, top_ends.indices):
+                    if end_idx >= start_idx and end_idx - start_idx < 100:  # Reasonable answer length
+                        tokens = self.tokenizer.convert_ids_to_tokens(inputs["input_ids"][0][start_idx:end_idx+1])
+                        answer = self.tokenizer.convert_tokens_to_string(tokens)
+                        if len(answer.strip()) > 10:  # Minimum answer length
+                            answers.append(answer)
+                
+                # Combine answers if we found multiple good ones
+                base_answer = " ".join(answers) if answers else ""
             
             # Clean up the base answer
             base_answer = self.clean_answer(base_answer)
             
             # Handle case when no good answer is found
             if not base_answer or base_answer.isspace() or len(base_answer) < 10:
+                # Try to find relevant information from context
+                keywords = [word.lower() for word in question.split() if len(word) > 3]
                 context_lines = [line.strip() for line in context.split('.') if line.strip()]
-                relevant_info = next((line for line in context_lines 
-                                   if any(keyword in line.lower() 
-                                        for keyword in question.lower().split())), None)
-                if relevant_info:
-                    base_answer = self.clean_answer(relevant_info)
+                
+                relevant_lines = []
+                for line in context_lines:
+                    if any(keyword in line.lower() for keyword in keywords):
+                        relevant_lines.append(line)
+                
+                if relevant_lines:
+                    base_answer = self.clean_answer(" ".join(relevant_lines))
                 else:
-                    best_line = max(context_lines, key=len) if context_lines else context[:200]
-                    base_answer = self.clean_answer(best_line)
+                    return {
+                        "answer": "I apologize, but I couldn't find a specific answer to your question. Could you please rephrase it or be more specific?",
+                        "context": None,
+                        "base_answer": None
+                    }
             
             # Format parameters if present
             base_answer = self.format_parameters(base_answer)
@@ -353,7 +370,7 @@ class HXStompQA:
             return {
                 "answer": enhanced_answer,
                 "context": context,
-                "base_answer": base_answer  # Include original answer for reference
+                "base_answer": base_answer
             }
         except Exception as e:
             return {
