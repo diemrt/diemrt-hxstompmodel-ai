@@ -10,9 +10,13 @@ import tempfile
 import re
 import requests
 from typing import Dict, Optional
+from pathlib import Path
 
 class HXStompQA:
     def __init__(self):
+        # Get the absolute path to the project root directory
+        self.project_root = Path(__file__).parent.absolute()
+        
         # Use temporary directory for cache
         self.cache_dir = tempfile.mkdtemp()
         self.model_name = "deepset/minilm-uncased-squad2"
@@ -24,8 +28,8 @@ class HXStompQA:
 
     def load_pedals_json(self):
         """Load and process the HX Stomp pedals/effects data from JSON"""
-        # First load the JSON structure documentation
-        structure_df = pd.read_csv('data/json_structure.csv', sep=';')
+        # First load the JSON structure documentation using absolute path
+        structure_df = pd.read_csv(self.project_root / 'data' / 'json_structure.csv', sep=';')
         json_structure = {}
         for _, row in structure_df.iterrows():
             concept = row['Concept']
@@ -36,8 +40,8 @@ class HXStompQA:
                 'description': row['Description']
             })
         
-        # Now load and process the pedals data
-        with open('data/hx_pedals.json', 'r') as f:
+        # Now load and process the pedals data using absolute path
+        with open(self.project_root / 'data' / 'hx_pedals.json', 'r') as f:
             pedals_data = json.load(f)
             
         knowledge = []
@@ -78,8 +82,8 @@ class HXStompQA:
     def load_manual_qa(self):
         """Load and process the HX Stomp manual Q&A data from CSV"""
         try:
-            # Read CSV with error handling for inconsistent delimiters
-            qa_df = pd.read_csv('data/hx_manual_qa_data.csv', sep=';', on_bad_lines='skip')
+            # Read CSV with error handling for inconsistent delimiters using absolute path
+            qa_df = pd.read_csv(self.project_root / 'data' / 'hx_manual_qa_data.csv', sep=';', on_bad_lines='skip')
             
             # Ensure we only have two columns
             if len(qa_df.columns) > 2:
@@ -101,7 +105,7 @@ class HXStompQA:
     def load_pedal_order_qa(self):
         """Load Q&A pairs about pedal ordering from the dedicated dataset"""
         try:
-            order_df = pd.read_csv('data/hx_pedal_order_qa_data.csv', sep=';', on_bad_lines='skip')
+            order_df = pd.read_csv(self.project_root / 'data' / 'hx_pedal_order_qa_data.csv', sep=';', on_bad_lines='skip')
             if len(order_df.columns) > 2:
                 order_df = order_df.iloc[:, :2]
                 order_df.columns = ['Question', 'Answer']
@@ -114,7 +118,7 @@ class HXStompQA:
     def load_receipts_qa(self):
         """Load tone recipes Q&A pairs"""
         try:
-            recipes_df = pd.read_csv('data/hx_receipts.csv', sep=';', on_bad_lines='skip')
+            recipes_df = pd.read_csv(self.project_root / 'data' / 'hx_receipts.csv', sep=';', on_bad_lines='skip')
             if len(recipes_df.columns) > 2:
                 recipes_df = recipes_df.iloc[:, :2]
                 recipes_df.columns = ['Question', 'Answer']
@@ -130,7 +134,7 @@ class HXStompQA:
         
         # Load AI context settings
         try:
-            context_df = pd.read_csv('data/ai_context_settings.csv', sep=';')
+            context_df = pd.read_csv(self.project_root / 'data' / 'ai_context_settings.csv', sep=';')
             self.ai_context = {row['Setting']: {
                 'description': row['Description'],
                 'example': row['Example']
