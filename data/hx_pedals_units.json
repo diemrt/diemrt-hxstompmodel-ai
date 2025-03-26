@@ -1,0 +1,3265 @@
+[
+    {
+      "Drive": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Boost": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Bright": {
+        "from": 0,
+        "to": 1,
+        "unitOfMeasure": "boolean"
+      },
+      "Bass": {
+        "from": -12,
+        "to": 12,
+        "unitOfMeasure": "dB"
+      },
+      "Treble": {
+        "from": -12,
+        "to": 12,
+        "unitOfMeasure": "dB"
+      },
+      "Level": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Gain": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Tone": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Clipping": {
+        "from": 0,
+        "to": 2,
+        "unitOfMeasure": "type"
+      },
+      "Presence": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "GainMod": {
+        "from": -100,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Voltage": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Gain 1": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Tone 1": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Presence 1": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Clipping 1": {
+        "from": 0,
+        "to": 2,
+        "unitOfMeasure": "type"
+      },
+      "GainMod 1": {
+        "from": -100,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Level 1": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Gain 2": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Tone 2": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Presence 2": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Clipping 2": {
+        "from": 0,
+        "to": 2,
+        "unitOfMeasure": "type"
+      },
+      "GainMod 2": {
+        "from": -100,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Level 2": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "HiCut": {
+        "from": 100,
+        "to": 20000,
+        "unitOfMeasure": "Hz"
+      },
+      "Volume": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "LPHP": {
+        "from": 0,
+        "to": 1,
+        "unitOfMeasure": "boolean"
+      },
+      "Version": {
+        "unitOfMeasure": "version"
+      },
+      "Voice": {
+        "from": 0,
+        "to": 3,
+        "unitOfMeasure": "type"
+      },
+      "Attack": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "ms"
+      },
+      "Gate": {
+        "from": 0,
+        "to": 1,
+        "unitOfMeasure": "boolean"
+      },
+      "Gate_Range": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Spectrum": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Bass Cut": {
+        "from": 0,
+        "to": 1,
+        "unitOfMeasure": "boolean"
+      },
+      "Mode": {
+        "from": 0,
+        "to": 2,
+        "unitOfMeasure": "type"
+      },
+      "Filter": {
+        "from": 0,
+        "to": 3,
+        "unitOfMeasure": "type"
+      },
+      "Octave": {
+        "from": -1,
+        "to": 1,
+        "unitOfMeasure": "octaves"
+      },
+      "PushDiode": {
+        "from": 0,
+        "to": 1,
+        "unitOfMeasure": "boolean"
+      },
+      "PullDiode": {
+        "from": 0,
+        "to": 1,
+        "unitOfMeasure": "boolean"
+      },
+      "Asym": {
+        "from": 0,
+        "to": 1,
+        "unitOfMeasure": "boolean"
+      },
+      "Middle": {
+        "from": -12,
+        "to": 12,
+        "unitOfMeasure": "dB"
+      },
+      "Fuzz": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Sustain": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Compress": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Stability": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Oscillator": {
+        "from": 0,
+        "to": 1,
+        "unitOfMeasure": "boolean"
+      },
+      "FuzzType": {
+        "from": 0,
+        "to": 2,
+        "unitOfMeasure": "type"
+      },
+      "Notch Freq": {
+        "from": 100,
+        "to": 10000,
+        "unitOfMeasure": "Hz"
+      },
+      "Notch Gain": {
+        "from": -12,
+        "to": 12,
+        "unitOfMeasure": "dB"
+      },
+      "Thick": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "OscLevel": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "OscTone": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "MinFreq": {
+        "from": 20,
+        "to": 20000,
+        "unitOfMeasure": "Hz"
+      },
+      "MaxFreq": {
+        "from": 20,
+        "to": 20000,
+        "unitOfMeasure": "Hz"
+      },
+      "WaveShape": {
+        "from": 0,
+        "to": 3,
+        "unitOfMeasure": "type"
+      },
+      "Sensitivity": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Grit": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Focus": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Space": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Mix": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "BitDepth": {
+        "from": 8,
+        "to": 24,
+        "unitOfMeasure": "bits"
+      },
+      "SampleRate": {
+        "from": 44100,
+        "to": 96000,
+        "unitOfMeasure": "Hz"
+      },
+      "LowCut": {
+        "from": 20,
+        "to": 1000,
+        "unitOfMeasure": "Hz"
+      },
+      "HighCut": {
+        "from": 1000,
+        "to": 20000,
+        "unitOfMeasure": "Hz"
+      },
+      "OpenThreshold": {
+        "from": -80,
+        "to": 0,
+        "unitOfMeasure": "dB"
+      },
+      "CloseThreshold": {
+        "from": -80,
+        "to": 0,
+        "unitOfMeasure": "dB"
+      },
+      "HoldTime": {
+        "from": 0,
+        "to": 1000,
+        "unitOfMeasure": "ms"
+      },
+      "Decay": {
+        "from": 0,
+        "to": 1000,
+        "unitOfMeasure": "ms"
+      },
+      "Blend": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Low Cut": {
+        "from": 20,
+        "to": 1000,
+        "unitOfMeasure": "Hz"
+      },
+      "Grunt": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Master": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "LoMidFreq": {
+        "from": 100,
+        "to": 1000,
+        "unitOfMeasure": "Hz"
+      },
+      "LoMid": {
+        "from": -12,
+        "to": 12,
+        "unitOfMeasure": "dB"
+      },
+      "HiMidFreq": {
+        "from": 1000,
+        "to": 10000,
+        "unitOfMeasure": "Hz"
+      },
+      "HiMid": {
+        "from": -12,
+        "to": 12,
+        "unitOfMeasure": "dB"
+      },
+      "Distortion": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "ODGain": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "ODTone": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "ODLevel": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "ODLowBoost": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "FuzzOct": {
+        "from": -1,
+        "to": 1,
+        "unitOfMeasure": "octaves"
+      },
+      "FuzzGain": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "FuzzTone": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "FuzzLevel": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Mid": {
+        "from": -12,
+        "to": 12,
+        "unitOfMeasure": "dB"
+      },
+      "Output": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Feedback": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Rate": {
+        "from": 0.1,
+        "to": 20,
+        "unitOfMeasure": "Hz"
+      },
+      "Sub": {
+        "from": -12,
+        "to": 12,
+        "unitOfMeasure": "dB"
+      },
+      "tonality": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "mixture": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Dist": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Contour": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Mid Amt": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Mid Freq": {
+        "from": 100,
+        "to": 10000,
+        "unitOfMeasure": "Hz"
+      },
+      "Threshold": {
+        "from": -60,
+        "to": 0,
+        "unitOfMeasure": "dB"
+      },
+      "Ratio": {
+        "from": 1,
+        "to": 20,
+        "unitOfMeasure": ":"
+      },
+      "Release": {
+        "from": 10,
+        "to": 2000,
+        "unitOfMeasure": "ms"
+      },
+      "Knee": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Compression": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "PeakReduction": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Type": {
+        "from": 0,
+        "to": 3,
+        "unitOfMeasure": "type"
+      },
+      "Emphasis": {
+        "from": 0,
+        "to": 1,
+        "unitOfMeasure": "boolean"
+      },
+      "Lo X Freq": {
+        "from": 100,
+        "to": 1000,
+        "unitOfMeasure": "Hz"
+      },
+      "Hi X Freq": {
+        "from": 1000,
+        "to": 10000,
+        "unitOfMeasure": "Hz"
+      },
+      "Lo Thresh": {
+        "from": -60,
+        "to": 0,
+        "unitOfMeasure": "dB"
+      },
+      "Lo Gain": {
+        "from": -12,
+        "to": 12,
+        "unitOfMeasure": "dB"
+      },
+      "Mid Thresh": {
+        "from": -60,
+        "to": 0,
+        "unitOfMeasure": "dB"
+      },
+      "Mid Gain": {
+        "from": -12,
+        "to": 12,
+        "unitOfMeasure": "dB"
+      },
+      "Hi Thresh": {
+        "from": -60,
+        "to": 0,
+        "unitOfMeasure": "dB"
+      },
+      "Hi Gain": {
+        "from": -12,
+        "to": 12,
+        "unitOfMeasure": "dB"
+      },
+      "Detector": {
+        "from": 0,
+        "to": 1,
+        "unitOfMeasure": "type"
+      },
+      "Gate Range": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Rel Offset": {
+        "from": -100,
+        "to": 100,
+        "unitOfMeasure": "ms"
+      },
+      "Taper": {
+        "from": 0,
+        "to": 2,
+        "unitOfMeasure": "type"
+      },
+      "FeedbackType": {
+        "from": 0,
+        "to": 1,
+        "unitOfMeasure": "type"
+      },
+      "ReleaseTime": {
+        "from": 10,
+        "to": 2000,
+        "unitOfMeasure": "ms"
+      },
+      "DryCtrl": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "DryLevel": {
+        "from": "-inf",
+        "to": 0,
+        "unitOfMeasure": "dB"
+      },
+      "Reference": {
+        "from": -20,
+        "to": 0,
+        "unitOfMeasure": "dB"
+      },
+      "SilenceThresh": {
+        "from": -80,
+        "to": 0,
+        "unitOfMeasure": "dB"
+      },
+      "OnsetThresh": {
+        "from": -80,
+        "to": 0,
+        "unitOfMeasure": "dB"
+      },
+      "OffsetThresh": {
+        "from": -80,
+        "to": 0,
+        "unitOfMeasure": "dB"
+      },
+      "Retrigger": {
+        "from": 0,
+        "to": 1,
+        "unitOfMeasure": "boolean"
+      },
+      "Trails": {
+        "from": 0,
+        "to": 1,
+        "unitOfMeasure": "boolean"
+      },
+      "Thresh": {
+        "from": -60,
+        "to": 0,
+        "unitOfMeasure": "dB"
+      },
+      "Sens": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Amount": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Comp": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "LowGain": {
+        "from": -12,
+        "to": 12,
+        "unitOfMeasure": "dB"
+      },
+      "MidFreq": {
+        "from": 100,
+        "to": 10000,
+        "unitOfMeasure": "Hz"
+      },
+      "MidGain": {
+        "from": -12,
+        "to": 12,
+        "unitOfMeasure": "dB"
+      },
+      "HighGain": {
+        "from": -12,
+        "to": 12,
+        "unitOfMeasure": "dB"
+      },
+      "LowFreq": {
+        "from": 20,
+        "to": 1000,
+        "unitOfMeasure": "Hz"
+      },
+      "HighFreq": {
+        "from": 1000,
+        "to": 20000,
+        "unitOfMeasure": "Hz"
+      },
+      "LowQ": {
+        "from": 0.1,
+        "to": 10,
+        "unitOfMeasure": ""
+      },
+      "MidQ": {
+        "from": 0.1,
+        "to": 10,
+        "unitOfMeasure": ""
+      },
+      "HighQ": {
+        "from": 0.1,
+        "to": 10,
+        "unitOfMeasure": ""
+      },
+      "Tilt": {
+        "from": -100,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "CenterFreq": {
+        "from": 100,
+        "to": 10000,
+        "unitOfMeasure": "Hz"
+      },
+      "31p25Hz": {
+        "from": -12,
+        "to": 12,
+        "unitOfMeasure": "dB"
+      },
+      "62p5Hz": {
+        "from": -12,
+        "to": 12,
+        "unitOfMeasure": "dB"
+      },
+      "125Hz": {
+        "from": -12,
+        "to": 12,
+        "unitOfMeasure": "dB"
+      },
+      "250Hz": {
+        "from": -12,
+        "to": 12,
+        "unitOfMeasure": "dB"
+      },
+      "500Hz": {
+        "from": -12,
+        "to": 12,
+        "unitOfMeasure": "dB"
+      },
+      "1kHz": {
+        "from": -12,
+        "to": 12,
+        "unitOfMeasure": "dB"
+      },
+      "2kHz": {
+        "from": -12,
+        "to": 12,
+        "unitOfMeasure": "dB"
+      },
+      "4kHz": {
+        "from": -12,
+        "to": 12,
+        "unitOfMeasure": "dB"
+      },
+      "8kHz": {
+        "from": -12,
+        "to": 12,
+        "unitOfMeasure": "dB"
+      },
+      "16kHz": {
+        "from": -12,
+        "to": 12,
+        "unitOfMeasure": "dB"
+      },
+      "80Hz": {
+        "from": -12,
+        "to": 12,
+        "unitOfMeasure": "dB"
+      },
+      "240Hz": {
+        "from": -12,
+        "to": 12,
+        "unitOfMeasure": "dB"
+      },
+      "750Hz": {
+        "from": -12,
+        "to": 12,
+        "unitOfMeasure": "dB"
+      },
+      "2200Hz": {
+        "from": -12,
+        "to": 12,
+        "unitOfMeasure": "dB"
+      },
+      "6600Hz": {
+        "from": -12,
+        "to": 12,
+        "unitOfMeasure": "dB"
+      },
+      "Body": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Top": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Shimmer": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "0": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "1": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "2": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Intensity": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "DutyCycle": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "BassFreq": {
+        "from": 50,
+        "to": 200,
+        "unitOfMeasure": "Hz"
+      },
+      "TrebFreq": {
+        "from": 2000,
+        "to": 8000,
+        "unitOfMeasure": "Hz"
+      },
+      "Step1": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Step2": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Step3": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Step4": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Depth": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Color": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "LampBias": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Warp": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Offset": {
+        "from": -100,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Stages": {
+        "from": 1,
+        "to": 12,
+        "unitOfMeasure": ""
+      },
+      "Width": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Manual": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Regen": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Headroom": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Enhance": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Harmonic": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Range": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "FilterMatrix": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Control Select": {
+        "from": 0,
+        "to": 3,
+        "unitOfMeasure": "type"
+      },
+      "Phasing": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Recycle": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "CV Dynamics": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Max Delay": {
+        "from": 1,
+        "to": 5000,
+        "unitOfMeasure": "ms"
+      },
+      "CV Tracking": {
+        "from": -100,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Env Lag": {
+        "from": 0,
+        "to": 1000,
+        "unitOfMeasure": "ms"
+      },
+      "Env Input": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "CV Decay": {
+        "from": 0,
+        "to": 1000,
+        "unitOfMeasure": "ms"
+      },
+      "Predelay": {
+        "from": 0,
+        "to": 200,
+        "unitOfMeasure": "ms"
+      },
+      "VibratoDepth": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "NumVoices": {
+        "from": 1,
+        "to": 8,
+        "unitOfMeasure": ""
+      },
+      "HPFFrq": {
+        "from": 20,
+        "to": 1000,
+        "unitOfMeasure": "Hz"
+      },
+      "HighShelf": {
+        "from": -12,
+        "to": 12,
+        "unitOfMeasure": "dB"
+      },
+      "RiseTime": {
+        "from": 0,
+        "to": 1000,
+        "unitOfMeasure": "ms"
+      },
+      "WowFluttr": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Saturation": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "TapeSpeed": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Texture": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Doubles": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Slop": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Dry Level": {
+        "from": "-inf",
+        "to": 0,
+        "unitOfMeasure": "dB"
+      },
+      "Wet Level": {
+        "from": "-inf",
+        "to": 0,
+        "unitOfMeasure": "dB"
+      },
+      "Detune": {
+        "from": -50,
+        "to": 50,
+        "unitOfMeasure": "cents"
+      },
+      "Frequency": {
+        "from": 0.1,
+        "to": 20,
+        "unitOfMeasure": "Hz"
+      },
+      "AM": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "AMFreq": {
+        "from": 0.1,
+        "to": 20,
+        "unitOfMeasure": "Hz"
+      },
+      "LFO": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "LFOShape": {
+        "from": 0,
+        "to": 3,
+        "unitOfMeasure": "type"
+      },
+      "Spread": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "PhaseOffset": {
+        "from": 0,
+        "to": 360,
+        "unitOfMeasure": "degrees"
+      },
+      "Stereo": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Left": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Center": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Right": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Preset": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "LeftBoost": {
+        "from": -12,
+        "to": 12,
+        "unitOfMeasure": "dB"
+      },
+      "CenterBoost": {
+        "from": -12,
+        "to": 12,
+        "unitOfMeasure": "dB"
+      },
+      "RightBoost": {
+        "from": -12,
+        "to": 12,
+        "unitOfMeasure": "dB"
+      },
+      "Speed": {
+        "from": 0.1,
+        "to": 20,
+        "unitOfMeasure": "Hz"
+      },
+      "RampTime": {
+        "from": 0,
+        "to": 1000,
+        "unitOfMeasure": "ms"
+      },
+      "Wobble": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Separation": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "RotorFcDrift": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Rotor2Level": {
+        "from": "-inf",
+        "to": 0,
+        "unitOfMeasure": "dB"
+      },
+      "Rotor3Level": {
+        "from": "-inf",
+        "to": 0,
+        "unitOfMeasure": "dB"
+      },
+      "Source": {
+        "from": 0,
+        "to": 3,
+        "unitOfMeasure": "type"
+      },
+      "Shape": {
+        "from": 0,
+        "to": 3,
+        "unitOfMeasure": "type"
+      },
+      "Pitch": {
+        "from": -12,
+        "to": 12,
+        "unitOfMeasure": "semitones"
+      },
+      "FMAmount": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "FMShape": {
+        "from": 0,
+        "to": 3,
+        "unitOfMeasure": "type"
+      },
+      "FMDuty": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "FMOctave": {
+        "from": -2,
+        "to": 2,
+        "unitOfMeasure": "octaves"
+      },
+      "FMPitch": {
+        "from": -12,
+        "to": 12,
+        "unitOfMeasure": "semitones"
+      },
+      "VolSen": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Volsens": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "VolSens": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Pan": {
+        "from": -100,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Pan Speed": {
+        "from": 0.1,
+        "to": 20,
+        "unitOfMeasure": "Hz"
+      },
+      "Stage": {
+        "from": 1,
+        "to": 12,
+        "unitOfMeasure": ""
+      },
+      "Rise": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "SW1": {
+        "from": 0,
+        "to": 1,
+        "unitOfMeasure": "boolean"
+      },
+      "SW2": {
+        "from": 0,
+        "to": 1,
+        "unitOfMeasure": "boolean"
+      },
+      "SW3": {
+        "from": 0,
+        "to": 1,
+        "unitOfMeasure": "boolean"
+      },
+      "SW4": {
+        "from": 0,
+        "to": 1,
+        "unitOfMeasure": "boolean"
+      },
+      "CH Vib": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Depth1": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Depth2": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Depth3": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "AM/FM": {
+        "from": 0,
+        "to": 1,
+        "unitOfMeasure": "boolean"
+      },
+      "Horn Depth": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Flutter": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Q": {
+        "from": 0.1,
+        "to": 20,
+        "unitOfMeasure": ""
+      },
+      "@trails": {
+        "from": 0,
+        "to": 1,
+        "unitOfMeasure": "boolean"
+      },
+      "ModulationMode": {
+        "from": 0,
+        "to": 2,
+        "unitOfMeasure": "type"
+      },
+      "FilterType": {
+        "from": 0,
+        "to": 3,
+        "unitOfMeasure": "type"
+      },
+      "SweepShape": {
+        "from": 0,
+        "to": 3,
+        "unitOfMeasure": "type"
+      },
+      "SweepSpeed": {
+        "from": 0.1,
+        "to": 20,
+        "unitOfMeasure": "Hz"
+      },
+      "SweepStart": {
+        "from": 20,
+        "to": 20000,
+        "unitOfMeasure": "Hz"
+      },
+      "SweepDepth": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "SweepResonance": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "SweepSymmetry": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Ducking": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "DynAttack": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "ms"
+      },
+      "DynRel": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "ms"
+      },
+      "DynType": {
+        "from": 0,
+        "to": 1,
+        "unitOfMeasure": "type"
+      },
+      "Interval1": {
+        "from": -12,
+        "to": 12,
+        "unitOfMeasure": "semitones"
+      },
+      "Cents1": {
+        "from": -50,
+        "to": 50,
+        "unitOfMeasure": "cents"
+      },
+      "WowFlutter": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Ramp": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "FBTone": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Splice": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "DryThru": {
+        "from": 0,
+        "to": 1,
+        "unitOfMeasure": "boolean"
+      },
+      "Noise": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "BBD Size": {
+        "from": 128,
+        "to": 4096,
+        "unitOfMeasure": "stages"
+      },
+      "Pattern": {
+        "from": 0,
+        "to": 7,
+        "unitOfMeasure": "type"
+      },
+      "VerbMix": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "VerbDecay": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Interval": {
+        "from": -12,
+        "to": 12,
+        "unitOfMeasure": "semitones"
+      },
+      "ModFreq": {
+        "from": 0.1,
+        "to": 20,
+        "unitOfMeasure": "Hz"
+      },
+      "ModDepth": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "FX Level": {
+        "from": "-inf",
+        "to": 0,
+        "unitOfMeasure": "dB"
+      },
+      "RandDepth": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "RandSpeed": {
+        "from": 0.1,
+        "to": 20,
+        "unitOfMeasure": "Hz"
+      },
+      "AutoEQ": {
+        "from": 0,
+        "to": 1,
+        "unitOfMeasure": "boolean"
+      },
+      "Operation": {
+        "from": 0,
+        "to": 2,
+        "unitOfMeasure": "type"
+      },
+      "Delay Div": {
+        "from": 1,
+        "to": 16,
+        "unitOfMeasure": ""
+      },
+      "SliceFdbk": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Shuffle": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Octaves": {
+        "from": 1,
+        "to": 4,
+        "unitOfMeasure": ""
+      },
+      "Reverse": {
+        "from": 0,
+        "to": 1,
+        "unitOfMeasure": "boolean"
+      },
+      "Seq Drift": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Smoothing": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Interval 1": {
+        "from": -12,
+        "to": 12,
+        "unitOfMeasure": "semitones"
+      },
+      "Interval 2": {
+        "from": -12,
+        "to": 12,
+        "unitOfMeasure": "semitones"
+      },
+      "High Cut": {
+        "from": 1000,
+        "to": 20000,
+        "unitOfMeasure": "Hz"
+      },
+      "Steps": {
+        "from": 2,
+        "to": 32,
+        "unitOfMeasure": ""
+      },
+      "Fill": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Rotate": {
+        "from": 0,
+        "to": 1,
+        "unitOfMeasure": "boolean"
+      },
+      "DelayDeck1": {
+        "from": 1,
+        "to": 5000,
+        "unitOfMeasure": "ms"
+      },
+      "DelayDeck2": {
+        "from": 1,
+        "to": 5000,
+        "unitOfMeasure": "ms"
+      },
+      "WowFlutter1": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "WowFlutter2": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "DistDeck1": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "DistDeck2": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Deck1Vol": {
+        "from": "-inf",
+        "to": 0,
+        "unitOfMeasure": "dB"
+      },
+      "Deck2Vol": {
+        "from": "-inf",
+        "to": 0,
+        "unitOfMeasure": "dB"
+      },
+      "Deck2Pol": {
+        "from": 0,
+        "to": 1,
+        "unitOfMeasure": "boolean"
+      },
+      "ModRate": {
+        "from": 0.1,
+        "to": 20,
+        "unitOfMeasure": "Hz"
+      },
+      "FeedbackA": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "FeedbackB": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Crossfeed": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Phase": {
+        "from": 0,
+        "to": 360,
+        "unitOfMeasure": "degrees"
+      },
+      "Direction": {
+        "from": 0,
+        "to": 1,
+        "unitOfMeasure": "type"
+      },
+      "Boomerang": {
+        "from": 0,
+        "to": 1,
+        "unitOfMeasure": "boolean"
+      },
+      "HP Filter": {
+        "from": 20,
+        "to": 1000,
+        "unitOfMeasure": "Hz"
+      },
+      "LP Filter": {
+        "from": 1000,
+        "to": 20000,
+        "unitOfMeasure": "Hz"
+      },
+      "Scale": {
+        "from": 0,
+        "to": 11,
+        "unitOfMeasure": "type"
+      },
+      "LeftFeedback": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "RightFeedback": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "MixL": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "MixR": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Diffusion": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Tap1Delay": {
+        "from": 1,
+        "to": 5000,
+        "unitOfMeasure": "ms"
+      },
+      "Tap1Pan": {
+        "from": -100,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Tap1Level": {
+        "from": "-inf",
+        "to": 0,
+        "unitOfMeasure": "dB"
+      },
+      "Tap2Delay": {
+        "from": 1,
+        "to": 5000,
+        "unitOfMeasure": "ms"
+      },
+      "Tap2Pan": {
+        "from": -100,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Tap2Level": {
+        "from": "-inf",
+        "to": 0,
+        "unitOfMeasure": "dB"
+      },
+      "Tap3Delay": {
+        "from": 1,
+        "to": 5000,
+        "unitOfMeasure": "ms"
+      },
+      "Tap3Pan": {
+        "from": -100,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Tap3Level": {
+        "from": "-inf",
+        "to": 0,
+        "unitOfMeasure": "dB"
+      },
+      "Tap4Delay": {
+        "from": 1,
+        "to": 5000,
+        "unitOfMeasure": "ms"
+      },
+      "Tap4Pan": {
+        "from": -100,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Tap4Level": {
+        "from": "-inf",
+        "to": 0,
+        "unitOfMeasure": "dB"
+      },
+      "Tap5Delay": {
+        "from": 1,
+        "to": 5000,
+        "unitOfMeasure": "ms"
+      },
+      "Tap5Pan": {
+        "from": -100,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Tap5Level": {
+        "from": "-inf",
+        "to": 0,
+        "unitOfMeasure": "dB"
+      },
+      "Tap6Delay": {
+        "from": 1,
+        "to": 5000,
+        "unitOfMeasure": "ms"
+      },
+      "Tap6Pan": {
+        "from": -100,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Tap6Level": {
+        "from": "-inf",
+        "to": 0,
+        "unitOfMeasure": "dB"
+      },
+      "SweepSpread": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Key": {
+        "from": 0,
+        "to": 11,
+        "unitOfMeasure": "type"
+      },
+      "IntervalVoice1": {
+        "from": -12,
+        "to": 12,
+        "unitOfMeasure": "semitones"
+      },
+      "LevelVoice1": {
+        "from": "-inf",
+        "to": 0,
+        "unitOfMeasure": "dB"
+      },
+      "PanVoice1": {
+        "from": -100,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "IntervalVoice2": {
+        "from": -12,
+        "to": 12,
+        "unitOfMeasure": "semitones"
+      },
+      "LevelVoice2": {
+        "from": "-inf",
+        "to": 0,
+        "unitOfMeasure": "dB"
+      },
+      "PanVoice2": {
+        "from": -100,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "DelayVoice1": {
+        "from": 1,
+        "to": 5000,
+        "unitOfMeasure": "ms"
+      },
+      "DelayVoice2": {
+        "from": 1,
+        "to": 5000,
+        "unitOfMeasure": "ms"
+      },
+      "LevelRootVoice": {
+        "from": "-inf",
+        "to": 0,
+        "unitOfMeasure": "dB"
+      },
+      "PanRootVoice": {
+        "from": -100,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Deck1Pan": {
+        "from": -100,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Deck2Pan": {
+        "from": -100,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "PanA": {
+        "from": -100,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "PanB": {
+        "from": -100,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "LFeedback": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "RFeedback": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "ModSpeed": {
+        "from": 0.1,
+        "to": 20,
+        "unitOfMeasure": "Hz"
+      },
+      "Res": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Wow Flt": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Swell": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Heads 1-2": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Heads 3-4": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "RoomSize": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Damping": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Motion": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "BassBoost": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "PreDelay": {
+        "from": 0,
+        "to": 200,
+        "unitOfMeasure": "ms"
+      },
+      "MatrFreq": {
+        "from": 0.1,
+        "to": 20,
+        "unitOfMeasure": "Hz"
+      },
+      "VarDelayAmpl": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "ERLevel": {
+        "from": "-inf",
+        "to": 0,
+        "unitOfMeasure": "dB"
+      },
+      "EarlyLateBlend": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "DuckingAmount": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Shift1": {
+        "from": -100,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Shift2": {
+        "from": -100,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Balance": {
+        "from": -100,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Dwell": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Spring Count": {
+        "from": 1,
+        "to": 6,
+        "unitOfMeasure": ""
+      },
+      "Drip": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Late Dry": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Mod": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Delay": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Xover": {
+        "from": 100,
+        "to": 10000,
+        "unitOfMeasure": "Hz"
+      },
+      "Mod Mix": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Modulation": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Pitch1": {
+        "from": -12,
+        "to": 12,
+        "unitOfMeasure": "semitones"
+      },
+      "Pitch2": {
+        "from": -12,
+        "to": 12,
+        "unitOfMeasure": "semitones"
+      },
+      "Cents2": {
+        "from": -50,
+        "to": 50,
+        "unitOfMeasure": "cents"
+      },
+      "PitchMix": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Condition": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Pedal": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Heel": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Toe": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "KeyVoice1": {
+        "from": 0,
+        "to": 11,
+        "unitOfMeasure": "type"
+      },
+      "ScaleVoice1": {
+        "from": 0,
+        "to": 11,
+        "unitOfMeasure": "type"
+      },
+      "KeyVoice2": {
+        "from": 0,
+        "to": 11,
+        "unitOfMeasure": "type"
+      },
+      "ScaleVoice2": {
+        "from": 0,
+        "to": 11,
+        "unitOfMeasure": "type"
+      },
+      "Time1": {
+        "from": 1,
+        "to": 5000,
+        "unitOfMeasure": "ms"
+      },
+      "PanDry": {
+        "from": -100,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Interval2": {
+        "from": -12,
+        "to": 12,
+        "unitOfMeasure": "semitones"
+      },
+      "Time2": {
+        "from": 1,
+        "to": 5000,
+        "unitOfMeasure": "ms"
+      },
+      "Oct1Level": {
+        "from": "-inf",
+        "to": 0,
+        "unitOfMeasure": "dB"
+      },
+      "Oct2Level": {
+        "from": "-inf",
+        "to": 0,
+        "unitOfMeasure": "dB"
+      },
+      "Cents": {
+        "from": -50,
+        "to": 50,
+        "unitOfMeasure": "cents"
+      },
+      "ShiftCurve": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "ReturnCurve": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Tracking": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Position": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "HeelShift": {
+        "from": -12,
+        "to": 12,
+        "unitOfMeasure": "semitones"
+      },
+      "ToeShift": {
+        "from": -12,
+        "to": 12,
+        "unitOfMeasure": "semitones"
+      },
+      "Osc1Shape": {
+        "from": 0,
+        "to": 3,
+        "unitOfMeasure": "type"
+      },
+      "Osc1Octave": {
+        "from": -3,
+        "to": 3,
+        "unitOfMeasure": "octaves"
+      },
+      "Osc1Note": {
+        "from": 0,
+        "to": 11,
+        "unitOfMeasure": "semitones"
+      },
+      "Osc1Level": {
+        "from": "-inf",
+        "to": 0,
+        "unitOfMeasure": "dB"
+      },
+      "Osc1Glide": {
+        "from": 0,
+        "to": 1000,
+        "unitOfMeasure": "ms"
+      },
+      "Osc2Shape": {
+        "from": 0,
+        "to": 3,
+        "unitOfMeasure": "type"
+      },
+      "Osc2Octave": {
+        "from": -3,
+        "to": 3,
+        "unitOfMeasure": "octaves"
+      },
+      "Osc2Note": {
+        "from": 0,
+        "to": 11,
+        "unitOfMeasure": "semitones"
+      },
+      "Osc2Level": {
+        "from": "-inf",
+        "to": 0,
+        "unitOfMeasure": "dB"
+      },
+      "Osc2Glide": {
+        "from": 0,
+        "to": 1000,
+        "unitOfMeasure": "ms"
+      },
+      "Osc3Shape": {
+        "from": 0,
+        "to": 3,
+        "unitOfMeasure": "type"
+      },
+      "Osc3Octave": {
+        "from": -3,
+        "to": 3,
+        "unitOfMeasure": "octaves"
+      },
+      "Osc3Note": {
+        "from": 0,
+        "to": 11,
+        "unitOfMeasure": "semitones"
+      },
+      "Osc3Level": {
+        "from": "-inf",
+        "to": 0,
+        "unitOfMeasure": "dB"
+      },
+      "Osc3Glide": {
+        "from": 0,
+        "to": 1000,
+        "unitOfMeasure": "ms"
+      },
+      "Osc1Freq": {
+        "from": 20,
+        "to": 20000,
+        "unitOfMeasure": "Hz"
+      },
+      "Osc2Freq": {
+        "from": 20,
+        "to": 20000,
+        "unitOfMeasure": "Hz"
+      },
+      "Osc3Freq": {
+        "from": 20,
+        "to": 20000,
+        "unitOfMeasure": "Hz"
+      },
+      "Osc4Shape": {
+        "from": 0,
+        "to": 3,
+        "unitOfMeasure": "type"
+      },
+      "Osc4Freq": {
+        "from": 20,
+        "to": 20000,
+        "unitOfMeasure": "Hz"
+      },
+      "Osc4Level": {
+        "from": "-inf",
+        "to": 0,
+        "unitOfMeasure": "dB"
+      },
+      "ShapeVoice1": {
+        "from": 0,
+        "to": 3,
+        "unitOfMeasure": "type"
+      },
+      "DutyVoice1": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "OctaveVoice1": {
+        "from": -3,
+        "to": 3,
+        "unitOfMeasure": "octaves"
+      },
+      "PitchVoice1": {
+        "from": -12,
+        "to": 12,
+        "unitOfMeasure": "semitones"
+      },
+      "ShapeVoice2": {
+        "from": 0,
+        "to": 3,
+        "unitOfMeasure": "type"
+      },
+      "DutyVoice2": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "OctaveVoice2": {
+        "from": -3,
+        "to": 3,
+        "unitOfMeasure": "octaves"
+      },
+      "PitchVoice2": {
+        "from": -12,
+        "to": 12,
+        "unitOfMeasure": "semitones"
+      },
+      "ShapeVoice3": {
+        "from": 0,
+        "to": 3,
+        "unitOfMeasure": "type"
+      },
+      "DutyVoice3": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "OctaveVoice3": {
+        "from": -3,
+        "to": 3,
+        "unitOfMeasure": "octaves"
+      },
+      "PitchVoice3": {
+        "from": -12,
+        "to": 12,
+        "unitOfMeasure": "semitones"
+      },
+      "PanVoice3": {
+        "from": -100,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "LevelVoice3": {
+        "from": "-inf",
+        "to": 0,
+        "unitOfMeasure": "dB"
+      },
+      "SynthPreset": {
+        "from": 0,
+        "to": 127,
+        "unitOfMeasure": "preset"
+      },
+      "FM Voice3to1": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Osc1Pan": {
+        "from": -100,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Osc2Pan": {
+        "from": -100,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Osc3Pan": {
+        "from": -100,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "DryPan": {
+        "from": -100,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Osc4Pan": {
+        "from": -100,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Normal": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Shift": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Freq": {
+        "from": 20,
+        "to": 20000,
+        "unitOfMeasure": "Hz"
+      },
+      "Wave": {
+        "from": 0,
+        "to": 3,
+        "unitOfMeasure": "type"
+      },
+      "-1oct G": {
+        "from": -12,
+        "to": 12,
+        "unitOfMeasure": "dB"
+      },
+      "-2oct G": {
+        "from": -12,
+        "to": 12,
+        "unitOfMeasure": "dB"
+      },
+      "Peak": {
+        "from": -12,
+        "to": 12,
+        "unitOfMeasure": "dB"
+      },
+      "Resonance": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "FilterGain": {
+        "from": -12,
+        "to": 12,
+        "unitOfMeasure": "dB"
+      },
+      "FilterQ": {
+        "from": 0.1,
+        "to": 20,
+        "unitOfMeasure": ""
+      },
+      "FreqDepth": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Envelope": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Level1": {
+        "from": "-inf",
+        "to": 0,
+        "unitOfMeasure": "dB"
+      },
+      "Level2": {
+        "from": "-inf",
+        "to": 0,
+        "unitOfMeasure": "dB"
+      },
+      "Level3": {
+        "from": "-inf",
+        "to": 0,
+        "unitOfMeasure": "dB"
+      },
+      "Level4": {
+        "from": "-inf",
+        "to": 0,
+        "unitOfMeasure": "dB"
+      },
+      "Level5": {
+        "from": "-inf",
+        "to": 0,
+        "unitOfMeasure": "dB"
+      },
+      "Level6": {
+        "from": "-inf",
+        "to": 0,
+        "unitOfMeasure": "dB"
+      },
+      "Level7": {
+        "from": "-inf",
+        "to": 0,
+        "unitOfMeasure": "dB"
+      },
+      "Level8": {
+        "from": "-inf",
+        "to": 0,
+        "unitOfMeasure": "dB"
+      },
+      "Start": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "End": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Auto": {
+        "from": 0,
+        "to": 1,
+        "unitOfMeasure": "boolean"
+      },
+      "Vol Sens": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "FcLow": {
+        "from": 20,
+        "to": 1000,
+        "unitOfMeasure": "Hz"
+      },
+      "FcHigh": {
+        "from": 1000,
+        "to": 20000,
+        "unitOfMeasure": "Hz"
+      },
+      "Q Trim": {
+        "from": -100,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Volume Trim": {
+        "from": "-inf",
+        "to": 0,
+        "unitOfMeasure": "dB"
+      },
+      "ChVol": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Sag": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Hum": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Ripple": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Bias": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "BiasX": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Drive 1": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Drive Trem": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "DriveNorm": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "DriveBright": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Drive 2": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Cut": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "MidSwitch": {
+        "from": 0,
+        "to": 1,
+        "unitOfMeasure": "boolean"
+      },
+      "JazzRock": {
+        "from": 0,
+        "to": 1,
+        "unitOfMeasure": "boolean"
+      },
+      "ODSwitch": {
+        "from": 0,
+        "to": 1,
+        "unitOfMeasure": "boolean"
+      },
+      "ODDrive": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "FETBoost": {
+        "from": 0,
+        "to": 1,
+        "unitOfMeasure": "boolean"
+      },
+      "PAB": {
+        "from": 0,
+        "to": 1,
+        "unitOfMeasure": "boolean"
+      },
+      "Ch1Drive": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Ch2Drive": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "FAC": {
+        "from": 0,
+        "to": 5,
+        "unitOfMeasure": "type"
+      },
+      "BrtDrive": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "NrmDrive": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "InputType": {
+        "from": 0,
+        "to": 1,
+        "unitOfMeasure": "type"
+      },
+      "HBE": {
+        "from": 0,
+        "to": 1,
+        "unitOfMeasure": "boolean"
+      },
+      "Fat": {
+        "from": 0,
+        "to": 1,
+        "unitOfMeasure": "boolean"
+      },
+      "C45": {
+        "from": 0,
+        "to": 1,
+        "unitOfMeasure": "boolean"
+      },
+      "Drive2": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Bright1": {
+        "from": 0,
+        "to": 1,
+        "unitOfMeasure": "boolean"
+      },
+      "Bright2": {
+        "from": 0,
+        "to": 1,
+        "unitOfMeasure": "boolean"
+      },
+      "PreEQ_Brt": {
+        "from": 0,
+        "to": 1,
+        "unitOfMeasure": "boolean"
+      },
+      "Structure": {
+        "from": 0,
+        "to": 2,
+        "unitOfMeasure": "type"
+      },
+      "Excursion_Depth": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Old_New": {
+        "from": 0,
+        "to": 1,
+        "unitOfMeasure": "type"
+      },
+      "Class_AB_A": {
+        "from": 0,
+        "to": 1,
+        "unitOfMeasure": "type"
+      },
+      "TS Shape": {
+        "from": 0,
+        "to": 2,
+        "unitOfMeasure": "type"
+      },
+      "LeadGain": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "LeadDrive": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "BrightSW": {
+        "from": 0,
+        "to": 1,
+        "unitOfMeasure": "boolean"
+      },
+      "MidBoost": {
+        "from": 0,
+        "to": 1,
+        "unitOfMeasure": "boolean"
+      },
+      "Low": {
+        "from": -12,
+        "to": 12,
+        "unitOfMeasure": "dB"
+      },
+      "High": {
+        "from": -12,
+        "to": 12,
+        "unitOfMeasure": "dB"
+      },
+      "PreGain": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "PostGain": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Aggression": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Deep": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "HumSwitch": {
+        "from": 0,
+        "to": 1,
+        "unitOfMeasure": "boolean"
+      },
+      "HPF": {
+        "from": 20,
+        "to": 1000,
+        "unitOfMeasure": "Hz"
+      },
+      "NFB": {
+        "from": 0,
+        "to": 2,
+        "unitOfMeasure": "type"
+      },
+      "PreMid": {
+        "from": -12,
+        "to": 12,
+        "unitOfMeasure": "dB"
+      },
+      "PreMidFc": {
+        "from": 100,
+        "to": 10000,
+        "unitOfMeasure": "Hz"
+      },
+      "LowMid": {
+        "from": -12,
+        "to": 12,
+        "unitOfMeasure": "dB"
+      },
+      "HighMid": {
+        "from": -12,
+        "to": 12,
+        "unitOfMeasure": "dB"
+      },
+      "UltraLo": {
+        "from": -12,
+        "to": 12,
+        "unitOfMeasure": "dB"
+      },
+      "UltraHi": {
+        "from": -12,
+        "to": 12,
+        "unitOfMeasure": "dB"
+      },
+      "EQ": {
+        "from": 0,
+        "to": 1,
+        "unitOfMeasure": "boolean"
+      },
+      "33Hz": {
+        "from": -12,
+        "to": 12,
+        "unitOfMeasure": "dB"
+      },
+      "150Hz": {
+        "from": -12,
+        "to": 12,
+        "unitOfMeasure": "dB"
+      },
+      "300Hz": {
+        "from": -12,
+        "to": 12,
+        "unitOfMeasure": "dB"
+      },
+      "600Hz": {
+        "from": -12,
+        "to": 12,
+        "unitOfMeasure": "dB"
+      },
+      "900Hz": {
+        "from": -12,
+        "to": 12,
+        "unitOfMeasure": "dB"
+      },
+      "5kHz": {
+        "from": -12,
+        "to": 12,
+        "unitOfMeasure": "dB"
+      },
+      "EQLevel": {
+        "from": -12,
+        "to": 12,
+        "unitOfMeasure": "dB"
+      },
+      "Norm Drive": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Variamp": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Effect": {
+        "from": 0,
+        "to": 1,
+        "unitOfMeasure": "boolean"
+      },
+      "TuningFork": {
+        "from": 0,
+        "to": 1,
+        "unitOfMeasure": "boolean"
+      },
+      "TFCoarse": {
+        "from": 0,
+        "to": 127,
+        "unitOfMeasure": "semitones"
+      },
+      "TFFine": {
+        "from": -50,
+        "to": 50,
+        "unitOfMeasure": "cents"
+      },
+      "Ch Vol": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Ch1 Drive": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Ch1 Bass": {
+        "from": -12,
+        "to": 12,
+        "unitOfMeasure": "dB"
+      },
+      "Ch1 Mid": {
+        "from": -12,
+        "to": 12,
+        "unitOfMeasure": "dB"
+      },
+      "Ch1 Mid Freq": {
+        "from": 100,
+        "to": 10000,
+        "unitOfMeasure": "Hz"
+      },
+      "Ch1 Treble": {
+        "from": -12,
+        "to": 12,
+        "unitOfMeasure": "dB"
+      },
+      "Ch1 Master": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Input Pad": {
+        "from": 0,
+        "to": 1,
+        "unitOfMeasure": "boolean"
+      },
+      "Ch1 Boost": {
+        "from": 0,
+        "to": 1,
+        "unitOfMeasure": "boolean"
+      },
+      "Limiter": {
+        "from": 0,
+        "to": 1,
+        "unitOfMeasure": "boolean"
+      },
+      "Ch2 Drive": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Ch2 Bass": {
+        "from": -12,
+        "to": 12,
+        "unitOfMeasure": "dB"
+      },
+      "Ch2 Mid": {
+        "from": -12,
+        "to": 12,
+        "unitOfMeasure": "dB"
+      },
+      "Ch2 Mid Freq": {
+        "from": 100,
+        "to": 10000,
+        "unitOfMeasure": "Hz"
+      },
+      "Ch2 Treble": {
+        "from": -12,
+        "to": 12,
+        "unitOfMeasure": "dB"
+      },
+      "Ch2 Master": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Ch2 Boost": {
+        "from": 0,
+        "to": 1,
+        "unitOfMeasure": "boolean"
+      },
+      "Drive1": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Brite": {
+        "from": 0,
+        "to": 1,
+        "unitOfMeasure": "boolean"
+      },
+      "Input": {
+        "from": 0,
+        "to": 1,
+        "unitOfMeasure": "type"
+      },
+      "Polarity": {
+        "from": 0,
+        "to": 1,
+        "unitOfMeasure": "type"
+      },
+      "Hi Pass": {
+        "from": 20,
+        "to": 1000,
+        "unitOfMeasure": "Hz"
+      },
+      "Low Pass": {
+        "from": 1000,
+        "to": 20000,
+        "unitOfMeasure": "Hz"
+      },
+      "MicLine": {
+        "from": 0,
+        "to": 1,
+        "unitOfMeasure": "type"
+      },
+      "Mic": {
+        "from": 0,
+        "to": 1,
+        "unitOfMeasure": "type"
+      },
+      "Distance": {
+        "from": 0.1,
+        "to": 10,
+        "unitOfMeasure": "feet"
+      },
+      "Angle": {
+        "from": 0,
+        "to": 180,
+        "unitOfMeasure": "degrees"
+      },
+      "@mic": {
+        "from": 0,
+        "to": 15,
+        "unitOfMeasure": "type"
+      },
+      "EarlyReflections": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Early Reflections": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Index": {
+        "from": 0,
+        "to": 127,
+        "unitOfMeasure": ""
+      },
+      "A Level": {
+        "from": "-inf",
+        "to": 0,
+        "unitOfMeasure": "dB"
+      },
+      "A Pan": {
+        "from": -100,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "A Polarity": {
+        "from": 0,
+        "to": 1,
+        "unitOfMeasure": "boolean"
+      },
+      "Index_1": {
+        "from": 0,
+        "to": 127,
+        "unitOfMeasure": ""
+      },
+      "LowCut_1": {
+        "from": 20,
+        "to": 1000,
+        "unitOfMeasure": "Hz"
+      },
+      "HighCut_1": {
+        "from": 1000,
+        "to": 20000,
+        "unitOfMeasure": "Hz"
+      },
+      "Level_1": {
+        "from": "-inf",
+        "to": 0,
+        "unitOfMeasure": "dB"
+      },
+      "B Pan": {
+        "from": -100,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "B Polarity": {
+        "from": 0,
+        "to": 1,
+        "unitOfMeasure": "boolean"
+      },
+      "VolumeTaper": {
+        "from": 0,
+        "to": 2,
+        "unitOfMeasure": "type"
+      },
+      "LR In Swap": {
+        "from": 0,
+        "to": 1,
+        "unitOfMeasure": "boolean"
+      },
+      "R Polarity": {
+        "from": 0,
+        "to": 1,
+        "unitOfMeasure": "boolean"
+      },
+      "Rotation": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "Send": {
+        "from": "-inf",
+        "to": 0,
+        "unitOfMeasure": "dB"
+      },
+      "Return": {
+        "from": "-inf",
+        "to": 0,
+        "unitOfMeasure": "dB"
+      },
+      "Playback": {
+        "from": 0,
+        "to": 1,
+        "unitOfMeasure": "boolean"
+      },
+      "Overdub": {
+        "from": 0,
+        "to": 1,
+        "unitOfMeasure": "boolean"
+      },
+      "lowCut": {
+        "from": 20,
+        "to": 1000,
+        "unitOfMeasure": "Hz"
+      },
+      "highCut": {
+        "from": 1000,
+        "to": 20000,
+        "unitOfMeasure": "Hz"
+      },
+      "Slices": {
+        "from": 1,
+        "to": 16,
+        "unitOfMeasure": ""
+      },
+      "SeqLength": {
+        "from": 1,
+        "to": 16,
+        "unitOfMeasure": ""
+      },
+      "Repeat": {
+        "from": 1,
+        "to": 16,
+        "unitOfMeasure": ""
+      },
+      "noiseGate": {
+        "from": 0,
+        "to": 1,
+        "unitOfMeasure": "boolean"
+      },
+      "threshold": {
+        "from": -80,
+        "to": 0,
+        "unitOfMeasure": "dB"
+      },
+      "decay": {
+        "from": 10,
+        "to": 2000,
+        "unitOfMeasure": "ms"
+      },
+      "@guitarinputZ": {
+        "from": 0,
+        "to": 1,
+        "unitOfMeasure": "boolean"
+      },
+      "@guitarpad": {
+        "from": 0,
+        "to": 1,
+        "unitOfMeasure": "boolean"
+      },
+      "pan": {
+        "from": -100,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "gain": {
+        "from": "-inf",
+        "to": 0,
+        "unitOfMeasure": "dB"
+      },
+      "BalanceA": {
+        "from": -100,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "BalanceB": {
+        "from": -100,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "RouteTo": {
+        "from": 0,
+        "to": 2,
+        "unitOfMeasure": "type"
+      },
+      "B Level": {
+        "from": "-inf",
+        "to": 0,
+        "unitOfMeasure": "dB"
+      },
+      "@variax_model": {
+        "from": 0,
+        "to": 127,
+        "unitOfMeasure": "model"
+      },
+      "@variax_volumeknob": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "@variax_toneknob": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "@variax_lockctrls": {
+        "from": 0,
+        "to": 1,
+        "unitOfMeasure": "boolean"
+      },
+      "@variax_customtuning": {
+        "from": 0,
+        "to": 1,
+        "unitOfMeasure": "boolean"
+      },
+      "@variax_str6tuning": {
+        "unitOfMeasure": "cents"
+      },
+      "@variax_str5tuning": {
+        "unitOfMeasure": "cents"
+      },
+      "@variax_str4tuning": {
+        "unitOfMeasure": "cents"
+      },
+      "@variax_str3tuning": {
+        "unitOfMeasure": "cents"
+      },
+      "@variax_str2tuning": {
+        "unitOfMeasure": "cents"
+      },
+      "@variax_str1tuning": {
+        "unitOfMeasure": "cents"
+      },
+      "@variax_str6level": {
+        "from": "-inf",
+        "to": 0,
+        "unitOfMeasure": "dB"
+      },
+      "@variax_str5level": {
+        "from": "-inf",
+        "to": 0,
+        "unitOfMeasure": "dB"
+      },
+      "@variax_str4level": {
+        "from": "-inf",
+        "to": 0,
+        "unitOfMeasure": "dB"
+      },
+      "@variax_str3level": {
+        "from": "-inf",
+        "to": 0,
+        "unitOfMeasure": "dB"
+      },
+      "@variax_str2level": {
+        "from": "-inf",
+        "to": 0,
+        "unitOfMeasure": "dB"
+      },
+      "@variax_str1level": {
+        "from": "-inf",
+        "to": 0,
+        "unitOfMeasure": "dB"
+      },
+      "@powercab_speaker": {
+        "from": 0,
+        "to": 11,
+        "unitOfMeasure": "type"
+      },
+      "@powercab_mic": {
+        "from": 0,
+        "to": 15,
+        "unitOfMeasure": "type"
+      },
+      "@powercab_distance": {
+        "from": 0.1,
+        "to": 10,
+        "unitOfMeasure": "feet"
+      },
+      "@powercab_userir": {
+        "from": 0,
+        "to": 1,
+        "unitOfMeasure": "boolean"
+      },
+      "@powercab_lowcut": {
+        "from": 20,
+        "to": 1000,
+        "unitOfMeasure": "Hz"
+      },
+      "@powercab_hicut": {
+        "from": 1000,
+        "to": 20000,
+        "unitOfMeasure": "Hz"
+      },
+      "@powercab_flatlevel": {
+        "from": "-inf",
+        "to": 0,
+        "unitOfMeasure": "dB"
+      },
+      "@powercab_speakerlevel": {
+        "from": "-inf",
+        "to": 0,
+        "unitOfMeasure": "dB"
+      },
+      "@powercab_irlevel": {
+        "from": "-inf",
+        "to": 0,
+        "unitOfMeasure": "dB"
+      },
+      "@powercab_color": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "@dt_channel": {
+        "from": 0,
+        "to": 3,
+        "unitOfMeasure": "type"
+      },
+      "@dt_topology": {
+        "from": 0,
+        "to": 1,
+        "unitOfMeasure": "type"
+      },
+      "@dt_poweramp": {
+        "from": 0,
+        "to": 3,
+        "unitOfMeasure": "type"
+      },
+      "@dt_tubeconfig": {
+        "from": 0,
+        "to": 1,
+        "unitOfMeasure": "type"
+      },
+      "@dt_reverb": {
+        "from": 0,
+        "to": 1,
+        "unitOfMeasure": "boolean"
+      },
+      "@dt_revmix": {
+        "from": 0,
+        "to": 100,
+        "unitOfMeasure": "%"
+      },
+      "@dt_12ax7boost": {
+        "from": 0,
+        "to": 1,
+        "unitOfMeasure": "boolean"
+      },
+      "@dt_feedbackcap": {
+        "from": 0,
+        "to": 1,
+        "unitOfMeasure": "type"
+      },
+      "@dt_bplusvoltage": {
+        "from": 0,
+        "to": 1,
+        "unitOfMeasure": "type"
+      }
+    }
+  ]
