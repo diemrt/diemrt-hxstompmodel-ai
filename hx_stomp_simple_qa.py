@@ -34,25 +34,56 @@ class HXStompSimpleQA:
                 param_name = list(param.keys())[0] if param else None
                 if param_name and param_name in self.parameter_info:
                     param_info = self.parameter_info[param_name]
-                    # Create suggested value based on range
-                    if 'from' in param_info and 'to' in param_info:
-                        if param_info['unitOfMeasure'] == 'boolean':
-                            suggested_value = "Off"
-                        elif param_info['unitOfMeasure'] == 'type':
-                            suggested_value = str(param_info['from'])
-                        else:
-                            # Use middle value for numeric parameters
-                            try:
-                                from_val = float(param_info['from'])
-                                to_val = float(param_info['to'])
-                                suggested_value = str(int((from_val + to_val) / 2))
-                            except:
-                                suggested_value = str(param_info['from'])
+                    unit = param_info.get('unitOfMeasure', '')
+                    
+                    # Handle different parameter types
+                    if unit == 'boolean':
+                        suggested_value = "Off"
+                        value_with_unit = suggested_value
+                    elif unit == 'type':
+                        suggested_value = str(param_info['from'])
+                        value_with_unit = f"Type {suggested_value}"
                     else:
-                        suggested_value = "Default"
-
+                        # Handle numeric parameters with proper ranges and units
+                        try:
+                            from_val = float(param_info.get('from', 0))
+                            to_val = float(param_info.get('to', 100))
+                            
+                            # Use middle value by default
+                            suggested_value = (from_val + to_val) / 2
+                            
+                            # Format based on unit type
+                            if unit in ['ms', 'Hz']:
+                                # Keep decimals for time and frequency
+                                suggested_value = f"{suggested_value:.1f}"
+                            else:
+                                # Round to integer for other numeric values
+                                suggested_value = f"{int(suggested_value)}"
+                            
+                            # Special handling for specific units
+                            if unit == 'dB':
+                                if suggested_value == '-inf':
+                                    value_with_unit = "-∞ dB"
+                                else:
+                                    value_with_unit = f"{suggested_value} dB"
+                            elif unit == '%':
+                                value_with_unit = f"{suggested_value}%"
+                            elif unit == 'Hz':
+                                value_with_unit = f"{suggested_value} Hz"
+                            elif unit == 'ms':
+                                value_with_unit = f"{suggested_value} ms"
+                            elif unit == 'semitones':
+                                value_with_unit = f"{suggested_value} st"
+                            elif unit == 'cents':
+                                value_with_unit = f"{suggested_value} cents"
+                            else:
+                                value_with_unit = str(suggested_value)
+                        except:
+                            suggested_value = str(param_info.get('from', 'Default'))
+                            value_with_unit = suggested_value
+                    
                     formatted_param = {
-                        param_name: suggested_value
+                        param_name: value_with_unit
                     }
                     formatted_params.append(formatted_param)
         return formatted_params
@@ -102,34 +133,8 @@ class HXStompSimpleQA:
                                         "name": model['name'],
                                         "category": category['name'],
                                         "subcategory": subcat['name'],
-                                        "params": []
+                                        "params": self.format_pedal_params(model['params'])
                                     }
-                                    
-                                    # Process parameters if they exist
-                                    if model['params']:
-                                        for param in model['params']:
-                                            if isinstance(param, dict):
-                                                param_name = list(param.keys())[0] if param else None
-                                                if param_name:
-                                                    param_info = self.parameter_info.get(param_name, {})
-                                                    # Create suggested value based on parameter info
-                                                    if 'from' in param_info and 'to' in param_info:
-                                                        if param_info['unitOfMeasure'] == 'boolean':
-                                                            value = "Off"
-                                                        elif param_info['unitOfMeasure'] == 'type':
-                                                            value = str(param_info['from'])
-                                                        else:
-                                                            try:
-                                                                from_val = float(param_info['from'])
-                                                                to_val = float(param_info['to'])
-                                                                value = str(int((from_val + to_val) / 2))
-                                                            except:
-                                                                value = str(param_info['from'])
-                                                    else:
-                                                        value = "Default"
-                                                        
-                                                    pedal_info["params"].append({param_name: value})
-                                    
                                     self.pedals_info.append(pedal_info)
         
         # Create searchable text from pedal info
@@ -142,9 +147,7 @@ class HXStompSimpleQA:
                 for param in pedal['params']:
                     param_name = list(param.keys())[0]
                     param_value = param[param_name]
-                    param_info = self.parameter_info.get(param_name, {})
-                    unit = param_info.get('unitOfMeasure', '')
-                    desc += f"• {param_name}: {param_value} {unit}\n"
+                    desc += f"• {param_name}: {param_value}\n"
             knowledge.append(desc)
         
         # Load additional knowledge sources
