@@ -9,6 +9,156 @@ interface ChatMessage {
   content: string;
 }
 
+interface PedalData {
+  modelNames: Set<string>;
+  initialized: boolean;
+}
+
+// Global state for model names to avoid reloading
+const modelData: PedalData = {
+  modelNames: new Set<string>(),
+  initialized: false
+};
+
+// Helper function to escape special characters in regex
+const escapeRegExp = (string: string): string => {
+  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+};
+
+// Helper function to process JSON and extract model names
+const processModelJson = (data: any[]): Set<string> => {
+  const names = new Set<string>();
+  
+  const processModel = (model: any) => {
+    if (model?.name && 
+        typeof model.name === 'string' && 
+        !model.hidden && 
+        !['Input', 'Output', '(empty block)', 'Split Y', 'Split A/B', 'Split Crossover', 'Split Dynamic', 'Mixer'].includes(model.name)) {
+      names.add(model.name);
+    }
+  };
+
+  const processModels = (models: any[]) => {
+    if (!Array.isArray(models)) return;
+    models.forEach(model => {
+      if (model?.use_subcategory) return; // Skip references to other subcategories
+      processModel(model);
+    });
+  };
+
+  // Process all categories and their subcategories
+  data.forEach(category => {
+    // Process models at category level
+    if (category.models) {
+      processModels(category.models);
+    }
+    
+    // Process subcategories
+    if (category.subcategories) {
+      category.subcategories.forEach((subcategory: any) => {
+        if (subcategory.models) {
+          processModels(subcategory.models);
+        }
+      });
+    }
+  });
+
+  return names;
+};
+
+// Component to process text and highlight model names
+const PedalText = ({ text }: { text: string }) => {
+  const [ready, setReady] = useState(modelData.initialized);
+
+  useEffect(() => {
+    if (!modelData.initialized) {
+      fetch('/hx_pedals.json')
+        .then(response => {
+          if (!response.ok) throw new Error('Failed to load model data');
+          return response.json();
+        })
+        .then(data => {
+          modelData.modelNames = processModelJson(data);
+          modelData.initialized = true;
+          setReady(true);
+          console.log('Loaded model names:', Array.from(modelData.modelNames));
+        })
+        .catch(error => {
+          console.error('Error loading model data:', error);
+          setReady(true);
+        });
+    }
+  }, []);
+
+  if (!ready || modelData.modelNames.size === 0) return <>{text}</>;
+
+  // Sort model names by length (longest first) to match longest possible names
+  const sortedModelNames = Array.from(modelData.modelNames)
+    .sort((a, b) => b.length - a.length);
+
+  const parts: { text: string; isModel: boolean }[] = [];
+  let currentText = text;
+  
+  while (currentText.length > 0) {
+    let matchFound = false;
+    
+    // Try to match model names at the current position
+    for (const modelName of sortedModelNames) {
+      // Match word boundaries and handle special characters
+      const pattern = new RegExp(`(?<!\\w|')${escapeRegExp(modelName)}(?!\\w|')`, 'i');
+      const match = currentText.match(pattern);
+      
+      if (match && match.index !== undefined) {
+        // If there's text before the match, add it as non-model
+        if (match.index > 0) {
+          parts.push({ text: currentText.slice(0, match.index), isModel: false });
+        }
+        
+        // Add the model name with original casing
+        parts.push({ text: modelName, isModel: true });
+        
+        // Update the remaining text
+        currentText = currentText.slice(match.index + match[0].length);
+        matchFound = true;
+        break;
+      }
+    }
+    
+    // If no model name matches at the current position, move forward to next word
+    if (!matchFound) {
+      const nextSpaceIndex = currentText.indexOf(' ');
+      if (nextSpaceIndex === -1) {
+        // No more spaces, add the rest as non-model text
+        parts.push({ text: currentText, isModel: false });
+        break;
+      } else {
+        // Add the text up to the next space as non-model
+        const textToAdd = currentText.slice(0, nextSpaceIndex + 1);
+        parts.push({ text: textToAdd, isModel: false });
+        currentText = currentText.slice(nextSpaceIndex + 1);
+      }
+    }
+  }
+
+  return (
+    <>
+      {parts.map((part, i) => 
+        part.isModel ? (
+          <span 
+            key={i} 
+            className="inline-block bg-primary-500/20 text-primary-300 px-1.5 py-0.5 rounded text-sm font-medium"
+            title="HX Stomp Model"
+          >
+            {part.text}
+          </span>
+        ) : (
+          <span key={i}>{part.text}</span>
+        )
+      )}
+    </>
+  );
+};
+
 const queryClient = new QueryClient({
   defaultOptions: {
     mutations: {
@@ -98,11 +248,12 @@ function ChatComponent() {
                   <ReactMarkdown 
                     remarkPlugins={[remarkGfm]}
                     components={{
+                      h2: ({node, ...props}) => <h2 className="text-xl font-semibold mb-3 mt-6" {...props} />,
                       h3: ({node, ...props}) => <h3 className="text-lg font-semibold mb-2 mt-4" {...props} />,
                       ul: ({node, ...props}) => <ul className="my-2 space-y-1" {...props} />,
                       ol: ({node, ...props}) => <ol className="my-2 space-y-1 list-decimal list-inside" {...props} />,
                       li: ({node, ...props}) => <li className="ml-4" {...props} />,
-                      p: ({node, ...props}) => <p className="my-2" {...props} />,
+                      p: ({node, ...props}) => <p className="my-2"><PedalText text={props.children?.toString() || ''} /></p>,
                       code: ({node, ...props}) => <code className="bg-black/20 rounded px-1.5 py-0.5" {...props} />
                     }}
                   >
