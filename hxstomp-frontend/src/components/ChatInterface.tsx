@@ -220,9 +220,43 @@ function ChatComponent() {
     <div className="flex flex-col h-[calc(100vh-12rem)] bg-black/40 rounded-2xl backdrop-blur-md border border-white/10 shadow-xl overflow-hidden">
       <div className="flex-1 overflow-y-auto p-6 space-y-6 scrollbar-thin scrollbar-thumb-primary-600 scrollbar-track-transparent">
         {messages.length === 0 && (
-          <div className="flex flex-col items-center justify-center h-full space-y-4 text-white/50">
+          <div className="flex flex-col items-center justify-center h-full space-y-6 text-white/50">
             <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary-400 to-primary-600 animate-pulse"></div>
-            <p className="text-lg">Ask me anything about the HX Stomp...</p>
+            <div className="text-center space-y-4">
+              <p className="text-lg">Ask me anything about the HX Stomp...</p>
+              <div className="space-y-2">
+                <p className="text-sm text-white/30">Try these examples:</p>
+                <div className="space-y-2">
+                  <button 
+                    onClick={() => {
+                      setInput("What's the difference between Deluxe Reverb and Double Verb?");
+                      setTimeout(() => (document.querySelector('form button[type="submit"]') as HTMLButtonElement)?.click(), 100);
+                    }}
+                    className="block w-full px-4 py-2 text-sm text-left text-white/70 hover:bg-white/10 rounded-lg transition-colors"
+                  >
+                    "What's the difference between Deluxe Reverb and Double Verb?"
+                  </button>
+                  <button 
+                    onClick={() => {
+                      setInput("How can I create a dual amp setup with stereo effects?");
+                      setTimeout(() => (document.querySelector('form button[type="submit"]') as HTMLButtonElement)?.click(), 100);
+                    }}
+                    className="block w-full px-4 py-2 text-sm text-left text-white/70 hover:bg-white/10 rounded-lg transition-colors"
+                  >
+                    "How can I create a dual amp setup with stereo effects?"
+                  </button>
+                  <button 
+                    onClick={() => {
+                      setInput("What are the best settings for Horizon Drive to sound like a Tube Screamer?");
+                      setTimeout(() => (document.querySelector('form button[type="submit"]') as HTMLButtonElement)?.click(), 100);
+                    }}
+                    className="block w-full px-4 py-2 text-sm text-left text-white/70 hover:bg-white/10 rounded-lg transition-colors"
+                  >
+                    "What are the best settings for Horizon Drive to sound like a Tube Screamer?"
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         )}
         {messages.map((message, index) => (

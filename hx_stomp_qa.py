@@ -215,26 +215,38 @@ class HXStompQA:
 
     def format_parameters(self, text):
         """Format parameters section in Markdown"""
+        if not text:
+            return text
+            
+        # Try to find parameters section
         if 'parameters:' in text.lower():
-            main_content, params = text.split('parameters:', 1)
-            main_content = main_content.strip()
-            
-            # Process parameters
-            param_lines = []
-            for param in params.split('|'):
-                param = param.strip()
-                if not param:
-                    continue
+            try:
+                parts = text.split('parameters:', 1)
+                if len(parts) == 2:
+                    main_content, params = parts
+                    main_content = main_content.strip()
                     
-                if ':' in param:
-                    name, value = param.split(':', 1)
-                    param_lines.append(f"* **{name.strip()}**: {value.strip()}")
+                    # Process parameters
+                    param_lines = []
+                    for param in params.split('|'):
+                        param = param.strip()
+                        if not param:
+                            continue
+                            
+                        if ':' in param:
+                            name, value = param.split(':', 1)
+                            param_lines.append(f"* **{name.strip()}**: {value.strip()}")
+                        else:
+                            param_lines.append(f"* {param}")
+                    
+                    if param_lines:
+                        return f"{main_content}\n\n### Parameters\n\n" + '\n'.join(param_lines)
                 else:
-                    param_lines.append(f"* {param}")
-            
-            if param_lines:
-                return f"{main_content}\n\n### Parameters\n\n" + '\n'.join(param_lines)
-        
+                    return text
+            except Exception as e:
+                print(f"Error formatting parameters: {str(e)}")
+                return text
+                
         return text
 
     def find_relevant_context(self, question, top_k=5):  # Increased from 2 to 5 for more context
@@ -291,9 +303,17 @@ class HXStompQA:
             )
             
             if response.status_code == 200:
-                enhanced = response.json().get("response", "").strip()
-                if enhanced and len(enhanced) > 20:
-                    return self.clean_answer(enhanced)
+                try:
+                    response_json = response.json()
+                    if isinstance(response_json, dict) and "response" in response_json:
+                        enhanced = response_json["response"].strip()
+                        if enhanced and len(enhanced) > 20:
+                            return self.clean_answer(enhanced)
+                    elif isinstance(response_json, str) and len(response_json.strip()) > 20:
+                        # Handle case where response is directly a string
+                        return self.clean_answer(response_json.strip())
+                except (ValueError, AttributeError) as e:
+                    print(f"Error parsing model response: {str(e)}")
             
             return self.clean_answer(base_answer)
             
