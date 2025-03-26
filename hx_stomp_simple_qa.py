@@ -228,6 +228,34 @@ class HXStompSimpleQA:
         
         return [self.pedals_info[i] for i in relevant_indices]
 
+    def _calculate_similarity(self, text1: str, text2: str) -> float:
+        """Calculate cosine similarity between two texts"""
+        # Create TF-IDF vectors for the texts
+        texts = [text1.lower(), text2.lower()]
+        tfidf = TfidfVectorizer().fit_transform(texts)
+        return cosine_similarity(tfidf[0:1], tfidf[1:2])[0][0]
+
+    def _apply_pedal_order_rules(self, pedals: List[Dict]) -> List[Dict]:
+        """Apply pedal ordering rules based on best practices"""
+        # Define category order based on hx_pedal_order_qa_data.csv guidelines
+        category_order = {
+            'Dynamics': 0,      # Compression first
+            'Distortion': 1,    # Gain effects after compression
+            'EQ': 2,           # EQ to shape the distorted signal
+            'Modulation': 3,    # Modulation effects after gain
+            'Delay': 4,        # Time-based effects near the end
+            'Reverb': 5        # Reverb typically last
+        }
+        
+        # Sort pedals based on their category
+        ordered_pedals = sorted(pedals, key=lambda p: category_order.get(p['category'], 999))
+        
+        # Assign positions based on the sorted order
+        for i, pedal in enumerate(ordered_pedals):
+            pedal['position'] = i
+        
+        return ordered_pedals
+
     def answer_question(self, question: str) -> Dict[str, Union[str, List[Dict]]]:
         """Answer a question about the HX Stomp with structured JSON response"""
         try:
@@ -249,18 +277,35 @@ class HXStompSimpleQA:
                     "max_chain_size": 8
                 }
             
-            # If it is a chain request, proceed with finding relevant pedals
+            # First, search for matching recipes in hx_receipts.csv
+            recipes = []
+            for qa_pair in self.knowledge_base:
+                if qa_pair.startswith("Q:") and any(keyword in qa_pair.lower() for keyword in chain_related_keywords):
+                    qa_lines = qa_pair.split('\n')
+                    if len(qa_lines) >= 2:
+                        recipe_q = qa_lines[0][3:].strip()  # Remove "Q: "
+                        recipe_a = qa_lines[1][3:].strip()  # Remove "A: "
+                        # Calculate similarity between question and recipe question
+                        if self._calculate_similarity(question, recipe_q) > 0.6:  # Threshold can be adjusted
+                            recipes.append(recipe_a)
+            
+            # Find relevant pedals based on the question and recipes
             relevant_pedals = self.find_relevant_pedals(question)
-            validated_pedals = self.validate_pedal_chain(relevant_pedals)
             
-            response = {
-                "pedals": validated_pedals,
-                "total_pedals": len(validated_pedals),
-                "remaining_slots": max(0, 8 - len(validated_pedals)),
-                "max_chain_size": 8
-            }
-            
-            return response
+            # Apply pedal ordering based on hx_pedal_order_qa_data.csv guidelines
+            if relevant_pedals:
+                ordered_pedals = self._apply_pedal_order_rules(relevant_pedals)
+                validated_pedals = self.validate_pedal_chain(ordered_pedals)
+                
+                response = {
+                    "pedals": validated_pedals,
+                    "total_pedals": len(validated_pedals),
+                    "remaining_slots": max(0, 8 - len(validated_pedals)),
+                    "max_chain_size": 8,
+                    "recipes": recipes if recipes else None
+                }
+                
+                return response
             
         except Exception as e:
             return {
