@@ -231,17 +231,32 @@ class HXStompSimpleQA:
     def answer_question(self, question: str) -> Dict[str, Union[str, List[Dict]]]:
         """Answer a question about the HX Stomp with structured JSON response"""
         try:
-            # Find relevant pedals without limiting the number
-            relevant_pedals = self.find_relevant_pedals(question)
+            # Keywords that indicate the user wants to create or modify a pedal chain
+            chain_related_keywords = [
+                'create', 'setup', 'build', 'make', 'configure', 'chain',
+                'pedal', 'effect', 'tone', 'sound', 'patch'
+            ]
             
-            # Validate the chain of relevant pedals
+            # Check if the question is about creating/modifying a chain
+            is_chain_request = any(keyword in question.lower() for keyword in chain_related_keywords)
+            
+            if not is_chain_request:
+                return {
+                    "error": "I am specifically designed to help with creating and configuring pedal chains. For general information about the HX Stomp, please refer to the manual or contact Line 6 support.",
+                    "pedals": [],
+                    "total_pedals": 0,
+                    "remaining_slots": 8,
+                    "max_chain_size": 8
+                }
+            
+            # If it is a chain request, proceed with finding relevant pedals
+            relevant_pedals = self.find_relevant_pedals(question)
             validated_pedals = self.validate_pedal_chain(relevant_pedals)
             
-            # Format response with validated chain
             response = {
                 "pedals": validated_pedals,
                 "total_pedals": len(validated_pedals),
-                "remaining_slots": max(0, 8 - len(validated_pedals)),  # Ensure we don't return negative remaining slots
+                "remaining_slots": max(0, 8 - len(validated_pedals)),
                 "max_chain_size": 8
             }
             
