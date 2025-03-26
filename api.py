@@ -47,10 +47,34 @@ async def health_check():
 async def get_pedals():
     """
     Get the list of all pedals from the HX Stomp.
+    Returns a structured response with items array and count.
+    Only includes categories with subcategories.
     """
     if not pedals_data:
         raise HTTPException(status_code=404, detail="Pedals data not found")
-    return pedals_data
+    
+    formatted_items = []
+    for category in pedals_data:
+        category_name = category.get("name", "Unknown")
+        
+        # Only process categories with subcategories
+        if "subcategories" in category:
+            for subcategory in category["subcategories"]:
+                if "models" in subcategory:
+                    for model in subcategory["models"]:
+                        if isinstance(model, dict) and "name" in model:
+                            formatted_items.append({
+                                "id": str(len(formatted_items)),
+                                "category": category_name,
+                                "name": model["name"]
+                            })
+
+    return {
+        "data": {
+            "items": formatted_items,
+            "count": len(formatted_items)
+        }
+    }
 
 @app.post("/api/ai")
 async def ask_ai(question: Question):
@@ -59,7 +83,9 @@ async def ask_ai(question: Question):
     """
     try:
         response = qa_system.answer_question(question.text)
-        return response
+        return {
+            "data": response
+        }
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
