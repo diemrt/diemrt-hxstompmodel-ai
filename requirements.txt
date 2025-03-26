@@ -5,3 +5,6 @@ numpy>=1.24.0
 sentence-transformers
 datasets>=2.13.0
 requests>=2.31.0  # Required for Ollama HTTP client
+fastapi>=0.104.0
+uvicorn>=0.24.0  # ASGI server for FastAPI
+python-multipart  # For handling form data
