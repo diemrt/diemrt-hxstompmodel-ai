@@ -1,123 +1,214 @@
 import json
-from typing import Dict, List, Optional
+import pandas as pd
+from typing import Dict, List, Optional, Union
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
 
 class HXStompSimpleQA:
     def __init__(self):
-        # Load the pedals data from JSON
+        # Load the pedals and units data from JSON
         with open('data/hx_pedals.json', 'r') as f:
             self.pedals_data = json.load(f)
+        with open('data/hx_pedals_units.json', 'r') as f:
+            self.units_data = json.load(f)
             
-        # Create a knowledge base for different tones/styles
-        self.tone_knowledge = {
-            "lead guitar": {
-                "description": "Lead guitar tones typically need compression, overdrive/distortion, and some ambience",
-                "recommended_effects": ["Compressor", "Distortion", "Delay", "Reverb"]
-            },
-            "clean tone": {
-                "description": "Clean tones benefit from compression and subtle modulation",
-                "recommended_effects": ["Compressor", "EQ", "Modulation"]
-            },
-            "ambient": {
-                "description": "Ambient tones use multiple delays and reverbs with modulation",
-                "recommended_effects": ["Modulation", "Delay", "Reverb"]
-            },
-            "rock rhythm": {
-                "description": "Rock rhythm needs tight compression and medium gain distortion",
-                "recommended_effects": ["Compressor", "Distortion", "EQ"]
-            },
-            "metal": {
-                "description": "Metal tones use high gain distortion with noise gate and tight EQ",
-                "recommended_effects": ["Noise Gate", "Distortion", "EQ"]
-            }
-        }
+        # Create parameter info lookup
+        self.parameter_info = {}
+        for param_data in self.units_data:
+            for param_name, details in param_data.items():
+                self.parameter_info[param_name] = details
+            
+        # Load and process all knowledge sources
+        self.knowledge_base = self.load_knowledge_base()
         
-        # Initialize TF-IDF vectorizer
+        # Initialize the TF-IDF vectorizer
         self.vectorizer = TfidfVectorizer(stop_words='english')
-        self.descriptions = [v["description"] for v in self.tone_knowledge.values()]
-        self.tfidf_matrix = self.vectorizer.fit_transform(self.descriptions)
+        self.tfidf_matrix = self.vectorizer.fit_transform(self.knowledge_base)
 
-    def find_matching_tone(self, question: str) -> str:
-        """Find the most relevant tone based on the question using TF-IDF similarity"""
-        question_vector = self.vectorizer.transform([question])
-        similarities = cosine_similarity(question_vector, self.tfidf_matrix)[0]
-        best_match_idx = np.argmax(similarities)
-        return list(self.tone_knowledge.keys())[best_match_idx]
+    def format_pedal_params(self, params: List[Dict]) -> List[Dict]:
+        """Format pedal parameters with their units and ranges"""
+        formatted_params = []
+        for param in params:
+            if isinstance(param, dict):
+                param_name = list(param.keys())[0] if param else None
+                if param_name and param_name in self.parameter_info:
+                    param_info = self.parameter_info[param_name]
+                    # Create suggested value based on range
+                    if 'from' in param_info and 'to' in param_info:
+                        if param_info['unitOfMeasure'] == 'boolean':
+                            suggested_value = "Off"
+                        elif param_info['unitOfMeasure'] == 'type':
+                            suggested_value = str(param_info['from'])
+                        else:
+                            # Use middle value for numeric parameters
+                            try:
+                                from_val = float(param_info['from'])
+                                to_val = float(param_info['to'])
+                                suggested_value = str(int((from_val + to_val) / 2))
+                            except:
+                                suggested_value = str(param_info['from'])
+                    else:
+                        suggested_value = "Default"
 
-    def find_pedal_by_category(self, category: str) -> Optional[Dict]:
-        """Find a suitable pedal from a given category"""
-        for category_data in self.pedals_data:
-            if category.lower() in category_data["name"].lower():
-                # Get the first available model from the first subcategory
-                if "subcategories" in category_data:
-                    for subcat in category_data["subcategories"]:
-                        if "models" in subcat and subcat["models"]:
-                            return next((model for model in subcat["models"] 
-                                      if isinstance(model, dict) and "use_subcategory" not in model), None)
-        return None
+                    formatted_param = {
+                        param_name: suggested_value
+                    }
+                    formatted_params.append(formatted_param)
+        return formatted_params
 
-    def generate_param_values(self, param_name: str) -> str:
-        """Generate reasonable default values for parameters"""
-        param_defaults = {
-            "Gain": "8",
-            "Drive": "7",
-            "Tone": "6",
-            "Level": "Unity",
-            "Mix": "50%",
-            "Time": "400ms",
-            "Feedback": "40%",
-            "Bass": "0dB",
-            "Treble": "0dB",
-            "Decay": "4.0s",
-            "Depth": "50%",
-            "Rate": "3.0Hz"
+    def create_pedal_json(self, model: Dict) -> Dict:
+        """Create a structured JSON representation of a pedal"""
+        return {
+            "name": model.get("name", "Unknown"),
+            "params": self.format_pedal_params(model.get("params", []))
         }
+            
+    def load_pedals_json(self) -> List[Dict]:
+        """Process pedals data into structured JSON format"""
+        pedals_list = []
         
-        # Check for common parameter names
-        for key in param_defaults:
-            if key.lower() in param_name.lower():
-                return param_defaults[key]
+        for category in self.pedals_data:
+            if 'subcategories' in category:
+                for subcat in category['subcategories']:
+                    if 'models' in subcat:
+                        for model in subcat['models']:
+                            if not isinstance(model, dict) or 'use_subcategory' in model:
+                                continue
+                            
+                            # Add category and subcategory to model
+                            model['category'] = category['name']
+                            model['subcategory'] = subcat['name']
+                            
+                            pedal_json = self.create_pedal_json(model)
+                            pedals_list.append(pedal_json)
         
-        return "Default"
+        return pedals_list
 
-    def generate_pedal_chain(self, question: str) -> Dict:
-        """Generate a chain of pedals based on the question"""
-        # Find the matching tone type
-        tone_type = self.find_matching_tone(question)
-        recommended_effects = self.tone_knowledge[tone_type]["recommended_effects"]
+    def load_knowledge_base(self) -> List[str]:
+        """Load all knowledge sources"""
+        self.pedals_info = []
         
-        pedal_chain = []
+        # Process pedals data into a flat list of pedals with parameters
+        for category in self.pedals_data:
+            if 'subcategories' in category:
+                for subcat in category['subcategories']:
+                    if 'models' in subcat:
+                        for model in subcat['models']:
+                            if isinstance(model, dict) and not model.get('use_subcategory'):
+                                # Only process models with actual data
+                                if model.get('name') and model.get('params') is not None:
+                                    pedal_info = {
+                                        "name": model['name'],
+                                        "category": category['name'],
+                                        "subcategory": subcat['name'],
+                                        "params": []
+                                    }
+                                    
+                                    # Process parameters if they exist
+                                    if model['params']:
+                                        for param in model['params']:
+                                            if isinstance(param, dict):
+                                                param_name = list(param.keys())[0] if param else None
+                                                if param_name:
+                                                    param_info = self.parameter_info.get(param_name, {})
+                                                    # Create suggested value based on parameter info
+                                                    if 'from' in param_info and 'to' in param_info:
+                                                        if param_info['unitOfMeasure'] == 'boolean':
+                                                            value = "Off"
+                                                        elif param_info['unitOfMeasure'] == 'type':
+                                                            value = str(param_info['from'])
+                                                        else:
+                                                            try:
+                                                                from_val = float(param_info['from'])
+                                                                to_val = float(param_info['to'])
+                                                                value = str(int((from_val + to_val) / 2))
+                                                            except:
+                                                                value = str(param_info['from'])
+                                                    else:
+                                                        value = "Default"
+                                                        
+                                                    pedal_info["params"].append({param_name: value})
+                                    
+                                    self.pedals_info.append(pedal_info)
         
-        # Generate pedals for each recommended effect type
-        for effect_type in recommended_effects:
-            pedal = self.find_pedal_by_category(effect_type)
-            if pedal:
-                pedal_config = {
-                    "name": pedal["name"],
-                    "params": []
-                }
-                
-                # Generate parameters if available
-                if "params" in pedal:
-                    for param in pedal["params"]:
-                        if isinstance(param, dict):
-                            param_name = list(param.keys())[0]
-                            param_value = self.generate_param_values(param_name)
-                            pedal_config["params"].append({param_name: param_value})
-                
-                pedal_chain.append(pedal_config)
+        # Create searchable text from pedal info
+        knowledge = []
+        for pedal in self.pedals_info:
+            desc = f"Pedal: {pedal['name']}\n"
+            desc += f"Category: {pedal['category']} > {pedal['subcategory']}\n"
+            if pedal['params']:
+                desc += "Parameters:\n"
+                for param in pedal['params']:
+                    param_name = list(param.keys())[0]
+                    param_value = param[param_name]
+                    param_info = self.parameter_info.get(param_name, {})
+                    unit = param_info.get('unitOfMeasure', '')
+                    desc += f"• {param_name}: {param_value} {unit}\n"
+            knowledge.append(desc)
         
-        return {"pedals": pedal_chain}
+        # Load additional knowledge sources
+        knowledge.extend(self._load_qa_data('data/hx_manual_qa_data.csv'))
+        knowledge.extend(self._load_qa_data('data/hx_pedal_order_qa_data.csv'))
+        knowledge.extend(self._load_qa_data('data/hx_receipts.csv'))
+        
+        return knowledge
 
-    def answer_question(self, question: str) -> str:
-        """Generate JSON response for the question"""
+    def _load_qa_data(self, filepath: str) -> List[str]:
+        """Helper function to load Q&A data from CSV files"""
         try:
-            pedal_chain = self.generate_pedal_chain(question)
-            return json.dumps(pedal_chain, indent=2)
+            df = pd.read_csv(filepath, sep=';', on_bad_lines='skip')
+            if len(df.columns) > 2:
+                df = df.iloc[:, :2]
+                df.columns = ['Question', 'Answer']
+            return [f"Q: {row['Question']}\nA: {row['Answer']}" for _, row in df.iterrows()]
         except Exception as e:
-            return json.dumps({"error": str(e)})
+            print(f"Error loading data from {filepath}: {str(e)}")
+            return []
+
+    def find_relevant_pedals(self, question: str, top_k: int = 3) -> List[Dict]:
+        """Find the most relevant pedals based on the question"""
+        # Convert pedals to searchable text for matching
+        pedal_texts = []
+        for pedal in self.pedals_info:
+            text = f"{pedal['name']} {pedal['category']} {pedal['subcategory']}"
+            pedal_texts.append(text.lower())
+        
+        # Create TF-IDF matrix for pedal texts
+        pedal_vectorizer = TfidfVectorizer()
+        pedal_matrix = pedal_vectorizer.fit_transform(pedal_texts)
+        question_vector = pedal_vectorizer.transform([question.lower()])
+        
+        # Calculate similarities
+        similarities = cosine_similarity(question_vector, pedal_matrix)
+        top_indices = similarities[0].argsort()[-top_k:][::-1]
+        
+        return [self.pedals_info[i] for i in top_indices]
+
+    def answer_question(self, question: str) -> Dict[str, Union[str, List[Dict]]]:
+        """Answer a question about the HX Stomp with structured JSON response"""
+        try:
+            # Find relevant pedals
+            relevant_pedals = self.find_relevant_pedals(question)
+            
+            # Simplify the response format
+            response = {
+                "pedals": [
+                    {
+                        "name": pedal["name"],
+                        "params": pedal["params"]
+                    }
+                    for pedal in relevant_pedals
+                ]
+            }
+            
+            return response
+            
+        except Exception as e:
+            return {
+                "error": f"An error occurred: {str(e)}",
+                "pedals": []
+            }
 
 if __name__ == "__main__":
     # Example usage
@@ -125,15 +216,16 @@ if __name__ == "__main__":
     
     # Test questions
     test_questions = [
-        "How can I create a tone for a lead guitar?",
-        "I need a clean tone for jazz",
-        "Set up an ambient soundscape",
-        "Create a heavy metal distortion tone",
-        "What's a good rock rhythm tone?"
+        "Tell me about the Compulsive Drive",
+        "What are the parameters for delay pedals?",
+        "Show me reverb options",
+        "What modulation effects are available?",
+        "How do I set up a distortion pedal?"
     ]
     
     print("HX Stomp Simple QA System - Test Results:")
     for question in test_questions:
         print(f"\nQ: {question}")
-        print(f"A: {qa.answer_question(question)}")
-        print("-" * 80)  # Separator
+        response = qa.answer_question(question)
+        print(f"A: {json.dumps(response, indent=2)}")
+        print("-" * 80)
