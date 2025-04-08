@@ -21,10 +21,6 @@ class HXStompSimpleQA:
             
         # Load and process all knowledge sources
         self.knowledge_base = self.load_knowledge_base()
-        
-        # Initialize the TF-IDF vectorizer
-        self.vectorizer = TfidfVectorizer(stop_words='english')
-        self.tfidf_matrix = self.vectorizer.fit_transform(self.knowledge_base)
 
     def format_pedal_params(self, params: List[Dict]) -> List[Dict]:
         """Format pedal parameters with their units and ranges"""
@@ -117,34 +113,6 @@ class HXStompSimpleQA:
                 current_position += 1
         
         return formatted_chain
-
-    def load_pedals_json(self) -> List[Dict]:
-        """Process pedals data into structured JSON format with chain validation"""
-        pedals_list = []
-        current_chain = []
-        
-        for category in self.pedals_data:
-            if 'subcategories' in category:
-                for subcat in category['subcategories']:
-                    if 'models' in subcat:
-                        for model in subcat['models']:
-                            if not isinstance(model, dict) or 'use_subcategory' in model:
-                                continue
-                            
-                            # Add category and subcategory to model
-                            model['category'] = category['name']
-                            model['subcategory'] = subcat['name']
-                            
-                            pedal_json = self.create_pedal_json(model)
-                            current_chain.append(pedal_json)
-                        
-                        # Validate chain when we finish processing a subcategory
-                        if current_chain:
-                            validated_chain = self.validate_pedal_chain(current_chain)
-                            pedals_list.extend(validated_chain)
-                            current_chain = []  # Reset for next chain
-        
-        return pedals_list
 
     def load_knowledge_base(self) -> List[str]:
         """Load all knowledge sources"""
