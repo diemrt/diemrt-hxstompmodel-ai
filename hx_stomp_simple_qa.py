@@ -150,11 +150,6 @@ class HXStompSimpleQA:
         """Load all knowledge sources"""
         knowledge = []
         
-        # Load recipes first for better matching
-        recipes = self._load_qa_data('data/hx_receipts.csv')
-        if recipes:
-            knowledge.extend(recipes)
-        
         # Process pedals data into a flat list of pedals with parameters
         self.pedals_info = []
         for category in self.pedals_data:
@@ -325,41 +320,8 @@ class HXStompSimpleQA:
                     "max_chain_size": 8
                 }
             
-            # First, search for matching recipes in the knowledge base
-            recipes = []
-            best_similarity = 0
-            
-            for qa_pair in self.knowledge_base:
-                if qa_pair.startswith("Q:"):
-                    qa_lines = qa_pair.split('\n')
-                    if len(qa_lines) >= 2:
-                        recipe_q = qa_lines[0][3:].strip()  # Remove "Q: "
-                        recipe_a = qa_lines[1][3:].strip()  # Remove "A: "
-                        
-                        # Calculate similarity between question and recipe question
-                        similarity = self._calculate_similarity(question, recipe_q)
-                        
-                        # Store recipe if similarity is above threshold
-                        # Lower threshold for ambient sounds to catch more matches
-                        threshold = 0.15 if 'ambient' in question.lower() else 0.2
-                        if similarity > threshold:
-                            if similarity > best_similarity:
-                                # Insert best match at the beginning
-                                recipes.insert(0, recipe_a)
-                                best_similarity = similarity
-                            else:
-                                recipes.append(recipe_a)
-            
             # Find relevant pedals based on the question
             relevant_pedals = self.find_relevant_pedals(question)
-            
-            # If we found recipes, enhance pedal selection with recipe pedals
-            if recipes and relevant_pedals:
-                for recipe in recipes:
-                    recipe_pedals = self.find_relevant_pedals(recipe)
-                    for recipe_pedal in recipe_pedals:
-                        if not any(p['name'] == recipe_pedal['name'] for p in relevant_pedals):
-                            relevant_pedals.append(recipe_pedal)
             
             # Apply pedal ordering based on hx_pedal_order_qa_data.csv guidelines
             if relevant_pedals:
@@ -370,18 +332,9 @@ class HXStompSimpleQA:
                     "total_pedals": len(validated_pedals),
                     "remaining_slots": max(0, 8 - len(validated_pedals)),
                     "max_chain_size": 8,
-                    "recipes": recipes if recipes else None
                 }
                 
                 return response
-            elif recipes:  # If we have recipes but no pedals, still return the recipes
-                return {
-                    "pedals": [],
-                    "total_pedals": 0,
-                    "remaining_slots": 8,
-                    "max_chain_size": 8,
-                    "recipes": recipes
-                }
             
         except Exception as e:
             return {
