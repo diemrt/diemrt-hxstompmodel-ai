@@ -285,20 +285,6 @@ class HXStompSimpleQA:
         
         return filtered_pedals
 
-    def _calculate_similarity(self, text1: str, text2: str) -> float:
-        """Calculate cosine similarity between two texts"""
-        # Clean and normalize the texts
-        text1 = text1.lower().strip()
-        text2 = text2.lower().strip()
-        
-        # Create TF-IDF vectors for the texts
-        vectorizer = TfidfVectorizer(stop_words='english')
-        try:
-            tfidf = vectorizer.fit_transform([text1, text2])
-            return cosine_similarity(tfidf[0:1], tfidf[1:2])[0][0]
-        except:
-            return 0.0
-
     def answer_question(self, question: str) -> Dict[str, Union[str, List[Dict]]]:
         """Answer a question about the HX Stomp with structured JSON response"""
         try:
