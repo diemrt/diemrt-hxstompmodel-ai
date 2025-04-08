@@ -304,27 +304,6 @@ class HXStompSimpleQA:
         except:
             return 0.0
 
-    def _apply_pedal_order_rules(self, pedals: List[Dict]) -> List[Dict]:
-        """Apply pedal ordering rules based on best practices"""
-        # Define category order based on hx_pedal_order_qa_data.csv guidelines
-        category_order = {
-            'Dynamics': 0,      # Compression first
-            'Distortion': 1,    # Gain effects after compression
-            'EQ': 2,           # EQ to shape the distorted signal
-            'Modulation': 3,    # Modulation effects after gain
-            'Delay': 4,        # Time-based effects near the end
-            'Reverb': 5        # Reverb typically last
-        }
-        
-        # Sort pedals based on their category
-        ordered_pedals = sorted(pedals, key=lambda p: category_order.get(p['category'], 999))
-        
-        # Assign positions based on the sorted order
-        for i, pedal in enumerate(ordered_pedals):
-            pedal['position'] = i
-        
-        return ordered_pedals
-
     def answer_question(self, question: str) -> Dict[str, Union[str, List[Dict]]]:
         """Answer a question about the HX Stomp with structured JSON response"""
         try:
@@ -384,8 +363,7 @@ class HXStompSimpleQA:
             
             # Apply pedal ordering based on hx_pedal_order_qa_data.csv guidelines
             if relevant_pedals:
-                ordered_pedals = self._apply_pedal_order_rules(relevant_pedals)
-                validated_pedals = self.validate_pedal_chain(ordered_pedals)
+                validated_pedals = self.validate_pedal_chain(relevant_pedals)
                 
                 response = {
                     "pedals": validated_pedals,
@@ -413,29 +391,3 @@ class HXStompSimpleQA:
                 "remaining_slots": 8,
                 "max_chain_size": 8
             }
-
-if __name__ == "__main__":
-    # Example usage
-    qa = HXStompSimpleQA()
-    
-    # Test questions
-    test_questions = [
-        "Tell me about the Compulsive Drive",
-        "What are the parameters for delay pedals?",
-        "Show me reverb options",
-        "What modulation effects are available?",
-        "How do I set up a distortion pedal?",
-        "Create a pedal chain with a compressor, overdrive, and reverb",
-        "Configure a patch with delay and modulation",
-        "What is the best order for distortion and reverb?",
-        "How to build a pedalboard for ambient sounds?",
-        "Give me a recipe for a blues tone",
-        "What is the capital of France?"
-    ]
-    
-    print("HX Stomp Simple QA System - Test Results:")
-    for question in test_questions:
-        print(f"\nQ: {question}")
-        response = qa.answer_question(question)
-        print(f"A: {json.dumps(response, indent=2)}")
-        print("-" * 80)
