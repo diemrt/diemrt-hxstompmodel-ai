@@ -190,24 +190,59 @@ class HXStompSimpleQA:
         except Exception as e:
             print(f"Error loading data from {filepath}: {str(e)}")
             return []
+        
+    def find_relevant_recipes(self, question: str, top_k: int = 3) -> List[Dict]:
+        """
+        Find relevant recipes from knowledge base based on question similarity.
+        Returns recipes sorted by similarity score, with scores included.
+        """
+        # Load and prepare recipes data
+        recipes_data = []
+        with open('data/hx_receipts.csv', 'r', encoding='utf-8') as f:
+            content = f.read().replace('\r\n', '\n')
+            lines = content.split('\n')[1:]  # Skip header
+            for line in lines:
+                if line.strip():
+                    q, a = line.split(';')
+                    recipes_data.append({
+                        'question': q.strip(),
+                        'answer': a.strip()
+                    })
+
+        # Return empty list if no recipes found
+        if not recipes_data:
+            return []
+
+        # Vectorize recipes questions for comparison
+        vectorizer = TfidfVectorizer()
+        recipe_questions = [r['question'] for r in recipes_data]
+        questions_matrix = vectorizer.fit_transform(recipe_questions)
+        query_vector = vectorizer.transform([question])
+
+        # Calculate similarities
+        similarities = cosine_similarity(query_vector, questions_matrix)[0]
+        
+        # Create list of recipes with their similarity scores
+        scored_recipes = [
+            {**recipes_data[i], 'similarity_score': similarities[i]}
+            for i in range(len(recipes_data))
+            if similarities[i] > 0.1  # Keep threshold for relevance
+        ]
+        
+        # Sort by similarity score in descending order
+        scored_recipes.sort(key=lambda x: x['similarity_score'], reverse=True)
+        
+        # Return top_k recipes or all if less available
+        return scored_recipes[:top_k]
 
     def find_relevant_pedals(self, question: str, top_k: Optional[int] = None) -> List[Dict]:
         """Find the most relevant pedals based on the question"""
-        # Keywords for different effect types
-        effect_keywords = {
-            'ambient': ['reverb', 'delay', 'modulation', 'chorus'],
-            'blues': ['overdrive', 'tube', 'compression', 'boost'],
-            'rock': ['distortion', 'overdrive', 'delay'],
-            'clean': ['compression', 'eq', 'reverb'],
-            'worship': ['delay', 'reverb', 'modulation'],
-        }
-        
-        # Check for style keywords and add relevant effects to search
+        # Find relevant recipes first to get context
         question_lower = question.lower()
-        expanded_question = question_lower
-        for style, effects in effect_keywords.items():
-            if style in question_lower:
-                expanded_question += ' ' + ' '.join(effects)
+        best_recips = self.find_relevant_recipes(question_lower, top_k)
+        
+        # Use the best recipe's answer as context for pedal search
+        answer_lower = best_recips[0]['answer'].lower() if best_recips else ''
         
         # Convert pedals to searchable text for matching
         pedal_texts = []
@@ -222,13 +257,13 @@ class HXStompSimpleQA:
         # Create TF-IDF matrix for pedal texts
         pedal_vectorizer = TfidfVectorizer()
         pedal_matrix = pedal_vectorizer.fit_transform(pedal_texts)
-        question_vector = pedal_vectorizer.transform([expanded_question])
+        question_vector = pedal_vectorizer.transform([answer_lower])
         
         # Calculate similarities
         similarities = cosine_similarity(question_vector, pedal_matrix)[0]
         
         # Filter out irrelevant results (similarity score too low)
-        min_similarity = 0.05 if 'ambient' in question_lower else 0.1  # Lower threshold for ambient
+        min_similarity = 0.05 if 'ambient' in answer_lower else 0.1  # Lower threshold for ambient
         relevant_indices = [i for i, score in enumerate(similarities) if score > min_similarity]
         
         # Sort by similarity score
