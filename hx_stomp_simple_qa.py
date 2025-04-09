@@ -29,58 +29,9 @@ class HXStompSimpleQA:
         for param in params:
             if isinstance(param, dict):
                 param_name = list(param.keys())[0] if param else None
-                if param_name and param_name in self.parameter_info:
-                    param_info = self.parameter_info[param_name]
-                    unit = param_info.get('unitOfMeasure', '')
-                    
-                    # Handle different parameter types
-                    if unit == 'boolean':
-                        suggested_value = "Off"
-                        value_with_unit = suggested_value
-                    elif unit == 'type':
-                        suggested_value = str(param_info['from'])
-                        value_with_unit = f"Type {suggested_value}"
-                    else:
-                        # Handle numeric parameters with proper ranges and units
-                        try:
-                            from_val = float(param_info.get('from', 0))
-                            to_val = float(param_info.get('to', 100))
-                            
-                            # Use middle value by default
-                            suggested_value = (from_val + to_val) / 2
-                            
-                            # Format based on unit type
-                            if unit in ['ms', 'Hz']:
-                                # Keep decimals for time and frequency
-                                suggested_value = f"{suggested_value:.1f}"
-                            else:
-                                # Round to integer for other numeric values
-                                suggested_value = f"{int(suggested_value)}"
-                            
-                            # Special handling for specific units
-                            if unit == 'dB':
-                                if suggested_value == '-inf':
-                                    value_with_unit = "-∞ dB"
-                                else:
-                                    value_with_unit = f"{suggested_value} dB"
-                            elif unit == '%':
-                                value_with_unit = f"{suggested_value}%"
-                            elif unit == 'Hz':
-                                value_with_unit = f"{suggested_value} Hz"
-                            elif unit == 'ms':
-                                value_with_unit = f"{suggested_value} ms"
-                            elif unit == 'semitones':
-                                value_with_unit = f"{suggested_value} st"
-                            elif unit == 'cents':
-                                value_with_unit = f"{suggested_value} cents"
-                            else:
-                                value_with_unit = str(suggested_value)
-                        except:
-                            suggested_value = str(param_info.get('from', 'Default'))
-                            value_with_unit = suggested_value
-                    
+                if param_name and param_name in self.parameter_info:                    
                     formatted_param = {
-                        param_name: value_with_unit
+                        param_name: "Default"
                     }
                     formatted_params.append(formatted_param)
         return formatted_params
@@ -194,12 +145,9 @@ class HXStompSimpleQA:
                     "model": "tinyllama",
                     "prompt": prompt,
                     "stream": False,
-                    "temperature": 0.95,  # Increased for more variety
-                    "top_p": 0.95,
-                    "context": None if reset_context else "previous",
                     "raw": True
                 },
-                timeout=120
+                timeout=30
             )
             
             if response.status_code == 200:
@@ -240,10 +188,71 @@ class HXStompSimpleQA:
                             'chain': [block.strip() for block in fallback.split('Chain:')[1].strip().split('>')]
                         }
                     }
+    
+    def extract_pedal_params(self, block_text: str) -> tuple[str, dict]:
+        """Extract pedal name and parameters from a block of text"""
+        params_dict = {}
+        pedal_name = block_text
+        
+        # Extract parameters if present
+        params_start = block_text.find('(')
+        if params_start != -1:
+            pedal_name = block_text[:params_start].strip()
+            params_str = block_text[params_start:].strip('()')
+            
+            for param_pair in params_str.split(','):
+                if ':' in param_pair:
+                    key, value = map(str.strip, param_pair.split(':', 1))
+                    params_dict[key.lower()] = value
+                    
+        return pedal_name, params_dict
+
+    def match_parameters(self, suggested_params: dict, pedal_info: dict) -> List[Dict]:
+        """Match suggested parameters with actual pedal parameters using TF-IDF"""
+        if not pedal_info or not isinstance(pedal_info, dict) or 'params' not in pedal_info:
+            return []
+
+        # Ensure params is a list and not empty
+        params = pedal_info.get('params', [])
+        if not params or not isinstance(params, list):
+            return []
+
+        # Create vectorizer for parameter matching
+        param_vectorizer = TfidfVectorizer(lowercase=True)
+        
+        # Safely extract parameter names, handling both dict and list formats
+        pedal_param_names = []
+        for param in params:
+            if isinstance(param, dict):
+                # Extract the first (and should be only) key from each parameter dict
+                param_names = list(param.keys())
+                if param_names:
+                    pedal_param_names.append(param_names[0].lower())
+        
+        if not pedal_param_names:
+            return []
+
+        # Fit and transform pedal parameter names
+        param_matrix = param_vectorizer.fit_transform(pedal_param_names)
+        
+        matched_params = []
+        for suggested_param, value in suggested_params.items():
+            # Transform suggested parameter name
+            suggested_vector = param_vectorizer.transform([suggested_param])
+            
+            # Calculate similarities
+            similarities = cosine_similarity(suggested_vector, param_matrix)[0]
+            
+            # Find best match if similarity is above threshold
+            best_idx = np.argmax(similarities)
+            if similarities[best_idx] > 0.9:  # Adjust threshold as needed
+                actual_param_name = list(params[best_idx].keys())[0]
+                matched_params.append({actual_param_name: value})
+        
+        return matched_params
 
     def find_relevant_pedals(self, question: str, reset_context: bool, top_k: Optional[int] = None) -> List[Dict]:
         """Find the most relevant pedals based on the question and recipe structure"""
-        # Try to parse structured recipe
         try:    
             # Find relevant recipes first to get context
             question_lower = question.lower()
@@ -259,20 +268,8 @@ class HXStompSimpleQA:
             matched_pedals = []
             
             for block in blocks:
-                # Extract pedal name and parameters
-                params_start = block.find('(')
-                if params_start != -1:
-                    pedal_name = block[:params_start].strip()
-                    params_str = block[params_start:].strip('()')
-                    # Fix parameter parsing
-                    params = {}
-                    for param_pair in params_str.split(','):
-                        if ':' in param_pair:
-                            key, value = map(str.strip, param_pair.split(':', 1))
-                            params[key.lower()] = value
-                else:
-                    pedal_name = block.strip()
-                    params = {}
+                # Extract pedal name and parameters from block
+                pedal_name, suggested_params = self.extract_pedal_params(block)
                 
                 # Find matching pedal through multiple stages
                 best_match = None
@@ -306,26 +303,25 @@ class HXStompSimpleQA:
                 if combined_similarities[best_idx] > 0.1:  # Minimum similarity threshold
                     best_match = self.pedals_info[best_idx].copy()
                     
-                    # Update parameters if provided in recipe
-                    if params and best_match.get('params'):
-                        updated_params = []
-                        for param in best_match['params']:
-                            param_name = list(param.keys())[0]
-                            if param_name.lower() in params:
-                                updated_params.append({param_name: params[param_name.lower()]})
-                            else:
-                                updated_params.append(param)
-                        best_match['params'] = updated_params
+                    # Match and update parameters
+                    if suggested_params and best_match.get('params'):
+                        try:
+                            matched_params = self.match_parameters(suggested_params, best_match)
+                            if matched_params:
+                                best_match['params'] = matched_params
+                        except Exception as param_error:
+                            print(f"Error matching parameters: {str(param_error)}")
+                            # Keep original params if matching fails
+                            pass
                     
                     matched_pedals.append(best_match)
             
             return matched_pedals
             
         except Exception as e:
-            # Fallback to original behavior if parsing fails
+            # Fallback to empty list instead of returning the error
             print(f"Error parsing recipe structure: {str(e)}")
-            return e
-
+            return []
 
     def answer_question(self, question: str, reset_context: bool = True) -> Dict[str, Union[str, List[Dict]]]:
         """Answer a question about the HX Stomp with structured JSON response"""
