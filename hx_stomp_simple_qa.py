@@ -85,27 +85,6 @@ class HXStompSimpleQA:
                     formatted_params.append(formatted_param)
         return formatted_params
 
-    def validate_pedal_chain(self, pedals: List[Dict]) -> List[Dict]:
-        """Validate and format a chain of pedals"""
-        # Ensure no more than 8 pedals
-        if len(pedals) > 8:
-            pedals = pedals[:8]
-        
-        # Sort pedals by position if specified
-        pedals.sort(key=lambda x: x.get("position", 999))
-        
-        # Assign positions to pedals that don't have one
-        current_position = 0
-        formatted_chain = []
-        for pedal in pedals:
-            if current_position < 8:  # Only process up to 8 pedals
-                if "position" not in pedal:
-                    pedal["position"] = current_position
-                formatted_chain.append(pedal)
-                current_position += 1
-        
-        return formatted_chain
-
     def load_knowledge_base(self) -> List[str]:
         """Load all knowledge sources"""
         knowledge = []
@@ -309,20 +288,16 @@ class HXStompSimpleQA:
             
             # Find relevant pedals based on the question
             relevant_pedals = self.find_relevant_pedals(question)
+                
+            response = {
+                "pedals": relevant_pedals,
+                "total_pedals": len(relevant_pedals),
+                "remaining_slots": max(0, 8 - len(relevant_pedals)),
+                "max_chain_size": 8,
+                "recipes": self.recipes
+            }
             
-            # Apply pedal ordering based on hx_pedal_order_qa_data.csv guidelines
-            if relevant_pedals:
-                validated_pedals = self.validate_pedal_chain(relevant_pedals)
-                
-                response = {
-                    "pedals": validated_pedals,
-                    "total_pedals": len(validated_pedals),
-                    "remaining_slots": max(0, 8 - len(validated_pedals)),
-                    "max_chain_size": 8,
-                    "recipes": self.recipes
-                }
-                
-                return response
+            return response
             
         except Exception as e:
             return {
