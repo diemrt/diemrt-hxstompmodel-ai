@@ -4,6 +4,7 @@ from typing import Dict, List, Optional, Union
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
+import requests
 
 class HXStompSimpleQA:
     def __init__(self):
@@ -21,6 +22,7 @@ class HXStompSimpleQA:
             
         # Load and process all knowledge sources
         self.knowledge_base = self.load_knowledge_base()
+        self.recipes = []
 
     def format_pedal_params(self, params: List[Dict]) -> List[Dict]:
         """Format pedal parameters with their units and ranges"""
@@ -225,15 +227,87 @@ class HXStompSimpleQA:
         
         # Return top_k recipes or all if less available
         return scored_recipes[:top_k]
+    
+    def generate_recipe_suggestions(self, question: str, max_suggestions: int = 10) -> List[Dict]:
+        """
+        Generate recipe suggestions using Ollama and existing knowledge.
+        Returns a list of suggested recipes with pedal chains.
+        """
+        try:
+            # First, get relevant existing recipes
+            existing_recipes = self.find_relevant_recipes(question, top_k=3)
+            
+            # Add existing recipes to context
+            context += "\nExample recipes:\n"
+            for recipe in existing_recipes:
+                context += f"Q: {recipe['question']}\nA: {recipe['answer']}\n\n"
+            
+            # Prepare prompt for Ollama
+            prompt = f"""Based on the following context and question, suggest {max_suggestions} new pedal chain recipes.
+            Keep suggestions concise and focused on pedal combinations.
+            
+            Context:
+            {context}
+            
+            Question: {question}
+            
+            Generate {max_suggestions} different recipe suggestions."""
+
+            # Call Ollama API
+            response = requests.post(
+                'http://localhost:11434/api/generate',
+                json={
+                    'model': 'tinyllama',  # or any other model you have installed
+                    'prompt': prompt,
+                    'stream': False
+                }
+            )
+            
+            if response.status_code == 200:
+                generated_text = response.json()['response']
+                
+                # Process generated suggestions and combine with existing recipes
+                suggestions = []
+                
+                # Add existing recipes first
+                for recipe in existing_recipes:
+                    suggestions.append({
+                        'source': 'existing',
+                        'question': recipe['question'],
+                        'answer': recipe['answer'],
+                        'similarity_score': recipe.get('similarity_score', 1.0)
+                    })
+                
+                # Add generated suggestions
+                # Split the generated text into separate suggestions
+                generated_parts = generated_text.split('\n\n')
+                for part in generated_parts:
+                    if part.strip():
+                        suggestions.append({
+                            'source': 'generated',
+                            'question': question,
+                            'answer': part.strip(),
+                            'similarity_score': 0.8  # Default score for generated content
+                        })
+                
+                return suggestions[:max_suggestions]
+            
+            return existing_recipes  # Fallback to existing recipes if API call fails
+            
+        except Exception as e:
+            print(f"Error generating recipes: {str(e)}")
+            return existing_recipes  # Fallback to existing recipes
 
     def find_relevant_pedals(self, question: str, top_k: Optional[int] = None) -> List[Dict]:
         """Find the most relevant pedals based on the question"""
         # Find relevant recipes first to get context
         question_lower = question.lower()
-        best_recips = self.find_relevant_recipes(question_lower, top_k)
+        best_recips = self.generate_recipe_suggestions(question_lower, top_k)
         
         # Use the best recipe's answer as context for pedal search
         answer_lower = best_recips[0]['answer'].lower() if best_recips else ''
+        self.recipes.append("I have found some recipes that might help you.")
+        self.recipes.append(answer_lower)
         
         # Convert pedals to searchable text for matching
         pedal_texts = []
@@ -282,6 +356,10 @@ class HXStompSimpleQA:
     def answer_question(self, question: str) -> Dict[str, Union[str, List[Dict]]]:
         """Answer a question about the HX Stomp with structured JSON response"""
         try:
+            # Add an initial recipe
+            self.recipes = []
+            self.recipes.append("Generating the pedal chain...")
+            
             # Keywords that indicate the user wants to create or modify a pedal chain
             chain_related_keywords = [
                 'create', 'setup', 'build', 'make', 'configure', 'chain',
@@ -297,7 +375,7 @@ class HXStompSimpleQA:
                     "pedals": [],
                     "total_pedals": 0,
                     "remaining_slots": 8,
-                    "max_chain_size": 8
+                    "max_chain_size": 8,
                 }
             
             # Find relevant pedals based on the question
@@ -312,6 +390,7 @@ class HXStompSimpleQA:
                     "total_pedals": len(validated_pedals),
                     "remaining_slots": max(0, 8 - len(validated_pedals)),
                     "max_chain_size": 8,
+                    "recipes": self.recipes
                 }
                 
                 return response
