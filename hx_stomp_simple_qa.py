@@ -84,15 +84,6 @@ class HXStompSimpleQA:
                     formatted_params.append(formatted_param)
         return formatted_params
 
-    def create_pedal_json(self, model: Dict) -> Dict:
-        """Create a structured JSON representation of a pedal"""
-        formatted_pedal = {
-            "name": model.get("name", "Unknown"),
-            "params": self.format_pedal_params(model.get("params", [])),
-            "position": model.get("position", 0)  # Add position in chain (0-7)
-        }
-        return formatted_pedal
-
     def validate_pedal_chain(self, pedals: List[Dict]) -> List[Dict]:
         """Validate and format a chain of pedals"""
         # Ensure no more than 8 pedals
