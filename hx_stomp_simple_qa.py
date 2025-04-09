@@ -257,10 +257,11 @@ class HXStompSimpleQA:
             response = requests.post(
                 'http://localhost:11434/api/generate',
                 json={
-                    'model': 'tinyllama',  # or any other model you have installed
-                    'prompt': prompt,
-                    'stream': False
-                }
+                    "model": "tinyllama",
+                    "prompt": prompt,
+                    "stream": False
+                },
+                timeout=30
             )
             
             if response.status_code == 200:
