@@ -161,108 +161,64 @@ class HXStompSimpleQA:
         except Exception as e:
             print(f"Error loading data from {filepath}: {str(e)}")
             return []
-        
-    def find_relevant_recipes(self, question: str, top_k: int = 3) -> List[Dict]:
-        """
-        Find relevant recipes from knowledge base based on question similarity.
-        Returns recipes sorted by similarity score, with scores included.
-        """
-        # Load and prepare recipes data
-        recipes_data = []
-        with open('data/hx_receipts.csv', 'r', encoding='utf-8') as f:
-            content = f.read().replace('\r\n', '\n')
-            lines = content.split('\n')[1:]  # Skip header
-            for line in lines:
-                if line.strip():
-                    q, a = line.split(';')
-                    recipes_data.append({
-                        'question': q.strip(),
-                        'answer': a.strip()
-                    })
-
-        # Return empty list if no recipes found
-        if not recipes_data:
-            return []
-
-        # Vectorize recipes questions for comparison
-        vectorizer = TfidfVectorizer()
-        recipe_questions = [r['question'] for r in recipes_data]
-        questions_matrix = vectorizer.fit_transform(recipe_questions)
-        query_vector = vectorizer.transform([question])
-
-        # Calculate similarities
-        similarities = cosine_similarity(query_vector, questions_matrix)[0]
-        
-        # Create list of recipes with their similarity scores
-        scored_recipes = [
-            {**recipes_data[i], 'similarity_score': similarities[i]}
-            for i in range(len(recipes_data))
-            if similarities[i] > 0.1  # Keep threshold for relevance
-        ]
-        
-        # Sort by similarity score in descending order
-        scored_recipes.sort(key=lambda x: x['similarity_score'], reverse=True)
-        
-        # Return top_k recipes or all if less available
-        return scored_recipes[:top_k]
     
-    def generate_recipe(self, question: str) -> Dict:
-        """
-        Generate a recipe using Ollama with TinyLlama model.
-        Returns a recipe in the same format as find_relevant_recipes.
-        """
+    def generate_recipe(self, question: str, reset_context: bool) -> Dict:
         try:
-            # Prepare the prompt template with more structured output format
-            prompt = f"""You are a Line 6 HX Stomp expert. Generate a pedal chain recipe.
-            Rules:
-            - Response MUST start with "Suggestion: " followed by a brief tone description
-            - Then add "Chain: " followed by 1-8 effect blocks
-            - Each block must be a real HX Stomp effect, amp, or cab
-            - Format: BlockName (Param1: value1, Param2: value2)
-            - MUST Use ">" to separate blocks
-            - Keep parameters realistic with proper units (dB, ms, Hz, %)
-            - Maximum 8 blocks total
+            # Enhanced prompt with examples and style context
+            prompt = f"""You are a Line 6 HX Stomp expert. Generate a unique block chain recipe based on the specific question.
 
-            Example response format:
-            Suggestion: Crystal clean tone with subtle modulation
-            Chain: Studio Comp (Threshold: -20dB, Ratio: 4:1) > Deluxe Preamp (Drive: 4, Bass: 5, Mid: 6, Treble: 7) > Tremolo (Speed: 2.8Hz, Depth: 40%)
+            Rules:
+            - Response must follow this format:
+            Suggestion: [brief description of the tone]
+            Chain: [block1] (param1: value1, param2: value2) > [block2] (param1: value1, param2: value2) > [block3]...
+
+            - Maximum 8 blocks in the chain
+            - Each block must be a real HX Stomp effect/amp/cab
+            - Parameters must use proper units (dB, ms, Hz, %)
+            - Effects must be separated by ">" symbol
+
+            Examples of different styles:
+            1. Blues: "Suggestion: Classic blues tone with warm overdrive
+            Chain: Teemah! (Drive: 65%, Tone: 55%) > US Double Nrm (Drive: 4.5, Bass: 6.0, Mid: 7.0) > Room Verb (Decay: 2.5s)"
+
+            2. Ambient: "Suggestion: Ethereal ambient wash with modulation
+            Chain: Poly Sustain > Mod Echo (Time: 750ms, Feedback: 45%) > Particle Verb (Decay: 8s, Mix: 65%)"
 
             Question: {question}
+            Remember to tailor the response specifically to this question and avoid generic responses.
             Answer:"""
 
-            # Call Ollama API
+            # Modified API call with better context handling
             response = requests.post('http://localhost:11434/api/generate', 
                 json={
                     "model": "tinyllama",
                     "prompt": prompt,
                     "stream": False,
-                    "temperature": 0.7,  # Add temperature for more controlled output
-                    "top_p": 0.9        # Add top_p for better coherence
+                    "temperature": 0.95,  # Increased for more variety
+                    "top_p": 0.95,
+                    "context": None if reset_context else "previous",
+                    "raw": True
                 },
-                timeout=120)
+                timeout=120
+            )
             
             if response.status_code == 200:
                 recipe_text = response.json()['response'].strip()
                 
+                # Validate response format
+                if not ('Suggestion:' in recipe_text and 'Chain:' in recipe_text):
+                    raise ValueError("Invalid response format")
+
                 # Parse the response into the expected format
                 recipe_dict = {
                     'question': question,
                     'answer': recipe_text,
                     'similarity_score': 1.0,
                     'structured_data': {
-                        'suggestion': '',
-                        'chain': []
+                        'suggestion': recipe_text.split('Chain:')[0].replace('Suggestion:', '').strip(),
+                        'chain': [block.strip() for block in recipe_text.split('Chain:')[1].strip().split('>')]
                     }
                 }
-
-                # Extract suggestion and chain parts
-                if 'Suggestion:' in recipe_text and 'Chain:' in recipe_text:
-                    suggestion = recipe_text.split('Chain:')[0].replace('Suggestion:', '').strip()
-                    chain = recipe_text.split('Chain:')[1].strip()
-                    recipe_dict['structured_data']['suggestion'] = suggestion
-                    recipe_dict['structured_data']['chain'] = [
-                        block.strip() for block in chain.split('>')
-                    ]
 
                 return recipe_dict
             else:
@@ -270,23 +226,28 @@ class HXStompSimpleQA:
 
         except Exception as e:
             print(f"Error generating recipe: {str(e)}")
-            return {
-                'question': question,
-                'answer': "Sorry, I couldn't generate a recipe at this time.",
-                'similarity_score': 0.0,
-                'structured_data': {
-                    'suggestion': '',
-                    'chain': []
-                }
-            }
+            # Return a fallback recipe from the CSV data
+            with open('data/hx_receipts.csv', 'r', encoding='utf-8') as f:
+                content = f.read().split('\n')[1:]  # Skip header
+                if content:
+                    fallback = content[0].split(';')[1]  # Use first recipe as fallback
+                    return {
+                        'question': question,
+                        'answer': fallback,
+                        'similarity_score': 0.5,
+                        'structured_data': {
+                            'suggestion': fallback.split('Chain:')[0].replace('Suggestion:', '').strip(),
+                            'chain': [block.strip() for block in fallback.split('Chain:')[1].strip().split('>')]
+                        }
+                    }
 
-    def find_relevant_pedals(self, question: str, top_k: Optional[int] = None) -> List[Dict]:
+    def find_relevant_pedals(self, question: str, reset_context: bool, top_k: Optional[int] = None) -> List[Dict]:
         """Find the most relevant pedals based on the question and recipe structure"""
         # Try to parse structured recipe
         try:    
             # Find relevant recipes first to get context
             question_lower = question.lower()
-            recipe_dict = self.generate_recipe(question_lower)
+            recipe_dict = self.generate_recipe(question_lower, reset_context)
             
             # Get the best recipe's answer from the dictionary
             recipe_answer = recipe_dict['answer'].lower()
@@ -366,7 +327,7 @@ class HXStompSimpleQA:
             return e
 
 
-    def answer_question(self, question: str) -> Dict[str, Union[str, List[Dict]]]:
+    def answer_question(self, question: str, reset_context: bool = True) -> Dict[str, Union[str, List[Dict]]]:
         """Answer a question about the HX Stomp with structured JSON response"""
         try:
             # Add an initial recipe
@@ -392,7 +353,7 @@ class HXStompSimpleQA:
                 }
             
             # Find relevant pedals based on the question
-            relevant_pedals = self.find_relevant_pedals(question)
+            relevant_pedals = self.find_relevant_pedals(question, reset_context)
                 
             response = {
                 "pedals": relevant_pedals,

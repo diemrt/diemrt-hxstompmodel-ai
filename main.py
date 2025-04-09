@@ -76,13 +76,18 @@ async def get_pedals():
         }
     }
 
+class Question(BaseModel):
+    text: str
+    reset_context: bool = True  # Add new field with default True
+
 @app.post("/api/ai")
 async def ask_ai(question: Question):
     """
     Ask a question about HX Stomp and get an AI-powered response.
+    Pass reset_context=true to clear previous context.
     """
     try:
-        response = qa_system.answer_question(question.text)
+        response = qa_system.answer_question(question.text, question.reset_context)
         return {
             "data": response
         }
