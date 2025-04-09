@@ -1,9 +1,9 @@
 import json
-import pandas as pd
 from typing import Dict, List, Optional, Union
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
+import requests
 
 class HXStompSimpleQA:
     def __init__(self):
@@ -205,61 +205,166 @@ class HXStompSimpleQA:
         
         # Return top_k recipes or all if less available
         return scored_recipes[:top_k]
+    
+    def generate_recipe(self, question: str) -> Dict:
+        """
+        Generate a recipe using Ollama with TinyLlama model.
+        Returns a recipe in the same format as find_relevant_recipes.
+        """
+        try:
+            # Prepare the prompt template with more structured output format
+            prompt = f"""You are a Line 6 HX Stomp expert. Generate a pedal chain recipe.
+            Rules:
+            - Response MUST start with "Suggestion: " followed by a brief tone description
+            - Then add "Chain: " followed by 1-8 effect blocks
+            - Each block must be a real HX Stomp effect, amp, or cab
+            - Format: BlockName (Param1: value1, Param2: value2)
+            - MUST Use ">" to separate blocks
+            - Keep parameters realistic with proper units (dB, ms, Hz, %)
+            - Maximum 8 blocks total
+
+            Example response format:
+            Suggestion: Crystal clean tone with subtle modulation
+            Chain: Studio Comp (Threshold: -20dB, Ratio: 4:1) > Deluxe Preamp (Drive: 4, Bass: 5, Mid: 6, Treble: 7) > Tremolo (Speed: 2.8Hz, Depth: 40%)
+
+            Question: {question}
+            Answer:"""
+
+            # Call Ollama API
+            response = requests.post('http://localhost:11434/api/generate', 
+                json={
+                    "model": "tinyllama",
+                    "prompt": prompt,
+                    "stream": False,
+                    "temperature": 0.7,  # Add temperature for more controlled output
+                    "top_p": 0.9        # Add top_p for better coherence
+                },
+                timeout=120)
+            
+            if response.status_code == 200:
+                recipe_text = response.json()['response'].strip()
+                
+                # Parse the response into the expected format
+                recipe_dict = {
+                    'question': question,
+                    'answer': recipe_text,
+                    'similarity_score': 1.0,
+                    'structured_data': {
+                        'suggestion': '',
+                        'chain': []
+                    }
+                }
+
+                # Extract suggestion and chain parts
+                if 'Suggestion:' in recipe_text and 'Chain:' in recipe_text:
+                    suggestion = recipe_text.split('Chain:')[0].replace('Suggestion:', '').strip()
+                    chain = recipe_text.split('Chain:')[1].strip()
+                    recipe_dict['structured_data']['suggestion'] = suggestion
+                    recipe_dict['structured_data']['chain'] = [
+                        block.strip() for block in chain.split('>')
+                    ]
+
+                return recipe_dict
+            else:
+                raise Exception(f"Ollama API error: {response.status_code}")
+
+        except Exception as e:
+            print(f"Error generating recipe: {str(e)}")
+            return {
+                'question': question,
+                'answer': "Sorry, I couldn't generate a recipe at this time.",
+                'similarity_score': 0.0,
+                'structured_data': {
+                    'suggestion': '',
+                    'chain': []
+                }
+            }
 
     def find_relevant_pedals(self, question: str, top_k: Optional[int] = None) -> List[Dict]:
-        """Find the most relevant pedals based on the question"""
-        # Find relevant recipes first to get context
-        question_lower = question.lower()
-        best_recips = self.find_relevant_recipes(question_lower, top_k)
-        
-        # Use the best recipe's answer as context for pedal search
-        answer_lower = best_recips[0]['answer'].lower() if best_recips else ''
-        self.recipes.append("I have found some recipes that might help you.")
-        self.recipes.append(answer_lower)
-        
-        # Convert pedals to searchable text for matching
-        pedal_texts = []
-        for pedal in self.pedals_info:
-            text = f"{pedal['name']} {pedal['category']} {pedal['subcategory']}"
-            # Add parameter names to improve matching
-            if pedal.get('params'):
-                param_names = ' '.join(list(p.keys())[0] for p in pedal['params'] if isinstance(p, dict))
-                text += f" {param_names}"
-            pedal_texts.append(text.lower())
-        
-        # Create TF-IDF matrix for pedal texts
-        pedal_vectorizer = TfidfVectorizer()
-        pedal_matrix = pedal_vectorizer.fit_transform(pedal_texts)
-        question_vector = pedal_vectorizer.transform([answer_lower])
-        
-        # Calculate similarities
-        similarities = cosine_similarity(question_vector, pedal_matrix)[0]
-        
-        # Filter out irrelevant results (similarity score too low)
-        min_similarity = 0.05 if 'ambient' in answer_lower else 0.1  # Lower threshold for ambient
-        relevant_indices = [i for i, score in enumerate(similarities) if score > min_similarity]
-        
-        # Sort by similarity score
-        relevant_indices.sort(key=lambda i: similarities[i], reverse=True)
-        
-        # If top_k is specified, limit the results
-        if top_k is not None:
-            relevant_indices = relevant_indices[:top_k]
-        
-        # Deduplicate by category (e.g., don't return too many compressors)
-        seen_categories = {}
-        filtered_pedals = []
-        for idx in relevant_indices:
-            pedal = self.pedals_info[idx]
-            category = pedal['category']
-            if category not in seen_categories:
-                seen_categories[category] = 1
-                filtered_pedals.append(pedal)
-            elif seen_categories[category] < 2:  # Allow up to 2 pedals per category
-                seen_categories[category] += 1
-                filtered_pedals.append(pedal)
-        
-        return filtered_pedals
+        """Find the most relevant pedals based on the question and recipe structure"""
+        # Try to parse structured recipe
+        try:    
+            # Find relevant recipes first to get context
+            question_lower = question.lower()
+            recipe_dict = self.generate_recipe(question_lower)
+            
+            # Get the best recipe's answer from the dictionary
+            recipe_answer = recipe_dict['answer'].lower()
+            self.recipes.append("I have found some recipes that might help you.")
+            self.recipes.append(recipe_answer)
+
+            # Split recipe into individual blocks
+            blocks = [b.strip() for b in recipe_answer.split('>')]
+            matched_pedals = []
+            
+            for block in blocks:
+                # Extract pedal name and parameters
+                params_start = block.find('(')
+                if params_start != -1:
+                    pedal_name = block[:params_start].strip()
+                    params_str = block[params_start:].strip('()')
+                    # Fix parameter parsing
+                    params = {}
+                    for param_pair in params_str.split(','):
+                        if ':' in param_pair:
+                            key, value = map(str.strip, param_pair.split(':', 1))
+                            params[key.lower()] = value
+                else:
+                    pedal_name = block.strip()
+                    params = {}
+                
+                # Find matching pedal through multiple stages
+                best_match = None
+                highest_score = 0
+                
+                # Create vectorizers for different matching stages
+                name_vectorizer = TfidfVectorizer()
+                category_vectorizer = TfidfVectorizer()
+                
+                # Prepare pedal data for matching
+                pedal_names = [p['name'].lower() for p in self.pedals_info]
+                pedal_categories = [f"{p['category']} {p['subcategory']}".lower() for p in self.pedals_info]
+                
+                # Create TF-IDF matrices
+                names_matrix = name_vectorizer.fit_transform(pedal_names)
+                categories_matrix = category_vectorizer.fit_transform(pedal_categories)
+                
+                # Match name
+                name_vector = name_vectorizer.transform([pedal_name])
+                name_similarities = cosine_similarity(name_vector, names_matrix)[0]
+                
+                # Match category
+                category_vector = category_vectorizer.transform([pedal_name])
+                category_similarities = cosine_similarity(category_vector, categories_matrix)[0]
+                
+                # Combine similarities with weights
+                combined_similarities = name_similarities * 0.3 + category_similarities * 0.7
+                
+                # Find best matching pedal
+                best_idx = np.argmax(combined_similarities)
+                if combined_similarities[best_idx] > 0.1:  # Minimum similarity threshold
+                    best_match = self.pedals_info[best_idx].copy()
+                    
+                    # Update parameters if provided in recipe
+                    if params and best_match.get('params'):
+                        updated_params = []
+                        for param in best_match['params']:
+                            param_name = list(param.keys())[0]
+                            if param_name.lower() in params:
+                                updated_params.append({param_name: params[param_name.lower()]})
+                            else:
+                                updated_params.append(param)
+                        best_match['params'] = updated_params
+                    
+                    matched_pedals.append(best_match)
+            
+            return matched_pedals
+            
+        except Exception as e:
+            # Fallback to original behavior if parsing fails
+            print(f"Error parsing recipe structure: {str(e)}")
+            return e
+
 
     def answer_question(self, question: str) -> Dict[str, Union[str, List[Dict]]]:
         """Answer a question about the HX Stomp with structured JSON response"""
